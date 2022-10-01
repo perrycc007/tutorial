@@ -1,0 +1,125 @@
+.button {
+  cursor: pointer;
+  font: inherit;
+  color: white;
+  background-color: #5cb6cc;
+  border: 1px solid #5cb6cc;
+  border-radius: 4px;
+  padding: 0.5rem 2.5rem;
+  margin: 1%
+}
+.button:hover {
+  background-color: #165e70;
+  border-color: #1d6d81;
+}
+@media (max-width: 900px) {
+
+  .header {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    height: 3rem;
+    background-color: #f1f1f1;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+    padding: 0 10%;
+  }
+  
+  .header ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+  }
+  .header a {
+    text-decoration: none;
+    color: rgb(0, 0, 0);
+    font-weight: bold;
+  }
+  
+  .header li{
+    display: none
+  }
+  .IconButton{
+    display: inline;
+    background-color: transparent;
+    color: rgb(0, 0, 0);
+    border-radius: 30%;
+    cursor: pointer;
+    padding: 0.2rem 0.5rem;
+    margin: 0%
+  }
+  .IconButton:hover{
+    background-color: #bbbbbb;
+  }
+}
+
+
+
+
+
+@media only screen and (min-width: 768px){
+  .header li {
+    margin: 0 1rem;
+  }
+  
+  
+  
+  .header a {
+    text-decoration: none;
+    color: rgb(0, 0, 0);
+    font-weight: bold;
+  }
+  
+  .header button {
+    font: inherit;
+    background-color: transparent;
+    border: 1px solid rgb(0, 0, 0);
+    color: rgb(0, 0, 0);
+    font-weight: bold;
+    padding: 0.5rem 1.5rem;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+  
+  .header a:hover {
+    color: #6d6d6d;
+  }
+  
+  .header button:hover {
+    background-color: #767676;
+    color: #000000;
+  }
+  .header {
+    width: 100%;
+    height: 5rem;
+    background-color: #f1f1f1;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10%;
+  }
+  .IconButton{
+    display: none;
+  }
+  .logo {
+    font-family: 'Lato', sans-serif;
+    font-size: 1rem;
+    color: rgb(0, 0, 0);
+    margin: 0;
+  }
+  
+  .header ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: baseline;
+  }
+
+
+
+}

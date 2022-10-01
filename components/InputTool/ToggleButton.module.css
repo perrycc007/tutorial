@@ -1,0 +1,39 @@
+.toggleButton{
+  background-color: rgb(255, 255, 255);
+    /* margin-top: 15%; */
+    padding: 1rem;
+    border: none;
+    font-size: 5px;
+    padding: 0.5rem 2rem;
+    color: rgb(0, 0, 0);
+    cursor: pointer;
+    border-radius: 1rem;
+    align-items: center;
+    /* margin-left: auto;
+    margin-right: auto; */
+    /* display: table; */
+  }
+  
+  .toggleButtonClose{
+    background-color: rgb(16, 134, 202);
+    padding: 0.5rem 2rem;
+    /* margin-top: 15%; */
+    border: none;
+    font-size: 5px;
+    color: white;
+    cursor: pointer;
+    border-radius: 1rem;
+    align-items: center;
+    /* margin-left: auto;
+    margin-right: auto; */
+    /* display: table; */
+  }
+
+  .toggleButton:hover{
+    background-color: rgb(129, 129, 129);
+  }
+
+
+  .toggleButtonClose:hover{
+    background-color: rgb(105, 112, 116);
+  }
