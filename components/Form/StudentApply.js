@@ -13,7 +13,9 @@ const StudentApply = (props) => {
     const isTutor = false
     const student = {location:'[]',subject:'[]',availtime:'[]'}
     const getUserid = userStore(state => state.userId);
+    const [changes, setChanges]  = useState(false)
     const [studentid, setStudentid] = useState('')
+    const [studentData, setStudentData] = useState()
     const [page, setPage] = useState(1)
     const handleChange = (e, p) => {
         setPage(p)
@@ -47,7 +49,18 @@ const StudentApply = (props) => {
       })
       console.log(response.data.result)
     }
-
+    async function studentHandler(value){
+      console.log(value)
+      const newInfo = {...props.tutor,...value}
+      setStudentData(newInfo)
+      setChanges(true)
+      const response = await Axios.post(`http://localhost:3001/student/`,{
+        userid: 1,
+        studentid: 1,
+        information: newInfo
+      })
+      console.log(response.data.result)
+    }
     return(
         <div>
     <Box
@@ -60,10 +73,11 @@ const StudentApply = (props) => {
         <Paper
       sx={{padding:'3rem'}}>
             {page == 1 && (<LocationForm submitHandler={studentid == ''?firstlistHandler:listHandler} location={student}/>)}
-            {page == 2 && (<div><TimeForm submitHandler={listHandler} info={student}/> <StudentOthers submitHandler={listHandler} info={student}/></div> )}
-            {page == 3 && (<Subjects submitHandler={listHandler} info={student}/>)}
+            {page == 2 && (<TimeForm submitHandler={listHandler} info={student}/>)}
+            {page == 3 && (<StudentOthers submitHandler={studentHandler} info={student}/>)}
+            {page == 4 && (<Subjects submitHandler={listHandler} info={student}/>)}
         <Pagination
-        count={3}
+        count={4}
         page={page}
         onChange={handleChange}
         variant="outlined" 

@@ -13,12 +13,12 @@ const formField = {
           label: 'None'
         },
         {
-          value: 'chinese',
-          label: '中文'
+          value: 'Google',
+          label: '網上'
         },
         {
-          value: 'english',
-          label: '英文'
+          value: 'friend',
+          label: '朋友'
         },
         {
           value: 'other',
@@ -252,6 +252,70 @@ const formField = {
         },
       ]
     },
+    language: {
+      name: 'language',
+      label: '授課語言',
+      option: [
+        {
+          value: 'undefined',
+          label: 'None'
+        },
+        {
+          value: 'Chinese',
+          label: '中文'
+        },
+        {
+          value: 'English',
+          label: '英文'
+        },
+        {
+          value: 'Mandarin',
+          label: '普通話'
+        },
+      ]
+  },
+  strength: {
+    name: 'strength',
+    label: '強項',
+    option: [
+      {
+        value: 'undefined',
+        label: 'None'
+      },
+      {
+        value: '操卷',
+        label: '操卷'
+      },
+      {
+        value: '補底',
+        label: '補底'
+      },
+      {
+        value: '清concept',
+        label: '清concept'
+      },
+      {
+        value: '功課輔導',
+        label: '功課輔導'
+      },
+      {
+        value: '拔尖',
+        label: '拔尖'
+      },
+      {
+        value: '打好根基',
+        label: '打好根基'
+      },
+      {
+        value: '應付公開試',
+        label: '應付公開試'
+      },
+            {
+        value: '應付校內試',
+        label: '應付校內試'
+      },
+    ]
+  }
   },
   StudentOthers:{
     genderrequirement: {
@@ -319,38 +383,7 @@ const formField = {
     ]
   }
 },
-  TutorOthers:{
-    language: {
-      name: 'language',
-      label: '授課語言',
-      option: [
-        {
-          value: 'undefined',
-          label: 'None'
-        },
-        {
-          value: '1',
-          label: '1'
-        },
-        {
-          value: '2',
-          label: '2'
-        },
-        {
-          value: '3',
-          label: '3'
-        },
-        {
-          value: '4',
-          label: '4'
-        },
-        {
-          value: '<4',
-          label: '<4'
-        },
-      ]
-  }
-}
+
       
    
   },

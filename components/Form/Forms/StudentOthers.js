@@ -1,83 +1,105 @@
-import React, {useState} from 'react';
-import Input from '../../InputTool/Input'
-// import MinSlider from '../../InputTool/Slider';
-import Select from '../../InputTool/Selects';
+import React, {useState,useCallback } from 'react';
+
+import MinSlider from '../../InputTool/Slider';
+import Select from '@mui/material/Select';
 import formField from '../FormModel/formField'
-import { Formik, Form, useField } from 'formik';
+import TextField from '@mui/material/TextField';
+import FormControl from '@mui/material/FormControl';
+import MenuItem from '@mui/material/MenuItem';
 
 
 
 
-
-
-
-export default function StudentOthers() {
+export default function StudentOthers(props) {
     const inputfield = formField.inputfield.StudentOthers;
     const selectfield = formField.selectfield.StudentOthers;
-    const [hour,setHour] = useState([])
-    const [freq,setFreq] = useState([])
-    const [price,setPrice] = useState([])
+    const initialUserData = {
+
+    };
+    
+    const info = props.info
+    const [userData, setUserData] = useState(info|initialUserData);
+  
+    const updateUserDataHandler = useCallback(
+      (type) => (event) => {
+        setUserData({ ...userData, [type]: event.target.value });
+        console.log(userData)
+      },
+      [userData]
+    );
+    const formHandler = (event) => {
+      event.preventDefault()
+      console.log(userData)
+      props.submitHandler(userData)
+    };
+    const [lowestduration,setLowestHour] = useState([])
+    const [lowestfreq,setLowestFreq] = useState([])
+    const [lowestprice,setLowestPrice] = useState([])
+    const [highestduration,setHighestHour] = useState([])
+    const [highestfreq,setHighestFreq] = useState([])
+    const [highestprice,setHighestPrice] = useState([])
     const hourHandlder = (value) => {
-            setHour(value)
-            console.log(value)
+            setLowestHour(value[0])
+            setHighestHour(value[1])
+            setUserData({ ...userData, lowestduration: value[0], highestduration:value[1] });
+            console.log(value[0])
     }
 
     const FreqHandlder = (value) => {
-        setFreq(value)
+      setLowestFreq(value[0])
+      setHighestFreq(value[1])
+      setUserData({ ...userData, lowestfrequency: value[0], highestfrequency:value[1] });
     }
 
     const PriceHandler = (value) => {
-        setPrice(value)
+      setLowestPrice(value[0])
+      setHighestPrice(value[1])
+      setUserData({ ...userData, lowestfee: value[0], highestfee:value[1] });
     }
   return (
     <React.Fragment>
-      <Formik
-      initialValues={{
-        Name: '',
-        PhoneNo: '',
-        Address: '',
-        Nationality: '',
-        Language: '',
-        EmergencyContact: '',
-        EmergencyRelationship: '',
-        EmergencyPhone: '',
-        agreeWith: '' 
-              }}
-        onSubmit={(values) => {
-          setTimeout(() => {
-            console.log(values)
-          }, 400);
-        }}>
-      <Form>
+    <form onSubmit={formHandler}>
 
-      {Object.entries(inputfield).map(([key, value])=>
-      <Input name={value.name} label={value.label}  />)}
-
-      {Object.entries(selectfield).map(
-        ([key, value])=> <Select
+    {Object.entries(inputfield).map(([key, value])=>
+      <TextField  
+      name={value.name} 
+      key={value.name}
+      label={value.label} 
+      value={userData[value.name]}
+      defaultValue={info?info[value.name]:''}
+      onChange={updateUserDataHandler(value.name)}/>
+      )}
+        
+{Object.entries(selectfield).map(
+        ([key, value])=> 
+        <FormControl key={value.name}>
+          <Select
             id={value.name}
+            key={value.name}
             name={value.name}
             label={value.label}
+            onChange={updateUserDataHandler(value.name)}
+            defaultValue={info?info[value.name]:''}
           >
-          {
-          [value.option].map(
+          {[value.option].map(
             (options) => 
                options.map(
-                (opt)=>
-          <option key={opt.value} value={opt.value} label={opt.label}
+                (opt)=> 
+          
+          <MenuItem key={opt.value} value={opt.value}
               // selected={place.value === place ? 'selected' : ''}
-            />))}
-          </Select>)}
+            >{opt.label}</MenuItem>))}
+          </Select>
+          </FormControl>)}
           <p>每堂總時數(分鐘)</p>
-          {/* <MinSlider  step ={15} max={180} min={30} dmax={180} dmin={30} minD={15} passValue={hourHandlder}/> */}
+          <MinSlider  step ={15} max={180} min={30} dmax={100} dmin={200}  minD={15} passValue={hourHandlder}/>
           <p>一週堂數</p>
-          {/* <MinSlider  step ={1} max={7} min={1} dmax={3} dmin={1} minD={1} passValue={FreqHandlder}/> */}
+          <MinSlider  step ={1} max={7} min={1} dmax={1} dmin={7}  minD={1} passValue={FreqHandlder}/>
           <p>學費每小時</p>
-          {/* <MinSlider  step ={20} max={1000} min={60} dmax={100} dmin={200}  minD={20} passValue={PriceHandler}/> */}
-
-      </Form>
-      
-      </Formik>
+            <MinSlider  step ={20} max={1000} min={60} dmax={100} dmin={200}  minD={20} passValue={PriceHandler}/>
+          <button type="submit">儲存</button>
+          <button type="submit">儲存並下一步</button>
+      </form>
     </React.Fragment>
   );
 }

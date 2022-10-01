@@ -9,7 +9,6 @@ import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Pagination from '@mui/material/Pagination';
 import userStore from '../../stores/stores';
-import TutorOthers from './Forms/TutorOthers';
 import Axios from "axios";
 const ProfileForm = (props) => {
     const [isTutor, setIsTutor] = useState(true)
@@ -86,7 +85,7 @@ const ProfileForm = (props) => {
       sx={{padding:'3rem'}}>
             {page == 1 && (<BasicInfo submitHandler={submitHandler} info={changes?profileData:props.profile}/>)}
             {page == 2 && (<LocationForm submitHandler={listHandler} location={isTutor?changes?tutorData:props.tutor:changes?studentData:props.student} isTutor={isTutor}/>)}
-            {page == 3 && (<div><TimeForm submitHandler={listHandler} info={changes?tutorData:props.tutor}/> <TutorOthers submitHandler={submitHandler} info={props.tutor}/></div> )}
+            {page == 3 && (<TimeForm submitHandler={listHandler} info={changes?tutorData:props.tutor}/>)}
             {page == 4 && (<EducationForm submitHandler={tutorHandler} info={changes?tutorData:props.tutor}/>)}
             {page == 5 && (<Grade submitHandler={listHandler} info={changes?tutorData:props.tutor}/>)}
             {page == 6 && (<Subjects submitHandler={listHandler} info={changes?tutorData:props.tutor}/>)}

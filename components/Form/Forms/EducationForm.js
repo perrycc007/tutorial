@@ -22,7 +22,10 @@ const EducationForm =(props)=> {
     University: '',
     Major: '',
     OtherCert: '',
-    Year: ''
+    Year: '',
+    language: '',
+    strength: '',
+    intro: '',
   };
   const info = props.info
   const [userData, setUserData] = useState(info|initialUserData);
