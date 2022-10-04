@@ -37,7 +37,7 @@ const AuthForm = () => {
       'http://localhost:3001/login';
     } else {
       url =
-      'http://localhost:3001/signup';
+      'http://localhost:3001/register';
     }
     async function logIn(){
       const res = await Axios.post(url, 

@@ -8,7 +8,6 @@ import MenuIcon from '@mui/icons-material/Menu';
 
 
 
-
 const MainNavigation = () => {
   const getUserid = userStore(state => state.userId);
   const isLoggedin = userStore(state => state.isLoggedin);
@@ -51,7 +50,7 @@ const MainNavigation = () => {
             </li>
           {isLoggedin && (
             <li>
-              <Link href='/profile'>Profile</Link>
+              <Link href={`/profile/${getUserid}`}>Profile</Link>
             </li>
           )}
           {isLoggedin && (

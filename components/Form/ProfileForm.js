@@ -12,15 +12,17 @@ import userStore from '../../stores/stores';
 import Axios from "axios";
 const ProfileForm = (props) => {
     const [isTutor, setIsTutor] = useState(true)
-    const [profileData, setProfileData] = useState()
+    const [profileData, setProfileData] = useState(props.profile)
 
     const [studentData, setStudentData] = useState()
 
-    const [tutorData, setTutorData] = useState()
+    const [tutorData, setTutorData] = useState(props.tutor)
     const [changes, setChanges]  = useState(false)
     // const [info, setInfo] = useState({})
     const getUserid = userStore(state => state.userId);
     const [page, setPage] = useState(1)
+    console.log(props.tutor)
+
     const handleChange = (e, p) => {
         setPage(p);
       };
@@ -40,8 +42,8 @@ const ProfileForm = (props) => {
       setProfileData(newInfo)
       setChanges(true)
       const response = await Axios.post(`http://localhost:3001/profile/`,{
-        userid: 1,
-        tutorid: 1,
+        userid: getUserid,
+        tutorid: getUserid,
         information: newInfo
       })
       console.log(response.data.result)
@@ -55,19 +57,28 @@ const ProfileForm = (props) => {
       isTutor?setTutorData(newInfo):setStudentData(newInfo)
       setChanges(true)
       const response = await Axios.patch(`http://localhost:3001/${isTutor?'tutor':'student'}/`,{
-        userid: 1,
+        userid: getUserid,
         information: newInfo
       })
-      console.log(response.data.result)
+      const match = await Axios.post(`http://localhost:3001/match/${isTutor?'tutor':'student'}`,{
+        userid: getUserid,
+        information: newInfo
+      })
+      console.log(match.data.result)
     }
     async function tutorHandler(value){
       console.log(value)
       const newInfo = {...props.tutor,...value}
       setTutorData(newInfo)
       setChanges(true)
-      const response = await Axios.patch(`http://localhost:3001/tutor/`,{
-        userid: 1,
-        tutorid: 1,
+      const response = await Axios.patch(`http://localhost:3001/tutor`,{
+        userid: getUserid,
+        // tutorid: getUserid,
+        information: newInfo
+      })
+      const match = await Axios.patch(`http://localhost:3001/matching/tutor`,{
+        userid: getUserid,
+        // tutorid: getUserid,
         information: newInfo
       })
       console.log(response.data.result)
@@ -84,7 +95,7 @@ const ProfileForm = (props) => {
         <Paper
       sx={{padding:'3rem'}}>
             {page == 1 && (<BasicInfo submitHandler={submitHandler} info={changes?profileData:props.profile}/>)}
-            {page == 2 && (<LocationForm submitHandler={listHandler} location={isTutor?changes?tutorData:props.tutor:changes?studentData:props.student} isTutor={isTutor}/>)}
+            {page == 2 && (<LocationForm submitHandler={listHandler} info={isTutor?changes?tutorData:props.tutor:changes?studentData:props.student} isTutor={isTutor}/>)}
             {page == 3 && (<TimeForm submitHandler={listHandler} info={changes?tutorData:props.tutor}/>)}
             {page == 4 && (<EducationForm submitHandler={tutorHandler} info={changes?tutorData:props.tutor}/>)}
             {page == 5 && (<Grade submitHandler={listHandler} info={changes?tutorData:props.tutor}/>)}

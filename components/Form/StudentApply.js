@@ -30,7 +30,7 @@ const StudentApply = (props) => {
         value = JSON.stringify(value)
         const newInfo = {[key]:value}
         const response = await Axios.post(`http://localhost:3001/student`,{
-          userid: 1,
+          userid: getUserid,
           information: newInfo
         })
         console.log(response.data.result.studentid)

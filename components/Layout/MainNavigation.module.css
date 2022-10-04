@@ -12,7 +12,7 @@
   background-color: #165e70;
   border-color: #1d6d81;
 }
-@media (max-width: 900px) {
+/* @media (max-width: 900px) {
 
   .header {
     display: flex;
@@ -54,13 +54,13 @@
   .IconButton:hover{
     background-color: #bbbbbb;
   }
-}
+} */
 
 
 
 
 
-@media only screen and (min-width: 768px){
+/* @media only screen and (min-width: 768px){ */
   .header li {
     margin: 0 1rem;
   }
@@ -122,4 +122,4 @@
 
 
 
-}
+/* } */

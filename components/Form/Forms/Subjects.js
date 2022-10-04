@@ -11,8 +11,8 @@ import subjects from './Subject'
 const SubjectsForm = (props) => {
   const [list, setList] = useState([])
   useEffect(() => {
-  props.info.subject && console.log(JSON.parse(props.info.subject))
-  props.info.subject && setList(JSON.parse(props.info.subject))
+    props.info && props.info.hasOwnProperty('subject')== true ? console.log(JSON.parse(props.info.subject)):''
+    props.info && props.info.hasOwnProperty('subject')== true ? setList(JSON.parse(props.info.subject)):''
   },[props.info]);
 
   const listHandlerHandler = (value) => {

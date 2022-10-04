@@ -13,12 +13,13 @@ import Axios from "axios";
 const FavouriteList = () => {
     const getUserid = useStore(state => state.userId);
     const getFavouriteTutor = useStore (state=> state.favouriteTutor)
+    console.log(getFavouriteTutor)
     const [favourite, setFavourite] = useState([]);
 
   async function getFavouriteTutorList(tutorID){
     console.log(tutorID)
     const response = await Axios.post(`http://localhost:3001/tutor/getFavouriteCase`,{
-      tutoridList : [1,2]
+      tutoridList : getFavouriteTutor
     })
     console.log(response.data.result)
     setFavourite(response.data.result)

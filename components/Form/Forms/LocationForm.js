@@ -10,10 +10,11 @@ const LocationForm = (props) =>
   
 const [list, setList] = useState([])
 useEffect(() => {
-props.location && console.log(JSON.parse(props.location.location))
-props.location && setList(JSON.parse(props.location.location))
+  console.log(props.info)
+  props.info && props.info.hasOwnProperty('location')== true ? console.log(JSON.parse(props.info.location)):""
+  props.info && props.info.hasOwnProperty('location')== true ? setList(JSON.parse(props.info.location)):""
 console.log(list)
-},[props.location]);
+},[props.info]);
 
 
 const listHandlerHandler = (value) => {

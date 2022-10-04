@@ -24,8 +24,8 @@ export default function TimeForm(props) {
   const [selected, setSelected] = useState([]);
   // const getUserid = userStore(state => state.userId);
   useEffect(() => {
-    props.info.availtime && console.log(JSON.parse(props.info.availtime))
-    props.info.availtime && setSelected(JSON.parse(props.info.availtime))
+    props.info && props.info.hasOwnProperty('availtime')== true ? console.log(JSON.parse(props.info.availtime)):''
+    props.info && props.info.hasOwnProperty('availtime')== true ? setSelected(JSON.parse(props.info.availtime)):''
     },[props.info]);
 
   const checkboxHandler = (time) => {

@@ -50,11 +50,13 @@ function TabPanel(props) {
     const [value, setValue] = useState(0);
     const [list, setList] = useState([])
 
-
+     console.log(props.info)
     useEffect(() => {
-      console.log(JSON.parse(props.info.subgrade))
+ 
       // setPrevSelect(JSON.parse(props.info.subgrade))
-      JSON.parse(props.info.subgrade) != null && setList(JSON.parse(props.info.subgrade))
+      props.info && props.info.hasOwnProperty('subgrade')== true ? setList(JSON.parse(props.info.subgrade)):''
+
+      // JSON.parse(props.info.subgrade) != null && setList(JSON.parse(props.info.subgrade))
       console.log(list)
       },[props.info.subgrade]);
 
