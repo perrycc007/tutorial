@@ -5,6 +5,7 @@ import Grade from './Forms/Grade'
 import LocationForm from './Forms/LocationForm'
 import Subjects from './Forms/Subjects'
 import TimeForm from './Forms/TimeForm'
+import Budget from './Forms/Budget'
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Pagination from '@mui/material/Pagination';
@@ -100,8 +101,10 @@ const ProfileForm = (props) => {
             {page == 4 && (<EducationForm submitHandler={tutorHandler} info={changes?tutorData:props.tutor}/>)}
             {page == 5 && (<Grade submitHandler={listHandler} info={changes?tutorData:props.tutor}/>)}
             {page == 6 && (<Subjects submitHandler={listHandler} info={changes?tutorData:props.tutor}/>)}
+            {page == 7 && (<Budget submitHandler={tutorHandler} info={changes?tutorData:props.tutor}/>)}
+
         <Pagination
-        count={isTutor?6:2}
+        count={isTutor?7:2}
         page={page}
         onChange={handleChange}
         variant="outlined" 
