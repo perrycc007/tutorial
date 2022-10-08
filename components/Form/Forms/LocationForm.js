@@ -10,7 +10,6 @@ const LocationForm = (props) =>
   
 const [list, setList] = useState([])
 useEffect(() => {
-  console.log(props.info)
   props.info && props.info.hasOwnProperty('location')== true ? console.log(JSON.parse(props.info.location)):""
   props.info && props.info.hasOwnProperty('location')== true ? setList(JSON.parse(props.info.location)):""
 console.log(list)

@@ -32,28 +32,23 @@ export default function StudentOthers(props) {
       console.log(userData)
       props.submitHandler(userData)
     };
-    const [lowestduration,setLowestHour] = useState([])
-    const [lowestfreq,setLowestFreq] = useState([])
-    const [lowestprice,setLowestPrice] = useState([])
-    const [highestduration,setHighestHour] = useState([])
-    const [highestfreq,setHighestFreq] = useState([])
-    const [highestprice,setHighestPrice] = useState([])
+
     const hourHandlder = (value) => {
-            setLowestHour(value[0])
-            setHighestHour(value[1])
-            setUserData({ ...userData, lowestduration: value[0], highestduration:value[1] });
-            console.log(value[0])
+        value[0] == null? value[0] = 60 : value[0]
+        value[1] == null? value[1] = 180 : value[1]
+        setUserData({ ...userData, lowestduration: value[0], highestduration:value[1] });
+        console.log(value[0])
     }
 
     const FreqHandlder = (value) => {
-      setLowestFreq(value[0])
-      setHighestFreq(value[1])
+      value[0] == null? value[0] = 1 : value[0]
+      value[1] == null? value[1] = 7 : value[1]
       setUserData({ ...userData, lowestfrequency: value[0], highestfrequency:value[1] });
     }
 
     const PriceHandler = (value) => {
-      setLowestPrice(value[0])
-      setHighestPrice(value[1])
+      value[0] == null? value[0] = 60 : value[0]
+      value[1] == null? value[1] = 1000 : value[1]
       setUserData({ ...userData, lowestfee: value[0], highestfee:value[1] });
     }
   return (
@@ -92,11 +87,11 @@ export default function StudentOthers(props) {
           </Select>
           </FormControl>)}
           <p>每堂總時數(分鐘)</p>
-          <MinSlider  step ={15} max={180} min={30} dmax={100} dmin={200}  minD={15} passValue={hourHandlder}/>
+          <MinSlider  step ={15} max={180} min={30} dmax={info['highestduration']!= null?info['highestduration']:100} dmin={info['lowestduration']!= null?info['lowestduration']:200}  minD={15} passValue={hourHandlder}/>
           <p>一週堂數</p>
-          <MinSlider  step ={1} max={7} min={1} dmax={1} dmin={7}  minD={1} passValue={FreqHandlder}/>
+          <MinSlider  step ={1} max={7} min={1} dmax={info['highestfrequency']!= null?info['highestfrequency']:1} dmin={info['lowestfrequency']!= null?info['lowestfrequency']:7}  minD={1} passValue={FreqHandlder}/>
           <p>學費每小時</p>
-            <MinSlider  step ={20} max={1000} min={60} dmax={100} dmin={200}  minD={20} passValue={PriceHandler}/>
+            <MinSlider  step ={20} max={1000} min={60} dmax={info['highestfee']!= null?info['highestfee']:100} dmin={info['lowestfee']!= null?info['lowestfee']:200}  minD={20} passValue={PriceHandler}/>
           <button type="submit">儲存</button>
           <button type="submit">儲存並下一步</button>
       </form>

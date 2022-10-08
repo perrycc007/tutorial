@@ -10,7 +10,7 @@ import AccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import Link from 'next/link';
-
+import EditForm from '../Form/Forms/EditForm';
 
 function CaseItem(props) {
   const getUserid = userStore(state => state.userId);
@@ -133,7 +133,10 @@ const sumamry = item.slice(6,10)
           {props.type=='edit' && <div><button onClick={CloseHandler}>Close
             {/* {ItemIsCloaseHandler(props.cases.tutorid)? 'Close' : 'Open'} */}
           </button>
-          <div><Link href={`/edit/${studentid}`}>Edit</Link></div></div>}
+          <div>
+            {/* <Link href={`/edit/${studentid}`}>Edit</Link> */}
+            <EditForm cases={props.cases}/>
+            </div></div>}
         </AccordionDetails>
       </Accordion>
 

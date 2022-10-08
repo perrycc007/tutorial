@@ -77,12 +77,12 @@ const ProfileForm = (props) => {
         // tutorid: getUserid,
         information: newInfo
       })
-      const match = await Axios.patch(`http://localhost:3001/matching/tutor`,{
+      const match = await Axios.patch(`http://localhost:3001/match/tutor`,{
         userid: getUserid,
         // tutorid: getUserid,
         information: newInfo
       })
-      console.log(response.data.result)
+      console.log(match.data.result)
     }
     return(
         <div>

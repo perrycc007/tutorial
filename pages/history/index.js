@@ -13,7 +13,7 @@ const Cases = (props) => {
 
 export async function getStaticProps() {
   // fetch data from an API
-  const response = await axios.get(`http://localhost:3001/history/1`)
+  const response = await axios.get(`http://localhost:3001/history/6`)
   return {
     props: {
       cases: response.data.result
