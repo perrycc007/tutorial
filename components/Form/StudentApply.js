@@ -35,6 +35,7 @@ const StudentApply = (props) => {
         // console.log(response.data.result.studentid)
         setStudentid(response.data.result.studentid)
         setStudentData(newInfo)
+        setChanges(true)
         console.log('newInfo',newInfo, studentData)
       }
 
@@ -45,6 +46,7 @@ const StudentApply = (props) => {
       value = JSON.stringify(value)
       const newInfo = {[key]:value}
       setStudentData(newInfo)
+      setChanges(true)
       console.log('newInfo',newInfo, studentData)
       const response = await Axios.patch(`http://localhost:3001/student`,{
         
@@ -89,10 +91,10 @@ const StudentApply = (props) => {
          >
         <Paper
       sx={{padding:'3rem'}}>
-            {page == 1 && (<LocationForm submitHandler={studentid == ''?firstlistHandler:listHandler} info={studentData}/>)}
-            {page == 2 && (<TimeForm submitHandler={listHandler} info={studentData}/>)}
-            {page == 3 && (<StudentOthers submitHandler={studentHandler} info={studentData}/>)}
-            {page == 4 && (<Subjects submitHandler={listHandler} info={studentData}/>)}
+            {page == 1 && (<LocationForm submitHandler={studentid == ''?firstlistHandler:listHandler} info={changes?studentData:props.cases}/>)}
+            {page == 2 && (<TimeForm submitHandler={listHandler} info={changes?studentData:props.cases}/>)}
+            {page == 3 && (<StudentOthers submitHandler={studentHandler} info={changes?studentData:props.cases}/>)}
+            {page == 4 && (<Subjects submitHandler={listHandler} info={changes?studentData:props.cases}/>)}
         <Pagination
         count={4}
         page={page}

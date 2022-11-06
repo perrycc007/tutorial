@@ -31,11 +31,12 @@ const CasesList = (props) => {
   return (
     <>
     <setion className={classes.wrapper}>
-      {props.cases.map((oneCase)=>
-      <CaseItem key={oneCase.tutorid} 
-                id={oneCase.tutorid}
+      {_DATA.currentData().map((oneCase)=>
+      <CaseItem key={oneCase.tutorid?oneCase.tutorid:oneCase.studentid} 
+                id={oneCase.tutorid?oneCase.tutorid:oneCase.studentid} 
                 cases={oneCase}
-                type={props.type} />)}
+                type={props.type} />)
+                }
       <Pagination
         count={count}
         page={page}

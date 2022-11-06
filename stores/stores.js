@@ -8,13 +8,13 @@ let store = (set => ({
     favouriteTutor: [],
     favouriteCase: [],
     fetchFavouriteTutor: async () => {
-      const res = await Axios.get(`http://localhost:3001/favourite/tutor/${1}`,)
+      const res = await Axios.get(`http://localhost:3001/favourite/tutor/${6}`,)
       if(res.data)
       console.log(res.data.favouritetutorid)
       set({ favouriteTutor: await res.data.favouritetutorid})
     },
     fetchFavouriteCases: async () => {
-      const res = await Axios.get(`http://localhost:3001/favourite/case/${1}`,)
+      const res = await Axios.get(`http://localhost:3001/favourite/case/${6}`,)
       if(res.data)
       console.log(res.data.favouritecaseid)
       set({ favouriteTutor: await res.data.favouritecaseid})
@@ -28,7 +28,16 @@ let store = (set => ({
       ({favouriteTutor : [...state.favouriteTutor,tutorid]})),
     removeFavouriteTutor: (tutorid) => set(state => 
       ({favouriteTutor :state.favouriteTutor.filter(tutor => tutor !=tutorid)})), 
-    }));
+    addFavouriteCase: (caseid) => set(state => 
+      ({favouriteCase : [...state.favouriteCase,caseid]})),
+    removeFavouriteCase: (caseid) => set(state => 
+      ({favouriteCase :state.favouriteCase.filter(cases => cases !=caseid)})), 
+
+
+    }
+    
+    
+    ));
     
 store = persist(store, {name: "data"})
 const userStore =create(devtools(store))

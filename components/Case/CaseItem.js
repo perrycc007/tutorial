@@ -15,54 +15,59 @@ import EditForm from '../Form/Forms/EditForm';
 function CaseItem(props) {
   const getUserid = userStore(state => state.userId);
   const getClose = userStore(state => state.close);
-  const Favourite = userStore(state => state.favouriteTutor)
-  const [studentid,setStudentid] = useState()
+  const FavouriteTutor = userStore(state => state.favouriteTutor)
+  const FavouriteCases = userStore(state => state.favouriteCase)
   // console.log(Favourite)
   let url = 'http://localhost:3001/favourite/tutor'
   let id = ''
   const initiate = () =>{
     if(props.type == 'tutor'){
-
        url = 'http://localhost:3001/favourite/tutor'
-       id = props.tutorid
+       id = props.id
       //  console.log(Favourite,url,id)
     }else if(props.type == 'cases'){
-
        url = 'http://localhost:3001/favourite/case'
-       id = props.studentid
+       id = props.id
       //  console.log(Favourite,url,id)
     }}
  
   const addFavouriteTutor = userStore (state => state.addFavouriteTutor)
   const removeFavouriteTutor = userStore (state => state.removeFavouriteTutor)
+  const addFavouriteCase = userStore (state => state.addFavouriteCase)
+  const removeFavouriteCase = userStore (state => state.removeFavouriteCase)
+
+
   const fetchFavouriteTutor = userStore (state => state.fetchFavouriteTutor)
-  const fetchFavouriteCases = userStore (state => state.fetchFavouriteCases)
+  const fetchFavouriteCase = userStore (state => state.fetchFavouriteCases)
   const [isEdit,setIsEdit] = useState()
   useEffect(() => {
-    setStudentid(props.cases.studentid)
     if(props.type == 'tutor'){
       fetchFavouriteTutor()
       initiate()
   }else if(props.type == 'cases'){
-      fetchFavouriteCases()
+      fetchFavouriteCase()
       initiate()
   }
   },[])
   useEffect(() => {
 
-  },[toggleFavoriteStatusHandler,Favourite])
+  },[toggleFavoriteStatusHandler,FavouriteTutor,FavouriteCases])
 
-  function itemIsFavoriteHandler(tutorId) {
-    const isFavourite = Favourite ? Favourite.some(caseItem => caseItem == tutorId):[]
-    // console.log(isFavourite)
+  function itemIsFavoriteHandler(id) {
+    if(props.type == 'tutor'){
+    const isFavourite = FavouriteTutor ? FavouriteTutor.some(caseItem => caseItem == id):[]
     return isFavourite;
+    }else if(props.type == 'cases'){
+    const isFavourite = FavouriteCases ? FavouriteCases.some(caseItem => caseItem == id):[]
+    return isFavourite;
+    }
+    // console.log(isFavourite)
+
   }
  
   async function removeFromFavorite(newFavourite){
-
-
     const res = await Axios.patch(url, 
-    {tutorid: newFavourite,
+    {caseid: newFavourite,
     userid: getUserid}
   )
     // console.log(res.data.result);
@@ -71,7 +76,7 @@ function CaseItem(props) {
 
     async function addToFavorite(newFavourite){
       const res = await Axios.patch(url, 
-      {tutorid: newFavourite,
+      {caseid: newFavourite,
       userid: getUserid}
     )
 
@@ -81,19 +86,35 @@ function CaseItem(props) {
 
 
   function toggleFavoriteStatusHandler() {
-    if (itemIsFavoriteHandler(props.cases.tutorid)) {
-        removeFavouriteTutor(props.cases.tutorid)
-        const newFavourite = (tutorid) => {
-          return Favourite.filter(favourite => favourite !== tutorid)
+    if (itemIsFavoriteHandler(props.id)) {
+      if(props.type == 'tutor'){
+
+        removeFavouriteTutor(props.id)
+      }else if(props.type == 'cases'){
+        removeFavouriteCase(props.id)
+      }
+
+        const newFavourite = (id) => {
+          if(props.type == 'tutor'){
+              return FavouriteTutor.filter(favourite => favourite !== id)
+            }else if(props.type == 'cases'){
+              return FavouriteCases.filter(favourite => favourite !== id)
+            }
+
         }
         // console.log(newFavourite(props.cases.tutorid))
-        removeFromFavorite(newFavourite(props.cases.tutorid));
+        removeFromFavorite(newFavourite(props.id));
     }
      else {
-      addFavouriteTutor(props.cases.tutorid)
-      const newFavourite = [...Favourite ,props.cases.tutorid]
-      addToFavorite(newFavourite);
-
+      if(props.type == 'tutor'){
+        addFavouriteTutor(props.id)
+        const newFavourite = [...FavouriteTutor ,props.id]
+        addToFavorite(newFavourite);
+      }else if(props.type == 'cases'){
+        addFavouriteCase(props.id)
+        const newFavourite = [...FavouriteCases ,props.id]
+        addToFavorite(newFavourite);
+      }
     }
   }
 
@@ -127,8 +148,11 @@ const sumamry = item.slice(6,10)
           <Typography>
           {sumamry.map((item)=><p>{item[1]}</p>)}
           </Typography>          
-          {props.type=='tutor'|'cases' &&<button onClick={toggleFavoriteStatusHandler}>
+          {props.type=='tutor' &&<button onClick={toggleFavoriteStatusHandler}>
             {itemIsFavoriteHandler(props.cases.tutorid)? 'Remove from Favorites' : 'To Favorites'}
+          </button>}
+          {props.type=='cases' &&<button onClick={toggleFavoriteStatusHandler}>
+            {itemIsFavoriteHandler(props.cases.studentid)? 'Remove from Favorites' : 'To Favorites'}
           </button>}
           {props.type=='edit' && <div><button onClick={CloseHandler}>Close
             {/* {ItemIsCloaseHandler(props.cases.tutorid)? 'Close' : 'Open'} */}
