@@ -1,65 +1,53 @@
 import CasesList from '../../components/CasesList'
 import axios from 'axios';
-import Filter from '../../components/Filter';
-import { useState, useEffect } from 'react';
-import Pagination from '@mui/material/Pagination';
 
-
-const AdminResult = () => {
-    const [result, setResult] = useState();
-  async function getResult(){
-    const response = await axios.get(`http://localhost:3001/result`)
-    // setResult(response.data)
-    // console.log(response.data)
-    setResult(response.data)
-    return response.data
-    response.data.map((item)=>{
-      console.log(item)
-      console.log(item.availtutor)
-      console.log(item.tutor)
-    })
-  }
-  useEffect(() => {getResult()},[])
-//   const [filtered, setFiltered] = useState(false)
-//   const [filteredList, setFilteredList] = useState([])
-
-
-//   async function tutorFilter(preference){
-//     const result = await axios.post(`http://localhost:3001/tutor`,{
-//       preference
-//     })
-//     console.log(result.data)
-//     setFiltered(true)
-//     setFilteredList(result.data)
-//   }
+const Result = (props) => {
+  props.cases.map((item)=>{
+    console.log(item)
+  })
 
   return (
-    <>
-      {/* {result.map(()=>{<ol>
+    <>  
+        <div>
+          {props.cases.map((item)=>
+              Object.entries(item).map(([key, value]) => 
+                typeof(value) !=='object'?
+                  <div><p>{key}:{value}</p></div>:
+                    value?value.map((array)=>
+                    typeof(array) !=='object'?
+                      <p>{array}</p>:
+                      array?Object.entries(array).map(([key, value])=>
+                      <div><p>{key}:{value}</p></div>
+                    )
 
-      </ol>})} */}
-     
-      {result.map((detail)=>{
-          <p>{detail}</p>
-      })}
-     
+                // <p>{array}</p>
+              :''):''
+            
+          )
+        )}
+        </div>
+        
+        
+         {/* <CasesList 
+         cases={props.cases}
+         type = 'cases'
+         /> */}
     </>
   );
 }
 
 
-// export async function getStaticProps() {
-//   // fetch data from an API
-//   const response = await axios.get(`http://localhost:3001/result`)
-// //   const result = response? response.data.result:''
-// //   console.log(response.count)
-//   // const count = response? response.data.count:''
-//   return {
-//     props: {
-//       result: response,
-//     },
-//     revalidate: 1,
-//   };
-// };
+export async function getStaticProps() {
+  // fetch data from an API
+  const response = await axios.get(`http://localhost:3001/result`)
+  // const result = response? response.data.result : []
+  console.log(response.data,'result')
+  return {
+    props: {
+      cases: response.data
+    },
+    revalidate: 1,
+  };
+};
 
-export default AdminResult;
+export default Result;
