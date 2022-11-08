@@ -51,7 +51,7 @@ async function onAddForm (price,placeList,grade,subjectList){
         }
       }
       console.log(preference)
-      props.tutorFilterHanlder(preference)
+      props.FilterHanlder(preference)
 
   }
 
@@ -66,7 +66,7 @@ async function onAddForm (price,placeList,grade,subjectList){
             <MinSlider  step ={20} max={1000} min={60} dmax={100} dmin={200}  minD={20} passValue={PriceHandler}/>
 
                 <FormControl fullWidth>
-                    <InputLabel id="demo-simple-select-label">Grade</InputLabel>
+                    {/* <InputLabel id="demo-simple-select-label">Grade</InputLabel>
                     <Select
                         labelId="demo-simple-select-label"
                         id="demo-simple-select"
@@ -79,7 +79,7 @@ async function onAddForm (price,placeList,grade,subjectList){
                         <MenuItem value={'pri'}>小學</MenuItem>
                         <MenuItem value={'sec'}>中學</MenuItem>
                         <MenuItem value={'adult'}>成人</MenuItem>
-                    </Select>
+                    </Select> */}
                 </FormControl>
             
                 <button onClick={filterHandler}>Filter</button>

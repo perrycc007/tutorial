@@ -2,9 +2,6 @@ import CasesList from '../../components/CasesList'
 import axios from 'axios';
 import Filter from '../../components/Filter';
 import { useState } from 'react';
-import Pagination from '@mui/material/Pagination';
-
-
 const Cases = (props) => {
   const [filtered, setFiltered] = useState(false)
   const [filteredList, setFilteredList] = useState([])
@@ -21,7 +18,7 @@ const Cases = (props) => {
 
   return (
     <>
-        <Filter tutorFilterHanlder={tutorFilter}/>
+        <Filter FilterHanlder={tutorFilter}/>
          {!filtered && <CasesList 
          cases={props.cases}
          type = 'tutor'
@@ -38,9 +35,8 @@ const Cases = (props) => {
 
 export async function getStaticProps() {
   // fetch data from an API
-  const response = await axios.get(`http://localhost:3001/tutor?limit=20&skip=0`)
+  const response = await axios.get(`http://localhost:3001/tutor`)
   const result = response? response.data.result:''
-  console.log(response.count)
   // const count = response? response.data.count:''
   return {
     props: {

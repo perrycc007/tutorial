@@ -41,17 +41,12 @@ function CaseItem(props) {
   const fetchFavouriteCase = userStore (state => state.fetchFavouriteCases)
   const [isEdit,setIsEdit] = useState()
   useEffect(() => {
-    if(props.type == 'tutor'){
       fetchFavouriteTutor()
-      initiate()
-  }else if(props.type == 'cases'){
       fetchFavouriteCase()
       initiate()
-  }
+  
   },[])
-  useEffect(() => {
 
-  },[toggleFavoriteStatusHandler,FavouriteTutor,FavouriteCases])
 
   function itemIsFavoriteHandler(id) {
     if(props.type == 'tutor'){
@@ -88,7 +83,6 @@ function CaseItem(props) {
   function toggleFavoriteStatusHandler() {
     if (itemIsFavoriteHandler(props.id)) {
       if(props.type == 'tutor'){
-
         removeFavouriteTutor(props.id)
       }else if(props.type == 'cases'){
         removeFavouriteCase(props.id)

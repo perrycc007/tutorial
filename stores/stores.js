@@ -8,13 +8,13 @@ let store = (set => ({
     favouriteTutor: [],
     favouriteCase: [],
     fetchFavouriteTutor: async () => {
-      const res = await Axios.get(`http://localhost:3001/favourite/tutor/${6}`,)
+      const res = await Axios.get(`http://localhost:3001/favourite/tutor/${1}`,)
       if(res.data)
       console.log(res.data.favouritetutorid)
       set({ favouriteTutor: await res.data.favouritetutorid})
     },
     fetchFavouriteCases: async () => {
-      const res = await Axios.get(`http://localhost:3001/favourite/case/${6}`,)
+      const res = await Axios.get(`http://localhost:3001/favourite/cases/${1}`,)
       if(res.data)
       console.log(res.data.favouritecaseid)
       set({ favouriteTutor: await res.data.favouritecaseid})

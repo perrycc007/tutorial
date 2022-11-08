@@ -2,9 +2,7 @@ import CasesList from '../../components/CasesList'
 import axios from 'axios';
 
 const Result = (props) => {
-  props.cases.map((item)=>{
-    console.log(item)
-  })
+    console.log(props)
 
   return (
     <>  

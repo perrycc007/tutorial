@@ -19,24 +19,24 @@ const CasesList = (props) => {
   const [cases, setCases] = useState(props.cases);
   const [edit, setEdit] = useState(true);
   const PER_PAGE = 2;
-  const count = Math.ceil(cases.length / PER_PAGE);
-  const _DATA = usePagination(cases, PER_PAGE);
+  const count = Math.ceil(props.cases.length / PER_PAGE);
+  const _DATA = usePagination(props.cases, PER_PAGE);
   const handleChange = (e, p) => {
     setPage(p);
     _DATA.jump(p);
   };
-
+  console.log(props.cases)
 
 
   return (
     <>
     <setion className={classes.wrapper}>
-      {_DATA.currentData().map((oneCase)=>
-      <CaseItem key={oneCase.tutorid?oneCase.tutorid:oneCase.studentid} 
-                id={oneCase.tutorid?oneCase.tutorid:oneCase.studentid} 
+      {props.cases?_DATA.currentData().map((oneCase)=>
+      <CaseItem key={props.type=='tutor'?oneCase.tutorid:oneCase.studentid} 
+                id={props.type=='tutor'?oneCase.tutorid:oneCase.studentid} 
                 cases={oneCase}
                 type={props.type} />)
-                }
+                :[]}
       <Pagination
         count={count}
         page={page}
