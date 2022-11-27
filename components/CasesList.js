@@ -25,7 +25,6 @@ const CasesList = (props) => {
     setPage(p);
     _DATA.jump(p);
   };
-  console.log(props.cases)
 
 
   return (
@@ -35,7 +34,10 @@ const CasesList = (props) => {
       <CaseItem key={props.type=='tutor'?oneCase.tutorid:oneCase.studentid} 
                 id={props.type=='tutor'?oneCase.tutorid:oneCase.studentid} 
                 cases={oneCase}
-                type={props.type} />)
+                type={props.type}
+                toggleFavourite={props.toggleFavouriteHandler}
+                isFavourite={props.favourite.includes(props.type=='tutor'?oneCase.tutorid:oneCase.studentid)}
+                 />)
                 :[]}
       <Pagination
         count={count}

@@ -13,108 +13,12 @@ import Link from 'next/link';
 import EditForm from '../Form/Forms/EditForm';
 
 function CaseItem(props) {
-  const getUserid = userStore(state => state.userId);
-  const getClose = userStore(state => state.close);
-  const FavouriteTutor = userStore(state => state.favouriteTutor)
-  const FavouriteCases = userStore(state => state.favouriteCase)
-  // console.log(Favourite)
-  let url = 'http://localhost:3001/favourite/tutor'
-  let id = ''
-  const initiate = () =>{
-    if(props.type == 'tutor'){
-       url = 'http://localhost:3001/favourite/tutor'
-       id = props.id
-      //  console.log(Favourite,url,id)
-    }else if(props.type == 'cases'){
-       url = 'http://localhost:3001/favourite/case'
-       id = props.id
-      //  console.log(Favourite,url,id)
-    }}
- 
-  const addFavouriteTutor = userStore (state => state.addFavouriteTutor)
-  const removeFavouriteTutor = userStore (state => state.removeFavouriteTutor)
-  const addFavouriteCase = userStore (state => state.addFavouriteCase)
-  const removeFavouriteCase = userStore (state => state.removeFavouriteCase)
 
-
-  const fetchFavouriteTutor = userStore (state => state.fetchFavouriteTutor)
-  const fetchFavouriteCase = userStore (state => state.fetchFavouriteCases)
-  const [isEdit,setIsEdit] = useState()
-  useEffect(() => {
-      fetchFavouriteTutor()
-      fetchFavouriteCase()
-      initiate()
-  
-  },[])
-
-
-  function itemIsFavoriteHandler(id) {
-    if(props.type == 'tutor'){
-    const isFavourite = FavouriteTutor ? FavouriteTutor.some(caseItem => caseItem == id):[]
-    return isFavourite;
-    }else if(props.type == 'cases'){
-    const isFavourite = FavouriteCases ? FavouriteCases.some(caseItem => caseItem == id):[]
-    return isFavourite;
-    }
-    // console.log(isFavourite)
-
-  }
- 
-  async function removeFromFavorite(newFavourite){
-    const res = await Axios.patch(url, 
-    {caseid: newFavourite,
-    userid: getUserid}
-  )
-    // console.log(res.data.result);
-    return (res)}
-  
-
-    async function addToFavorite(newFavourite){
-      const res = await Axios.patch(url, 
-      {caseid: newFavourite,
-      userid: getUserid}
-    )
-
-      // console.log(res.data.result);
-      return (res)}
-
-
-
-  function toggleFavoriteStatusHandler() {
-    if (itemIsFavoriteHandler(props.id)) {
-      if(props.type == 'tutor'){
-        removeFavouriteTutor(props.id)
-      }else if(props.type == 'cases'){
-        removeFavouriteCase(props.id)
-      }
-
-        const newFavourite = (id) => {
-          if(props.type == 'tutor'){
-              return FavouriteTutor.filter(favourite => favourite !== id)
-            }else if(props.type == 'cases'){
-              return FavouriteCases.filter(favourite => favourite !== id)
-            }
-
-        }
-        // console.log(newFavourite(props.cases.tutorid))
-        removeFromFavorite(newFavourite(props.id));
-    }
-     else {
-      if(props.type == 'tutor'){
-        addFavouriteTutor(props.id)
-        const newFavourite = [...FavouriteTutor ,props.id]
-        addToFavorite(newFavourite);
-      }else if(props.type == 'cases'){
-        addFavouriteCase(props.id)
-        const newFavourite = [...FavouriteCases ,props.id]
-        addToFavorite(newFavourite);
-      }
-    }
-  }
-
-const CloseHandler =()=>{
-
+const toggleFavoriteStatusHandler=()=>{
+  props.toggleFavourite(props.id)
 }
+
+
 
 
 const items = props.cases
@@ -143,10 +47,10 @@ const sumamry = item.slice(6,10)
           {sumamry.map((item)=><p>{item[1]}</p>)}
           </Typography>          
           {props.type=='tutor' &&<button onClick={toggleFavoriteStatusHandler}>
-            {itemIsFavoriteHandler(props.cases.tutorid)? 'Remove from Favorites' : 'To Favorites'}
+            {props.isFavourite? 'Remove from Favorites' : 'To Favorites'}
           </button>}
           {props.type=='cases' &&<button onClick={toggleFavoriteStatusHandler}>
-            {itemIsFavoriteHandler(props.cases.studentid)? 'Remove from Favorites' : 'To Favorites'}
+            {props.isFavourite? 'Remove from Favorites' : 'To Favorites'}
           </button>}
           {props.type=='edit' && <div><button onClick={CloseHandler}>Close
             {/* {ItemIsCloaseHandler(props.cases.tutorid)? 'Close' : 'Open'} */}
