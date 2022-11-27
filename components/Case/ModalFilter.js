@@ -4,7 +4,7 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 
-import BasicTabs from './ui/BasicTabs';
+import BasicTabs from '../ui/BasicTabs';
 
 const style = {
   position: 'absolute',

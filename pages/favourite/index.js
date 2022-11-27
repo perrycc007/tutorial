@@ -3,7 +3,6 @@ const Favourite = () => {
 
   return (
     <>
-        <p>FavouriteList</p>
          <FavouriteList />
     </>
   );
