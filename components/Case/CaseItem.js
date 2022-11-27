@@ -18,7 +18,9 @@ const toggleFavoriteStatusHandler=()=>{
   props.toggleFavourite(props.id)
 }
 
+const CloseHandler=()=>{
 
+}
 
 
 const items = props.cases

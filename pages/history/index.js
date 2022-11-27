@@ -1,11 +1,11 @@
-import CasesList from '../../components/CasesList'
+import CasesList from '../../components/Case/CasesList'
 import axios from 'axios';
 const Cases = (props) => {
   console.log(props.cases)
   return (
     <>
         <p>CasesList</p>
-         <CasesList cases={props.cases} type='edit'/>
+         <CasesList cases={props.cases} favourite={[]} type='edit'/>
     </>
   );
 }
