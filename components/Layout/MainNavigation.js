@@ -1,35 +1,37 @@
-import Link from 'next/link';
-import classes from './MainNavigation.module.css';
-import userStore from '../../stores/stores';
-import shallow from 'zustand/shallow'
-import Toolbar from '@mui/material/Toolbar';
-import IconButton from '@mui/material/IconButton';
-import MenuIcon from '@mui/icons-material/Menu';
-
-
+import Link from "next/link";
+import classes from "./MainNavigation.module.css";
+import userStore from "../../stores/stores";
+import shallow from "zustand/shallow";
+import Toolbar from "@mui/material/Toolbar";
+import IconButton from "@mui/material/IconButton";
+import MenuIcon from "@mui/icons-material/Menu";
 
 const MainNavigation = () => {
-  const getUserid = userStore(state => state.userId);
-  const isLoggedin = userStore(state => state.isLoggedin);
-  const logOutAction = userStore(state => state.logoutUserid);
-  const cleanFavourite = userStore (state => state.cleanFavourite)
-
+  const getUserid = userStore((state) => state.userId);
+  const isLoggedin = userStore((state) => state.isLoggedin);
+  const logOutAction = userStore((state) => state.logoutUserid);
+  const cleanFavourite = userStore((state) => state.cleanFavourite);
+  const toggleIstutor = userStore((state) => state.toggleIstutor);
+  const isTutor = userStore((state) => state.isTutor);
   const logoutHandler = () => {
-    logOutAction()
-    cleanFavourite()
+    logOutAction();
+    cleanFavourite();
     // optional: redirect the user
+  };
+  const toggleIstutorHandler = () => {
+    toggleIstutor(!isTutor);
   };
 
   return (
     <header className={classes.header}>
-      <Link href='/'>
+      <Link href="/">
         <div className={classes.logo}>React Auth</div>
       </Link>
       <nav>
         <ul>
           {!isLoggedin && (
             <li>
-              <Link href='/auth'>Login</Link>
+              <Link href="/auth">Login</Link>
             </li>
           )}
           {/* {isLoggedIn && (
@@ -39,15 +41,15 @@ const MainNavigation = () => {
           )} */}
           {isLoggedin && (
             <li>
-              <Link href='/apply'>Apply</Link>
+              <Link href="/apply">Apply</Link>
             </li>
           )}
-            <li>
-              <Link href='/cases'>Cases</Link>
-            </li>
-            <li>
-              <Link href='/tutor'>Tutorial</Link>
-            </li>
+          <li>
+            <Link href="/cases">Cases</Link>
+          </li>
+          <li>
+            <Link href="/tutor">Tutorial</Link>
+          </li>
           {isLoggedin && (
             <li>
               <Link href={`/profile/${getUserid}`}>Profile</Link>
@@ -55,7 +57,7 @@ const MainNavigation = () => {
           )}
           {isLoggedin && (
             <li>
-              <Link href='/favourite'>Favourite</Link>
+              <Link href="/favourite">Favourite</Link>
             </li>
           )}
 
@@ -69,10 +71,17 @@ const MainNavigation = () => {
           >
             <MenuIcon />
           </IconButton>
-         {isLoggedin && (
-            <li>
-              <button onClick={logoutHandler}>Logout</button>
-            </li>
+          {isLoggedin && (
+            <>
+              <li>
+                <button onClick={logoutHandler}>Logout</button>
+              </li>
+              <li>
+                <button onClick={toggleIstutorHandler}>
+                  {isTutor ? "Tutor" : "Student"}
+                </button>
+              </li>
+            </>
           )}
         </ul>
       </nav>

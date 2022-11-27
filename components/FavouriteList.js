@@ -40,9 +40,9 @@ const FavouriteList = () => {
       <ToggleButtons typeHandler={typeMode} />
       <h1>Favourite</h1>
       {type == "Cases" ? (
-        <Student cases={favouriteCase} />
+        <Student cases={favouriteCase} Favourite={true}/>
       ) : (
-        <Tutor cases={favouriteTutor} />
+        <Tutor cases={favouriteTutor} Favourite={true}/>
       )}
     </>
   );

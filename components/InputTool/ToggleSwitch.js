@@ -6,8 +6,11 @@ export default function ToggleButtons(props) {
   const [type, setType] = useState("Cases");
 
   const handleType = (event, type) => {
-    setType(type);
-    props.typeHandler(type)
+    if (type !== null) {
+      setType(type);
+      props.typeHandler(type)
+    }
+
   };
 
   return (

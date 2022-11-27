@@ -49,7 +49,7 @@ const Tutor = (props) => {
   
     return (
       <>
-        <Filter FilterHanlder={tutorFilter} />
+        {!props.Favourite&&<Filter FilterHanlder={tutorFilter} />}
         {!filtered && (
           <CasesList
             cases={props.cases}

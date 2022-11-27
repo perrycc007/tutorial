@@ -4,6 +4,7 @@ import Axios from "axios";
 // define the store
 let store = (set) => ({
   userId: null,
+  isTutor: false,
   isLoggedin: false,
   favouriteTutor: [],
   favouriteCase: [],
@@ -26,6 +27,7 @@ let store = (set) => ({
   removeUserid: () => set({ userId: null }),
   setFavouriteTutor: (newFavourite) => set({ favouriteTutor: newFavourite }),
   setFavouriteCase: (newFavourite) => set({ favouriteCase: newFavourite }),
+  toggleIstutor: (Mode)=> set({isTutor: Mode})
 });
 
 store = persist(store, { name: "data" });

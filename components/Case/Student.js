@@ -48,7 +48,7 @@ const Student = (props) => {
 
   return (
     <>
-      <Filter FilterHanlder={casesFilter} />
+      {!props.Favourite&&<Filter FilterHanlder={casesFilter} />}
       {!filtered && (
         <CasesList
           cases={props.cases}

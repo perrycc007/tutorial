@@ -5,23 +5,11 @@ import userStore from '../../../stores/stores';
 const UserProfile = (props) => {
   return (
     <>
-
       <ProfileForm  profile={props.profile} student={props.student} tutor={props.tutor}/>
     </>
   );
 };
 export async function getStaticPaths() {
-
-  //   // const res = await Axios.get('https://localhost:3001/cases')
-  //   // const cases = await  res.json()
-  //   // console.log(cases)
-  
-  //   // const paths = cases.map((cases) => ({
-  //   //   params: { casesid: cases.studentid },
-  //   // }))
-  
-  //   // We'll pre-render only these paths at build time.
-  //   // { fallback: false } means other routes should 404.
     return { 
       paths: []
     , fallback: true }
@@ -41,7 +29,6 @@ export async function getStaticProps(context) {
   return {
     props: {
       profile: response.data.result,
-      // student: student.data.result,
       tutor: tutor.data.result,
     },
     revalidate: 1,

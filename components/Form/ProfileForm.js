@@ -12,34 +12,22 @@ import Pagination from "@mui/material/Pagination";
 import userStore from "../../stores/stores";
 import Axios from "axios";
 const ProfileForm = (props) => {
-  const [isTutor, setIsTutor] = useState(true);
   const [profileData, setProfileData] = useState(props.profile);
-
-  const [studentData, setStudentData] = useState();
-
   const [tutorData, setTutorData] = useState(props.tutor);
   const [changes, setChanges] = useState(false);
-  // const [info, setInfo] = useState({})
   const getUserid = userStore((state) => state.userId);
   const [page, setPage] = useState(1);
-  console.log(props.tutor);
+  const isTutor = userStore((state) => state.isTutor);
+  const toggleIstutor = userStore((state) => state.toggleIstutor);
 
   const handleChange = (e, p) => {
     setPage(p);
   };
-  // async function getProfile(){
-  //   const response = await Axios.get(`http://localhost:3001/profile/${1}`,)
-  //   console.log(response.data.result)
-  //   setInfo(response.data.result)
-  //   return response.data.result}
-  //   useEffect(() => {
-  //     getProfile()
-  //   }
-  //   , []);
-  console.log(props.tutor);
+
   async function submitHandler(value) {
     console.log(value);
-    const newInfo = { ...props.profile, ...value };
+    const info = profileData ? profileData : props.profile;
+    const newInfo = { ...info, ...value };
     setProfileData(newInfo);
     setChanges(true);
     const response = await Axios.post(`http://localhost:3001/profile/`, {
@@ -47,35 +35,28 @@ const ProfileForm = (props) => {
       tutorid: getUserid,
       information: newInfo,
     });
-    console.log(response.data.result);
+    response.data.result;
   }
   async function listHandler(value, type) {
     const key = type;
-    console.log(key);
-    const info = isTutor ? props.tutor : props.student;
+    const info = tutorData ? tutorData : props.tutor;
     value = JSON.stringify(value);
     const newInfo = { ...info, [key]: value };
-    isTutor ? setTutorData(newInfo) : setStudentData(newInfo);
+    setTutorData(newInfo);
     setChanges(true);
-    const response = await Axios.patch(
-      `http://localhost:3001/${isTutor ? "tutor" : "student"}/`,
-      {
-        userid: getUserid,
-        information: newInfo,
-      }
-    );
-    const match = await Axios.post(
-      `http://localhost:3001/match/${isTutor ? "tutor" : "student"}`,
-      {
-        userid: getUserid,
-        information: newInfo,
-      }
-    );
-    console.log(match.data.result);
+    const response = await Axios.patch(`http://localhost:3001/tutor/`, {
+      userid: getUserid,
+      information: newInfo,
+    });
+    const match = await Axios.post(`http://localhost:3001/match/tutor}`, {
+      userid: getUserid,
+      information: newInfo,
+    });
+    match.data.result;
   }
   async function tutorHandler(value) {
-    console.log(value);
-    const newInfo = { ...props.tutor, ...value };
+    const info = tutorData ? tutorData : props.tutor;
+    const newInfo = { ...info, ...value };
     setTutorData(newInfo);
     setChanges(true);
     const response = await Axios.patch(`http://localhost:3001/tutor`, {
@@ -88,7 +69,7 @@ const ProfileForm = (props) => {
       // tutorid: getUserid,
       information: newInfo,
     });
-    console.log(match.data.result);
+    match.data.result
   }
   return (
     <div>
@@ -109,15 +90,7 @@ const ProfileForm = (props) => {
           {page == 2 && (
             <LocationForm
               submitHandler={listHandler}
-              info={
-                isTutor
-                  ? changes
-                    ? tutorData
-                    : props.tutor
-                  : changes
-                  ? studentData
-                  : props.student
-              }
+              info={changes ? tutorData : props.tutor}
               isTutor={isTutor}
             />
           )}
@@ -152,13 +125,17 @@ const ProfileForm = (props) => {
             />
           )}
 
-          <Pagination
-            count={isTutor ? 7 : 2}
-            page={page}
-            onChange={handleChange}
-            variant="outlined"
-            color="primary"
-          />
+          {isTutor ? (
+            <Pagination
+              count={7}
+              page={page}
+              onChange={handleChange}
+              variant="outlined"
+              color="primary"
+            />
+          ) : (
+            ""
+          )}
         </Paper>
       </Box>
     </div>
