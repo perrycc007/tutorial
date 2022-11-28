@@ -33,6 +33,7 @@ const FavouriteList = () => {
 
   useEffect(() => {
     getFavouriteTutorList();
+    getFavouriteStudentList();
   }, []);
 
   return (
@@ -40,9 +41,9 @@ const FavouriteList = () => {
       <ToggleButtons typeHandler={typeMode} />
       <h1>Favourite</h1>
       {type == "Cases" ? (
-        <Student cases={favouriteCase} Favourite={true}/>
+        <Student cases={favouriteCase} Favourite={true} />
       ) : (
-        <Tutor cases={favouriteTutor} Favourite={true}/>
+        <Tutor cases={favouriteTutor} Favourite={true} />
       )}
     </>
   );
