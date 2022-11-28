@@ -48,7 +48,7 @@ const ProfileForm = (props) => {
       userid: getUserid,
       information: newInfo,
     });
-    const match = await Axios.post(`http://localhost:3001/match/tutor}`, {
+    const match = await Axios.post(`http://localhost:3001/match/tutor`, {
       userid: getUserid,
       information: newInfo,
     });
