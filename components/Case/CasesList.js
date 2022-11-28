@@ -32,6 +32,7 @@ const CasesList = (props) => {
                   cases={oneCase}
                   type={props.type}
                   toggleFavourite={props.toggleFavouriteHandler}
+                  toggleStatus={props.toggleStatusHandler?props.toggleStatusHandler:''}
                   isFavourite={props.favourite.includes(
                     props.type == "tutor" ? oneCase.tutorid : oneCase.studentid
                   )}

@@ -1,4 +1,5 @@
 import FavouriteList from '../../components/FavouriteList'
+
 const Favourite = () => {
 
   return (

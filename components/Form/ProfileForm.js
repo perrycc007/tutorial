@@ -52,6 +52,7 @@ const ProfileForm = (props) => {
       userid: getUserid,
       information: newInfo,
     });
+    response.data.result
     match.data.result;
   }
   async function tutorHandler(value) {
