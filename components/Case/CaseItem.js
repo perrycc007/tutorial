@@ -9,6 +9,7 @@ import EditForm from "../Form/Forms/EditForm";
 import { useState } from "react";
 
 function CaseItem(props) {
+  console.log(props.cases);
   const [status, setStatus] = useState(props.cases.status);
 
   const toggleFavoriteStatusHandler = () => {
@@ -18,10 +19,10 @@ function CaseItem(props) {
   const StatusHandler = () => {
     if (status == "open") {
       setStatus("close");
-      props.toggleStatus(props.id,"close");
+      props.toggleStatus(props.id, "close");
     } else {
       setStatus("open");
-      props.toggleStatus(props.id,"open");
+      props.toggleStatus(props.id, "open");
     }
   };
 
@@ -56,7 +57,7 @@ function CaseItem(props) {
               <p>{item[1]}</p>
             ))}
           </Typography>
-          {props.type == "tutor" && (
+          {props.type == "tutor" && props.admin != "admin" && (
             <button onClick={toggleFavoriteStatusHandler}>
               {props.isFavourite ? "Remove from Favorites" : "To Favorites"}
             </button>
@@ -66,15 +67,21 @@ function CaseItem(props) {
               {props.isFavourite ? "Remove from Favorites" : "To Favorites"}
             </button>
           )}
-          {props.type == "edit" && (
+          {(props.type == "edit") | (props.admin == "admin") && (
             <div>
               <button onClick={StatusHandler}>
-                Close
-                {/* {ItemIsCloaseHandler(props.cases.tutorid)? 'Close' : 'Open'} */}
+                {status == "open" ? "Open" : "Close"}
               </button>
               <div>
                 <EditForm cases={props.cases} />
               </div>
+            </div>
+          )}
+          {props.admin == "admin" && (
+            <div>
+              <button>Check</button>
+              <button>Available</button>
+              <p>is Favourite</p>
             </div>
           )}
         </AccordionDetails>

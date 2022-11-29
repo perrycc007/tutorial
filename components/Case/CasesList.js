@@ -7,7 +7,7 @@ import classes from "./CasesList.module.css";
 // And now we can use these
 const CasesList = (props) => {
   let [page, setPage] = useState(1);
-  const PER_PAGE = 2;
+  const PER_PAGE = props.admin?15:4;
   const count = Math.ceil(props.cases.length / PER_PAGE);
   const _DATA = usePagination(props.cases, PER_PAGE);
   const handleChange = (e, p) => {
@@ -31,11 +31,13 @@ const CasesList = (props) => {
                   }
                   cases={oneCase}
                   type={props.type}
+                  admin={props.admin?props.admin:''}
+                  adminInfo={props.adminInfo?props.adminInfo:{}}
                   toggleFavourite={props.toggleFavouriteHandler}
                   toggleStatus={props.toggleStatusHandler?props.toggleStatusHandler:''}
-                  isFavourite={props.favourite.includes(
+                  isFavourite={props.favourite?props.favourite.includes(
                     props.type == "tutor" ? oneCase.tutorid : oneCase.studentid
-                  )}
+                  ):''}
                 />
               ))
           : []}
