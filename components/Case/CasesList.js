@@ -33,8 +33,12 @@ const CasesList = (props) => {
                   type={props.type}
                   admin={props.admin?props.admin:''}
                   adminInfo={props.adminInfo?props.adminInfo:{}}
-                  toggleFavourite={props.toggleFavouriteHandler}
                   toggleStatus={props.toggleStatusHandler?props.toggleStatusHandler:''}
+                  toggleFavourite={props.toggleFavouriteHandler}
+                  toggleAvail={props.toggleAvailHandler}
+                  toggleCheck={props.toggleCheckHandler}
+                  checkedStatus={props.checked?props.checked.includes(oneCase.tutorid):false}
+                  checkingStatus={props.checking?props.checking.includes(oneCase.tutorid):false}
                   isFavourite={props.favourite?props.favourite.includes(
                     props.type == "tutor" ? oneCase.tutorid : oneCase.studentid
                   ):''}

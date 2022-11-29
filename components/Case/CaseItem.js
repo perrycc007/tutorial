@@ -6,12 +6,11 @@ import AccordionDetails from "@mui/material/AccordionDetails";
 import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import EditForm from "../Form/Forms/EditForm";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 function CaseItem(props) {
-  console.log(props.cases);
   const [status, setStatus] = useState(props.cases.status);
-
+  const [checkStatus, setCheckStatus] = useState('not yet checked')
   const toggleFavoriteStatusHandler = () => {
     props.toggleFavourite(props.id);
   };
@@ -30,11 +29,22 @@ function CaseItem(props) {
   const item = Object.entries(items).map((key, value) => {
     return key;
   });
-  // console.log(items)
+
+useEffect(() => {
+  if(props.checkedStatus){
+    setCheckStatus('checking')
+  }else if(props.checkingStatus){
+    setCheckStatus('checked')
+  }else{
+    setCheckStatus('not yet checked')
+  }
+}, [props.checkedStatus,props.checkingStatus])
+
+
+
   const heading = item.slice(0, 5);
   const sumamry = item.slice(6, 10);
-  // heading.map((item)=>{console.log(item[1])})
-  // console.log(heading)
+
   return (
     <div className={classes.item}>
       <Accordion>
@@ -79,9 +89,10 @@ function CaseItem(props) {
           )}
           {props.admin == "admin" && (
             <div>
-              <button>Check</button>
-              <button>Available</button>
+              <button>Not Yet Check, Checking, Checked</button>
+              <button>Available, Not Available</button>
               <p>is Favourite</p>
+              <button>Profile</button>
             </div>
           )}
         </AccordionDetails>

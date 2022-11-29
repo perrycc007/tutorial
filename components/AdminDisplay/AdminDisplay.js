@@ -16,13 +16,12 @@ export default function AdminDisplay(props) {
   const adminInfo = {
     notavailtutor,
     favouritetutorid,
-    availtutor,
     checked,
     checking,
   };
   return (
     <div>
-      <CaseItem cases={studentInfo} />
+      <CaseItem cases={studentInfo} adminInfo={adminInfo}/>
       <CasesList cases={tutor} adminInfo={adminInfo} type="tutor" admin="admin" />
     </div>
   );
