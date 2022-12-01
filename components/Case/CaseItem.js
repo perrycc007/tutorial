@@ -10,11 +10,22 @@ import { useState, useEffect } from "react";
 
 function CaseItem(props) {
   const [status, setStatus] = useState(props.cases.status);
-  const [checkStatus, setCheckStatus] = useState('not yet checked')
+  const [checkStatus, setCheckStatus] = useState("not yet checked");
   const toggleFavoriteStatusHandler = () => {
     props.toggleFavourite(props.id);
   };
-
+  const toggleCheck = () => {
+    if (checkStatus == "not yet checked") {
+      setCheckStatus("checking");
+      props.toggleCheck(props.idmatch, props.cases.tutorid, "not yet checked");
+    } else if (checkStatus == "checking") {
+      setCheckStatus("checked");
+      props.toggleCheck(props.idmatch, props.cases.tutorid, "checking");
+    } else {
+      setCheckStatus("not yet checked");
+      props.toggleCheck(props.idmatch, props.cases.tutorid, "checked");
+    }
+  };
   const StatusHandler = () => {
     if (status == "open") {
       setStatus("close");
@@ -30,17 +41,16 @@ function CaseItem(props) {
     return key;
   });
 
-useEffect(() => {
-  if(props.checkedStatus){
-    setCheckStatus('checking')
-  }else if(props.checkingStatus){
-    setCheckStatus('checked')
-  }else{
-    setCheckStatus('not yet checked')
-  }
-}, [props.checkedStatus,props.checkingStatus])
-
-
+  useEffect(() => {
+    if (props.checkedStatus) {
+      setCheckStatus("checking");
+    } else if (props.checkingStatus) {
+      setCheckStatus("checked");
+    } else {
+      setCheckStatus("not yet checked");
+    }
+    console.log(checkStatus);
+  }, []);
 
   const heading = item.slice(0, 5);
   const sumamry = item.slice(6, 10);
@@ -72,7 +82,7 @@ useEffect(() => {
               {props.isFavourite ? "Remove from Favorites" : "To Favorites"}
             </button>
           )}
-          {props.type == "cases" && (
+          {props.type == "cases" && props.admin != "admin" && (
             <button onClick={toggleFavoriteStatusHandler}>
               {props.isFavourite ? "Remove from Favorites" : "To Favorites"}
             </button>
@@ -89,7 +99,7 @@ useEffect(() => {
           )}
           {props.admin == "admin" && (
             <div>
-              <button>Not Yet Check, Checking, Checked</button>
+              <button onClick={toggleCheck}>{checkStatus}</button>
               <button>Available, Not Available</button>
               <p>is Favourite</p>
               <button>Profile</button>

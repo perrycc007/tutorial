@@ -19,7 +19,6 @@ export default function EditForm(props) {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-    console.log('EditForm',props.cases)
   return (
     <div>
       <Button onClick={handleOpen}>edit</Button>

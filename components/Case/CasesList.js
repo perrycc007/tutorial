@@ -7,14 +7,36 @@ import classes from "./CasesList.module.css";
 // And now we can use these
 const CasesList = (props) => {
   let [page, setPage] = useState(1);
-  const PER_PAGE = props.admin?15:4;
+  const PER_PAGE = props.admin ? 15 : 4;
   const count = Math.ceil(props.cases.length / PER_PAGE);
   const _DATA = usePagination(props.cases, PER_PAGE);
   const handleChange = (e, p) => {
     setPage(p);
     _DATA.jump(p);
   };
+  const checking = props.adminInfo.checking;
+  const checked = props.adminInfo.checked;
 
+  const UpdateCheckHandler = (idmatch, tutorid, checkStatus) => {
+    switch (checkStatus) {
+      case "checking":
+        checking = checking.filter((item) => item != tutorid);
+        checked.push(tutorid);
+        console.log('checking',checking,'checked',checked)
+        props.toggleCheckHandler(idmatch, checked, checking);
+        break;
+      case "checked":
+        checked = checked.filter((item) => item != tutorid);
+        console.log('checking',checking,'checked',checked)
+        props.toggleCheckHandler(idmatch, checking, checked);
+        break;
+      case "not yet checked":
+        checking.push(tutorid);
+        console.log('checking',checking,'checked',checked)
+        props.toggleCheckHandler(idmatch, checked, checking);
+        break;
+    }
+  };
   return (
     <>
       <setion className={classes.wrapper}>
@@ -31,17 +53,34 @@ const CasesList = (props) => {
                   }
                   cases={oneCase}
                   type={props.type}
-                  admin={props.admin?props.admin:''}
-                  adminInfo={props.adminInfo?props.adminInfo:{}}
-                  toggleStatus={props.toggleStatusHandler?props.toggleStatusHandler:''}
+                  idmatch={props.idmatch}
+                  admin={props.admin ? props.admin : ""}
+                  adminInfo={props.adminInfo ? props.adminInfo : {}}
+                  toggleStatus={
+                    props.toggleStatusHandler ? props.toggleStatusHandler : ""
+                  }
                   toggleFavourite={props.toggleFavouriteHandler}
                   toggleAvail={props.toggleAvailHandler}
-                  toggleCheck={props.toggleCheckHandler}
-                  checkedStatus={props.checked?props.checked.includes(oneCase.tutorid):false}
-                  checkingStatus={props.checking?props.checking.includes(oneCase.tutorid):false}
-                  isFavourite={props.favourite?props.favourite.includes(
-                    props.type == "tutor" ? oneCase.tutorid : oneCase.studentid
-                  ):''}
+                  toggleCheck={UpdateCheckHandler}
+                  checkedStatus={
+                    props.adminInfo
+                      ? props.adminInfo.checked.includes(oneCase.tutorid)
+                      : false
+                  }
+                  checkingStatus={
+                    props.adminInfo
+                      ? props.adminInfo.checking.includes(oneCase.tutorid)
+                      : false
+                  }
+                  isFavourite={
+                    props.favourite
+                      ? props.favourite.includes(
+                          props.type == "tutor"
+                            ? oneCase.tutorid
+                            : oneCase.studentid
+                        )
+                      : ""
+                  }
                 />
               ))
           : []}

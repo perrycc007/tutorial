@@ -4,39 +4,6 @@ import axios from "axios";
 const Result = (props) => {
   return (
     <>
-      {/* <div>
-        {props.cases.map((item) =>
-          Object.entries(item).map(([key, value]) =>
-            typeof value !== "object" ? (
-              <div>
-                <p>
-                  {key}:{value}
-                </p>
-              </div>
-            ) : value ? (
-              value.map((array) =>
-                typeof array !== "object" ? (
-                  <p>{array}</p>
-                ) : array ? (
-                  Object.entries(array).map(([key, value]) => (
-                    <div>
-                      <p>
-                        {key}:{value}
-                      </p>
-                    </div>
-                  ))
-                ) : (
-                  // <p>{array}</p>
-                  ""
-                )
-              )
-            ) : (
-              ""
-            )
-          )
-        )}
-      </div> */}
-
       {props.cases.map((item) => (
         <AdminDisplay match={item ? item : []} />
       ))}
