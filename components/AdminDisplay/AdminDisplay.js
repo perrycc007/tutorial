@@ -30,6 +30,14 @@ export default function AdminDisplay(props) {
     // console.log(res.data.result);
     return res;
   }
+  async function toggleAvail(idmatch, notavailtutor) {
+    const res = await Axios.patch("http://localhost:3001/admin/toggleAvail", {
+      idmatch: idmatch,
+      notavailtutor: notavailtutor,
+    });
+    // console.log(res.data.result);
+    return res;
+  }
 
   return (
     <div>
@@ -38,6 +46,7 @@ export default function AdminDisplay(props) {
         cases={tutor}
         idmatch={idmatch}
         toggleCheckHandler={toggleCheck}
+        toggleAvailHandler={toggleAvail}
         adminInfo={adminInfo}
         type="tutor"
         admin="admin"

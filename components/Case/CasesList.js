@@ -16,27 +16,38 @@ const CasesList = (props) => {
   };
   const checking = props.adminInfo.checking;
   const checked = props.adminInfo.checked;
-
+  const notavailtutor = props.adminInfo.notavailtutor;
   const UpdateCheckHandler = (idmatch, tutorid, checkStatus) => {
     switch (checkStatus) {
       case "checking":
         checking = checking.filter((item) => item != tutorid);
         checked.push(tutorid);
-        console.log('checking',checking,'checked',checked)
+        console.log("checking", checking, "checked", checked);
         props.toggleCheckHandler(idmatch, checked, checking);
         break;
       case "checked":
         checked = checked.filter((item) => item != tutorid);
-        console.log('checking',checking,'checked',checked)
+        console.log("checking", checking, "checked", checked);
         props.toggleCheckHandler(idmatch, checking, checked);
         break;
       case "not yet checked":
         checking.push(tutorid);
-        console.log('checking',checking,'checked',checked)
+        console.log("checking", checking, "checked", checked);
         props.toggleCheckHandler(idmatch, checked, checking);
         break;
     }
   };
+
+  const toggleAvailHandler = (status, idmatch, tutorid) => {
+    if (status) {
+      notavailtutor.push(tutorid);
+      props.toggleAvailHandler(idmatch, notavailtutor);
+    } else {
+      notavailtutor = notavailtutor.filter((item) => item != tutorid);
+      props.toggleAvailHandler(idmatch, notavailtutor);
+    }
+  };
+
   return (
     <>
       <setion className={classes.wrapper}>
@@ -60,8 +71,13 @@ const CasesList = (props) => {
                     props.toggleStatusHandler ? props.toggleStatusHandler : ""
                   }
                   toggleFavourite={props.toggleFavouriteHandler}
-                  toggleAvail={props.toggleAvailHandler}
+                  toggleAvail={toggleAvailHandler}
                   toggleCheck={UpdateCheckHandler}
+                  notAvailStatus={
+                    props.adminInfo
+                      ? props.adminInfo.notavailtutor.includes(oneCase.tutorid)
+                      : false
+                  }
                   checkedStatus={
                     props.adminInfo
                       ? props.adminInfo.checked.includes(oneCase.tutorid)

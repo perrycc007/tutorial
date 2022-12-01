@@ -10,6 +10,7 @@ import { useState, useEffect } from "react";
 
 function CaseItem(props) {
   const [status, setStatus] = useState(props.cases.status);
+  const [notAvailStatus, setNotAvailStatus] = useState(false);
   const [checkStatus, setCheckStatus] = useState("not yet checked");
   const toggleFavoriteStatusHandler = () => {
     props.toggleFavourite(props.id);
@@ -35,7 +36,15 @@ function CaseItem(props) {
       props.toggleStatus(props.id, "open");
     }
   };
-
+  const toggleNotAvail = () => {
+    if (notAvailStatus) {
+      setNotAvailStatus(false);
+      props.toggleAvail(false, props.idmatch, props.cases.tutorid);
+    } else {
+      setNotAvailStatus(true);
+      props.toggleAvail(true, props.idmatch, props.cases.tutorid);
+    }
+  };
   const items = props.cases;
   const item = Object.entries(items).map((key, value) => {
     return key;
@@ -49,7 +58,7 @@ function CaseItem(props) {
     } else {
       setCheckStatus("not yet checked");
     }
-    console.log(checkStatus);
+    setNotAvailStatus(props.notAvailStatus);
   }, []);
 
   const heading = item.slice(0, 5);
@@ -100,7 +109,9 @@ function CaseItem(props) {
           {props.admin == "admin" && (
             <div>
               <button onClick={toggleCheck}>{checkStatus}</button>
-              <button>Available, Not Available</button>
+              <button onClick={toggleNotAvail}>
+                {notAvailStatus ? "Not Available" : "Available"}
+              </button>
               <p>is Favourite</p>
               <button>Profile</button>
             </div>
