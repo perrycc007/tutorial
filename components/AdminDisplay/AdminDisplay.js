@@ -41,7 +41,7 @@ export default function AdminDisplay(props) {
 
   return (
     <div>
-      <CaseItem cases={studentInfo} adminInfo={adminInfo} />
+      <CaseItem cases={studentInfo} adminInfo={adminInfo} admin="admin" />
       <CasesList
         cases={tutor}
         idmatch={idmatch}
@@ -49,7 +49,7 @@ export default function AdminDisplay(props) {
         toggleAvailHandler={toggleAvail}
         adminInfo={adminInfo}
         type="tutor"
-        admin="admin"
+        admin="adminTutor"
       />
     </div>
   );

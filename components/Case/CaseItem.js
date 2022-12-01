@@ -96,7 +96,9 @@ function CaseItem(props) {
               {props.isFavourite ? "Remove from Favorites" : "To Favorites"}
             </button>
           )}
-          {(props.type == "edit") | (props.admin == "admin") && (
+          {props.type == "edit" ||
+          props.admin == "admin" ||
+          props.admin == "adminTutor" ? (
             <div>
               <button onClick={StatusHandler}>
                 {status == "open" ? "Open" : "Close"}
@@ -105,8 +107,10 @@ function CaseItem(props) {
                 <EditForm cases={props.cases} />
               </div>
             </div>
+          ) : (
+            ""
           )}
-          {props.admin == "admin" && (
+          {props.admin == "adminTutor" && (
             <div>
               <button onClick={toggleCheck}>{checkStatus}</button>
               <button onClick={toggleNotAvail}>
