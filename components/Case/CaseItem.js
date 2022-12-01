@@ -86,12 +86,12 @@ function CaseItem(props) {
               <p>{item[1]}</p>
             ))}
           </Typography>
-          {props.type == "tutor" && props.admin != "admin" && (
+          {props.type == "tutor" && props.admin != "admin" && props.admin != "adminTutor"&& (
             <button onClick={toggleFavoriteStatusHandler}>
               {props.isFavourite ? "Remove from Favorites" : "To Favorites"}
             </button>
           )}
-          {props.type == "cases" && props.admin != "admin" && (
+          {props.type == "cases" && props.admin != "admin" && props.admin != "adminTutor" && (
             <button onClick={toggleFavoriteStatusHandler}>
               {props.isFavourite ? "Remove from Favorites" : "To Favorites"}
             </button>
