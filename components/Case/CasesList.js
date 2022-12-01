@@ -14,10 +14,10 @@ const CasesList = (props) => {
     setPage(p);
     _DATA.jump(p);
   };
-  const checking = props.adminInfo.checking;
-  const checked = props.adminInfo.checked;
-  const notavailtutor = props.adminInfo.notavailtutor;
+
   const UpdateCheckHandler = (idmatch, tutorid, checkStatus) => {
+    const checking = props.adminInfo.checking;
+    const checked = props.adminInfo.checked;
     switch (checkStatus) {
       case "checking":
         checking = checking.filter((item) => item != tutorid);
@@ -39,6 +39,7 @@ const CasesList = (props) => {
   };
 
   const toggleAvailHandler = (status, idmatch, tutorid) => {
+    const notavailtutor = props.adminInfo.notavailtutor;
     if (status) {
       notavailtutor.push(tutorid);
       props.toggleAvailHandler(idmatch, notavailtutor);
@@ -73,6 +74,13 @@ const CasesList = (props) => {
                   toggleFavourite={props.toggleFavouriteHandler}
                   toggleAvail={toggleAvailHandler}
                   toggleCheck={UpdateCheckHandler}
+                  isFavouriteTutor={
+                    props.adminInfo
+                      ? props.adminInfo.favouritetutorid.includes(
+                          oneCase.tutorid
+                        )
+                      : ""
+                  }
                   notAvailStatus={
                     props.adminInfo
                       ? props.adminInfo.notavailtutor.includes(oneCase.tutorid)

@@ -112,7 +112,7 @@ function CaseItem(props) {
               <button onClick={toggleNotAvail}>
                 {notAvailStatus ? "Not Available" : "Available"}
               </button>
-              <p>is Favourite</p>
+              <p>{props.isFavouriteTutor ? "Is Favourite" : ""}</p>
               <button>Profile</button>
             </div>
           )}
