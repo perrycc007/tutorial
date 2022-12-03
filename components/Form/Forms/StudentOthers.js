@@ -17,7 +17,7 @@ export default function StudentOthers(props) {
 
     };
     
-    const info = props.info
+    const info = props.info??initialUserData
     const [userData, setUserData] = useState(info|initialUserData);
   
     const updateUserDataHandler = useCallback(
