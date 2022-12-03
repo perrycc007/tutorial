@@ -31,10 +31,10 @@ function CaseItem(props) {
   const StatusHandler = () => {
     if (status == "open") {
       setStatus("close");
-      props.toggleStatus(props.id, "close");
+      props.toggleStatus(props.type=='tutor'?props.cases.tutorid:props.cases.studentid, "close", props.type);
     } else {
       setStatus("open");
-      props.toggleStatus(props.id, "open");
+      props.toggleStatus(props.type=='tutor'?props.cases.tutorid:props.cases.studentid, "open", props.type);
     }
   };
   const toggleNotAvail = () => {

@@ -39,15 +39,43 @@ export default function AdminDisplay(props) {
     return res;
   }
 
+  async function toggleStatus(id, status, type) {
+    if (type == "cases") {
+      const response = await Axios.patch(
+        `http://localhost:3001/history/updateCaseStatus`,
+        {
+          studentid: id,
+          status: status,
+        }
+      );
+      response.data.result;
+    } else {
+      const response = await Axios.patch(
+        `http://localhost:3001/history/updateTutorStatus`,
+        {
+          tutorid: id,
+          status: status,
+        }
+      );
+      response.data.result;
+    }
+  }
   return (
     <div>
-      <CaseItem cases={studentInfo} adminInfo={adminInfo} admin="admin" type="cases"/>
+      <CaseItem
+        cases={studentInfo}
+        toggleStatus={toggleStatus}
+        adminInfo={adminInfo}
+        admin="admin"
+        type="cases"
+      />
       <CasesList
         cases={tutor}
         idmatch={idmatch}
         toggleCheckHandler={toggleCheck}
         toggleAvailHandler={toggleAvail}
         adminInfo={adminInfo}
+        toggleStatusHandler={toggleStatus}
         type="tutor"
         admin="adminTutor"
       />
