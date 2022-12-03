@@ -40,6 +40,7 @@ export default function BasicInfo(props) {
     props.submitHandler(userData)
   };
 
+  useEffect(()=>{console.log(info)},[])
 
   return (
     <React.Fragment>

@@ -18,7 +18,7 @@ const ProfileForm = (props) => {
   const getUserid = userStore((state) => state.userId);
   const [page, setPage] = useState(1);
   const isTutor = userStore((state) => state.isTutor);
-
+  useEffect(()=>{console.log(props.profile)},[props.profile])
   const handleChange = (e, p) => {
     setPage(p);
   };
@@ -81,7 +81,7 @@ const ProfileForm = (props) => {
         }}
       >
         <Paper sx={{ padding: "3rem" }}>
-          {page == 1 && (
+          {page == 1  && (
             <BasicInfo
               submitHandler={submitHandler}
               info={changes ? profileData : props.profile}
@@ -125,7 +125,7 @@ const ProfileForm = (props) => {
             />
           )}
 
-          {isTutor || props.type=='tutor'? (
+          {isTutor && !props.admin || props.type=='tutor' ? (
             <Pagination
               count={7}
               page={page}
