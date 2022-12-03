@@ -41,7 +41,7 @@ export default function AdminDisplay(props) {
 
   return (
     <div>
-      <CaseItem cases={studentInfo} adminInfo={adminInfo} admin="admin" />
+      <CaseItem cases={studentInfo} adminInfo={adminInfo} admin="admin" type="cases"/>
       <CasesList
         cases={tutor}
         idmatch={idmatch}

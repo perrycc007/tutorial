@@ -8,7 +8,8 @@ import classes from "./CasesList.module.css";
 const CasesList = (props) => {
   let [page, setPage] = useState(1);
   const PER_PAGE = props.admin ? 4 : 15;
-  const count = props.cases !=undefined?Math.ceil(props.cases.length / PER_PAGE):0;
+  const count =
+    props.cases != undefined ? Math.ceil(props.cases.length / PER_PAGE) : 0;
   const _DATA = usePagination(props.cases, PER_PAGE);
   const handleChange = (e, p) => {
     setPage(p);

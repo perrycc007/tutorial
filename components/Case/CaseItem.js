@@ -7,6 +7,7 @@ import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import EditForm from "../Form/Forms/EditForm";
 import { useState, useEffect } from "react";
+import BasicPopover from "../ui/BasicPopover";
 
 function CaseItem(props) {
   const [status, setStatus] = useState(props.cases.status);
@@ -86,16 +87,20 @@ function CaseItem(props) {
               <p>{item[1]}</p>
             ))}
           </Typography>
-          {props.type == "tutor" && props.admin != "admin" && props.admin != "adminTutor"&& (
-            <button onClick={toggleFavoriteStatusHandler}>
-              {props.isFavourite ? "Remove from Favorites" : "To Favorites"}
-            </button>
-          )}
-          {props.type == "cases" && props.admin != "admin" && props.admin != "adminTutor" && (
-            <button onClick={toggleFavoriteStatusHandler}>
-              {props.isFavourite ? "Remove from Favorites" : "To Favorites"}
-            </button>
-          )}
+          {props.type == "tutor" &&
+            props.admin != "admin" &&
+            props.admin != "adminTutor" && (
+              <button onClick={toggleFavoriteStatusHandler}>
+                {props.isFavourite ? "Remove from Favorites" : "To Favorites"}
+              </button>
+            )}
+          {props.type == "cases" &&
+            props.admin != "admin" &&
+            props.admin != "adminTutor" && (
+              <button onClick={toggleFavoriteStatusHandler}>
+                {props.isFavourite ? "Remove from Favorites" : "To Favorites"}
+              </button>
+            )}
           {props.type == "edit" ||
           props.admin == "admin" ||
           props.admin == "adminTutor" ? (
@@ -103,6 +108,7 @@ function CaseItem(props) {
               <button onClick={StatusHandler}>
                 {status == "open" ? "Open" : "Close"}
               </button>
+              <BasicPopover userid = {props.cases.userid} type={props.type}/>
               <div>
                 <EditForm cases={props.cases} />
               </div>
@@ -117,7 +123,7 @@ function CaseItem(props) {
                 {notAvailStatus ? "Not Available" : "Available"}
               </button>
               <p>{props.isFavouriteTutor ? "Is Favourite" : ""}</p>
-              <button>Profile</button>
+
             </div>
           )}
         </AccordionDetails>

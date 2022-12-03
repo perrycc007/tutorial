@@ -18,7 +18,6 @@ const ProfileForm = (props) => {
   const getUserid = userStore((state) => state.userId);
   const [page, setPage] = useState(1);
   const isTutor = userStore((state) => state.isTutor);
-  const toggleIstutor = userStore((state) => state.toggleIstutor);
 
   const handleChange = (e, p) => {
     setPage(p);
@@ -31,8 +30,8 @@ const ProfileForm = (props) => {
     setProfileData(newInfo);
     setChanges(true);
     const response = await Axios.post(`http://localhost:3001/profile/`, {
-      userid: getUserid,
-      tutorid: getUserid,
+      userid: getUserid ? getUserid: props.profile.userid,
+      tutorid: getUserid ? getUserid:  props.tutor.tutorid,
       information: newInfo,
     });
     response.data.result;
@@ -45,11 +44,11 @@ const ProfileForm = (props) => {
     setTutorData(newInfo);
     setChanges(true);
     const response = await Axios.patch(`http://localhost:3001/tutor/`, {
-      userid: getUserid,
+      userid: getUserid ? getUserid : props.profile.userid,
       information: newInfo,
     });
     const match = await Axios.post(`http://localhost:3001/match/tutor`, {
-      userid: getUserid,
+      userid: getUserid ? getUserid : props.profile.userid,
       information: newInfo,
     });
     response.data.result
@@ -61,12 +60,12 @@ const ProfileForm = (props) => {
     setTutorData(newInfo);
     setChanges(true);
     const response = await Axios.patch(`http://localhost:3001/tutor`, {
-      userid: getUserid,
+      userid: getUserid ? getUserid: props.profile.userid,
       // tutorid: getUserid,
       information: newInfo,
     });
     const match = await Axios.patch(`http://localhost:3001/match/tutor`, {
-      userid: getUserid,
+      userid: getUserid ? getUserid : props.profile.userid,
       // tutorid: getUserid,
       information: newInfo,
     });
@@ -126,7 +125,7 @@ const ProfileForm = (props) => {
             />
           )}
 
-          {isTutor ? (
+          {isTutor || props.type=='tutor'? (
             <Pagination
               count={7}
               page={page}
