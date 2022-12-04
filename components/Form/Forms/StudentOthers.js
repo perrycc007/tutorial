@@ -6,7 +6,7 @@ import formField from '../FormModel/formField'
 import TextField from '@mui/material/TextField';
 import FormControl from '@mui/material/FormControl';
 import MenuItem from '@mui/material/MenuItem';
-
+import Button from '@mui/material/Button';
 
 
 
@@ -92,8 +92,8 @@ export default function StudentOthers(props) {
           <MinSlider  step ={1} max={7} min={1} dmax={info['highestfrequency']!= null?info['highestfrequency']:1} dmin={info['lowestfrequency']!= null?info['lowestfrequency']:7}  minD={1} passValue={FreqHandlder}/>
           <p>學費每小時</p>
             <MinSlider  step ={20} max={1000} min={60} dmax={info['highestfee']!= null?info['highestfee']:100} dmin={info['lowestfee']!= null?info['lowestfee']:200}  minD={20} passValue={PriceHandler}/>
-          <button type="submit">儲存</button>
-          <button type="submit">儲存並下一步</button>
+          <Button variant="outlined" type="submit">儲存</Button>
+          <Button variant="outlined" type="submit">儲存並下一步</Button>
       </form>
     </React.Fragment>
   );

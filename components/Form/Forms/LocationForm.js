@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import { Grid, Typography } from '@mui/material';
 import BasicTabs from '../../ui/BasicTabs';
 import place from './Location'
-
+import Button from '@mui/material/Button';
 
 
 const LocationForm = (props) => 
@@ -30,7 +30,7 @@ const submitHandler =(e) =>{
       <p>{props.isTutor?'where can you teach':'where do you live'}</p>
       <form  onSubmit={submitHandler}>
         <BasicTabs category={place} listHandler={listHandlerHandler} passValue={list}/>
-        <button type="submit">{props.isTutor?'儲存並下一步':'儲存並開始申請'}</button>
+        <Button variant="outlined" type="submit">{props.isTutor?'儲存並下一步':'儲存並開始申請'}</Button>
       </form>
     </React.Fragment>
   );

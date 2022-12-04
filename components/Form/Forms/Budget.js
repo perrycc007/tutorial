@@ -3,6 +3,8 @@ import { useState, useCallback } from "react";
 import MinSlider from "../../InputTool/Slider";
 import Typography from "@mui/material/Typography";
 import Axios from "axios";
+import Button from '@mui/material/Button';
+
 
 const Budget = (props) => {
   // const [fee,setFee] = useState([])
@@ -72,10 +74,10 @@ const Budget = (props) => {
           minD={20}
           passValue={updateUserDataHandler}
         />
-        <button onClick={StatusHandler}>
+        <Button variant="outlined" onClick={StatusHandler}>
           {status == "open" ? "Open" : "Close"}
-        </button>
-        <button onClick={formHandler}>Save</button>
+        </Button>
+        <Button variant="outlined" onClick={formHandler}>Save</Button>
       </form>
     </React.Fragment>
   );

@@ -73,9 +73,9 @@ const EducationForm =(props)=> {
               // selected={place.value === place ? 'selected' : ''}
             >{opt.label}</MenuItem>))}
           </Select></div>)}
-      <button>上載大學證明</button>
-      <button type="submit">儲存</button>
-      <button type="submit">儲存並下一步</button>
+      <Button variant="contained">上載大學證明</Button >
+      <Button variant="outlined" type="submit">儲存</Button >
+      <Button variant="outlined" type="submit">儲存並下一步</Button >
       </form>
     </React.Fragment>
   );

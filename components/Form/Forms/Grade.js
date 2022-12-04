@@ -7,7 +7,7 @@ import Box from '@mui/material/Box';
 import ControlledAccordions from '../../ui/ControlledAccordions'
 import {useState ,useEffect} from 'react'
 import GradeFormOption from './GradeFormOption'
-
+import Button from '@mui/material/Button';
 
 const {list: {HKCEE,HKALE,HKDSE,IB,IGCSE,GCEALevel,GradeBase,numberBase}} = GradeFormOption
 function TabPanel(props) {
@@ -126,8 +126,8 @@ const submitHandler = (e) =>{
         <TabPanel value={value} index={5}>
             <ControlledAccordions cat={GCEALevel} key='GCE A Level' childKey='GCE A Level' choiceHandler={selectHandler} select={GradeBase} prevSelect={JSON.parse(props.info.subgrade)}/>
         </TabPanel>
-        <button type="submit">儲存</button>
-          <button type="submit">儲存並下一步</button>
+        <Button variant="outlined" type="submit">儲存</Button >
+          <Button variant="outlined" type="submit">儲存並下一步</Button >
         </form>
       </Box>
     );

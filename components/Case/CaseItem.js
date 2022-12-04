@@ -8,6 +8,9 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import EditForm from "../Form/Forms/EditForm";
 import { useState, useEffect } from "react";
 import BasicPopover from "../ui/BasicPopover";
+import FavoriteIcon from "@mui/icons-material/Favorite";
+import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import Button from "@mui/material/Button";
 
 function CaseItem(props) {
   const [status, setStatus] = useState(props.cases.status);
@@ -31,10 +34,18 @@ function CaseItem(props) {
   const StatusHandler = () => {
     if (status == "open") {
       setStatus("close");
-      props.toggleStatus(props.type=='tutor'?props.cases.tutorid:props.cases.studentid, "close", props.type);
+      props.toggleStatus(
+        props.type == "tutor" ? props.cases.tutorid : props.cases.studentid,
+        "close",
+        props.type
+      );
     } else {
       setStatus("open");
-      props.toggleStatus(props.type=='tutor'?props.cases.tutorid:props.cases.studentid, "open", props.type);
+      props.toggleStatus(
+        props.type == "tutor" ? props.cases.tutorid : props.cases.studentid,
+        "open",
+        props.type
+      );
     }
   };
   const toggleNotAvail = () => {
@@ -46,10 +57,9 @@ function CaseItem(props) {
       props.toggleAvail(true, props.idmatch, props.cases.tutorid);
     }
   };
-  const items = props.cases;
-  const item = Object.entries(items).map((key, value) => {
-    return key;
-  });
+  // const item = Object.entries(items).map((key, value) => {
+  //   return key;
+  // });
 
   useEffect(() => {
     if (props.checkedStatus) {
@@ -62,8 +72,56 @@ function CaseItem(props) {
     setNotAvailStatus(props.notAvailStatus);
   }, []);
 
-  const heading = item.slice(0, 5);
-  const sumamry = item.slice(6, 10);
+  // const heading = item.slice(0, 5);
+  // const sumamry = item.slice(6, 10);
+
+  let { location, subject, availtime, ...items } = props.cases;
+
+  const fee = (items.highestfee + items.lowestfee) / 2;
+
+  const readDate = (notFormat) => {
+    const time = notFormat.split("t");
+    let dayOfWeek = [];
+    let startingTime = `${time[1]}:00`;
+    switch (time[0]) {
+      case "d1":
+        dayOfWeek = "星期一";
+        break;
+      case "d2":
+        dayOfWeek = "星期二";
+        break;
+      case "d3":
+        dayOfWeek = "星期三";
+        break;
+      case "d4":
+        dayOfWeek = "星期四";
+        break;
+      case "d5":
+        dayOfWeek = "星期五";
+        break;
+      case "d6":
+        dayOfWeek = "星期六";
+        break;
+      case "d7":
+        dayOfWeek = "星期日";
+        break;
+
+      default:
+      // code block
+    }
+
+    console.log(dayOfWeek, startingTime);
+    return dayOfWeek;
+  };
+  const availtimeArray = JSON.parse(availtime);
+  availtimeArray.map((item) => {
+    readDate(item);
+  });
+
+  let summary = {};
+  props.type == "tutor"
+    ? (summary = [items.status, items.university, items.educationallevel])
+    : "";
 
   return (
     <div className={classes.item}>
@@ -75,31 +133,30 @@ function CaseItem(props) {
         >
           <div className={classes.heading}>
             {/* <p>{heading}</p> */}
-            {heading.map((item) => (
+            {/* {heading.map((item) => (
               <p>{item[1]}</p>
-            ))}
-            {/* <p>{props}</p> */}
+            ))} */}
           </div>
         </AccordionSummary>
         <AccordionDetails>
-          <Typography>
+          {/* <Typography>
             {sumamry.map((item) => (
               <p>{item[1]}</p>
             ))}
-          </Typography>
+          </Typography> */}
           {props.type == "tutor" &&
             props.admin != "admin" &&
             props.admin != "adminTutor" && (
-              <button onClick={toggleFavoriteStatusHandler}>
-                {props.isFavourite ? "Remove from Favorites" : "To Favorites"}
-              </button>
+              <Button color="error" onClick={toggleFavoriteStatusHandler}>
+                {props.isFavourite ? <FavoriteIcon /> : <FavoriteBorderIcon />}
+              </Button>
             )}
           {props.type == "cases" &&
             props.admin != "admin" &&
             props.admin != "adminTutor" && (
-              <button onClick={toggleFavoriteStatusHandler}>
-                {props.isFavourite ? "Remove from Favorites" : "To Favorites"}
-              </button>
+              <Button color="error" onClick={toggleFavoriteStatusHandler}>
+                {props.isFavourite ? <FavoriteIcon /> : <FavoriteBorderIcon />}
+              </Button>
             )}
           {props.type == "edit" ||
           props.admin == "admin" ||
@@ -108,7 +165,7 @@ function CaseItem(props) {
               <button onClick={StatusHandler}>
                 {status == "open" ? "Open" : "Close"}
               </button>
-              <BasicPopover userid = {props.cases.userid} type={props.type}/>
+              <BasicPopover userid={props.cases.userid} type={props.type} />
               <div>
                 <EditForm cases={props.cases} />
               </div>
@@ -123,7 +180,6 @@ function CaseItem(props) {
                 {notAvailStatus ? "Not Available" : "Available"}
               </button>
               <p>{props.isFavouriteTutor ? "Is Favourite" : ""}</p>
-
             </div>
           )}
         </AccordionDetails>

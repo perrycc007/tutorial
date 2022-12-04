@@ -6,6 +6,8 @@ import Checkbox from '@mui/material/Checkbox';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import FormControlLabel from '@mui/material/FormControlLabel';
+import Button from '@mui/material/Button';
+
 
 let defaulted = '';
 export default function BasicInfo(props) {
@@ -79,8 +81,8 @@ export default function BasicInfo(props) {
           </FormControl>)}
           
           {!info && <FormControlLabel control={<Checkbox name={checkboxfield.name} />} label={checkboxfield.label} />}
-          <button type="submit">儲存</button>
-          <button type="submit">儲存並下一步</button>
+          <Button variant="outlined" type="submit">儲存</Button>
+          <Button variant="outlined" type="submit">儲存並下一步</Button>
       </form>
     </React.Fragment>
   );

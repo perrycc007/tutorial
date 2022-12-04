@@ -1,10 +1,8 @@
 import React, { useCallback, useEffect } from 'react';
 import { useState } from 'react';
-import Axios from 'axios';
-// import userStore from '../../stores'
+import Button from '@mui/material/Button';
 import TimetableButton from '../../inputTool/TimetableButton'
 import classes from './TimeForm.module.css'
-import { flexbox } from '@mui/system';
 
 // const time = [{8: false, 9: false, 10: false, 11: false, 12: false, 13: false, 14: false, 15: false, 16: false, 17: false, 18: false, 19: false, 20: false, 21: false, 22: false}];
 const days = [{1: true, 2: false, 3: false,4: true, 5: false, 6: false, 7: false}];
@@ -112,7 +110,7 @@ export default function TimeForm(props) {
           </div>
         </div>
 
-          <button type="submit" >Save</button>
+          <Button variant="outlined" type="submit" >Save</Button>
       </form>
 
   );

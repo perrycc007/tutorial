@@ -1,8 +1,7 @@
 import React, {useState ,useEffect} from 'react';
-import { Grid, Typography } from '@mui/material';
 import BasicTabs from '../../ui/BasicTabs';
 import subjects from './Subject'
-
+import Button from '@mui/material/Button';
 
 
 
@@ -29,7 +28,7 @@ const SubjectsForm = (props) => {
     <React.Fragment>
       <form  onSubmit={submitHandler}>
         <BasicTabs category={subjects} listHandler={listHandlerHandler} passValue={list}/>
-        <button type="submit">儲存並下一步</button>
+        <Button variant="outlined" type="submit">儲存並下一步</Button>
       </form>
     </React.Fragment>
   );

@@ -3,11 +3,9 @@ import { useState } from "react";
 import ModalFilter from "./ModalFilter";
 import MinSlider from "../inputTool/Slider";
 import Typography from "@mui/material/Typography";
-import InputLabel from "@mui/material/InputLabel";
-import MenuItem from "@mui/material/MenuItem";
 import place from "../Form/Forms/Location";
 import subjects from "../Form/Forms/Subject";
-import Select from "@mui/material/Select";
+import Button from '@mui/material/Button';
 import FormControl from "@mui/material/FormControl";
 
 const Filter = (props) => {
@@ -101,7 +99,7 @@ const Filter = (props) => {
                     </Select> */}
         </FormControl>
 
-        <button onClick={filterHandler}>Filter</button>
+        <Button variant="contained" onClick={filterHandler}>Filter</Button >
       </form>
     </React.Fragment>
   );
