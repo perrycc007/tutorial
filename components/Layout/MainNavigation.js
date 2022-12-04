@@ -28,11 +28,6 @@ const MainNavigation = () => {
       </Link>
       <nav>
         <ul>
-          {!isLoggedin && (
-            <li>
-              <Link href="/auth">登入</Link>
-            </li>
-          )}
           {/* {isLoggedIn && (
             <li>
               <Link to='/changepassword'>Change Password</Link>
@@ -71,12 +66,19 @@ const MainNavigation = () => {
             <MenuIcon />
           </IconButton> */}
           {isLoggedin && (
-            <>
-              <Button variant="outlined" onClick={toggleIstutorHandler}>
-                {isTutor ? "導師模式" : "學生模式"}
-              </Button>
-              <Button variant="contained" onClick={logoutHandler}>登出</Button>
-            </>
+            <Button variant="outlined" onClick={toggleIstutorHandler}>
+              {isTutor ? "導師模式" : "學生模式"}
+            </Button>
+          )}
+          {isLoggedin && (
+            <Button variant="contained" onClick={logoutHandler}>
+              登出
+            </Button>
+          )}
+          {!isLoggedin && (
+            <Button variant="contained" >
+              <Link href="/auth">登入</Link>
+            </Button>
           )}
         </ul>
       </nav>

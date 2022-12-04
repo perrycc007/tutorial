@@ -6,7 +6,7 @@
   padding: 0.42vh 2vw;
   width: 4rem;
   height: 25.5px;
-  color: rgb(0, 0, 0);
+  color: rgb(78, 78, 78);
   cursor: pointer;
   align-items: center;
   transition-duration: 0.1s;
@@ -28,7 +28,7 @@
 }
 
 .toggleButton:hover {
-  background-color: rgb(129, 129, 129);
+  background-color: #818181;
   transition-duration: 0.1s;
   transition-timing-function: ease-in;
 }

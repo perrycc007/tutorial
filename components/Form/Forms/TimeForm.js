@@ -80,73 +80,84 @@ export default function TimeForm(props) {
   }, [checkboxHandler]);
   return (
     <div>
-      <h2>期待教授時間</h2>
-    <form onSubmit={submitHandler}>
-     
-      <div style={{ display: "flex", justifyContent: "center" }}>
-        <div>
-          <p className={classes.time} style={{ color: "white" }}>
-            b
-          </p>
-          {timeValue.map((item) => (
-            <p className={classes.time}>{item}</p>
-          ))}
-        </div>
-        <div>
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "space-around",
-              margin: "auto",
-            }}
-          >
-            {weekday.map((item) => (
-              <p className={classes.day}>{item}</p>
+      <h2>期望時間</h2>
+      <form onSubmit={submitHandler}>
+        <div style={{ display: "flex", justifyContent: "center" }}>
+          <div>
+            <p className={classes.time} style={{ color: "white" }}>
+              b
+            </p>
+            {timeValue.map((item) => (
+              <p className={classes.time}>{item}</p>
             ))}
           </div>
-          {times.map((x, xi) => {
-            return x.map((y, yi) => {
-              return (
-                <div
-                  style={{
-                    textAlign: "center",
-                    margin: "auto",
-                    borderBottom: "0.5px solid #707070",
-                  }}
-                >
+          <div>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "space-around",
+                margin: "auto",
+              }}
+            >
+              {weekday.map((item) => (
+                <p className={classes.day}>{item}</p>
+              ))}
+            </div>
+            {times.map((x, xi) => {
+              return x.map((y, yi) => {
+                return (
                   <div
-                    style={{ display: "flex", justifyContent: "space-around" }}
+                    style={{
+                      textAlign: "center",
+                      margin: "auto",
+                      borderBottom: "0.5px solid #818181",
+                    }}
                   >
-                    {Object.entries(y).map(([key, value]) => {
-                      return (
-                        <>
-                          <TimetableButton
-                            value={inTheList(
-                              "d" + parseInt(`${key}`) + "t" + parseInt(`${xi}`)
-                            )}
-                            id={
-                              "d" + parseInt(`${key}`) + "t" + parseInt(`${xi}`)
-                            }
-                            key={
-                              "d" + parseInt(`${key}`) + "t" + parseInt(`${xi}`)
-                            }
-                            Click={checkboxHandler}
-                          />
-                        </>
-                      );
-                    })}
+                    <div
+                      style={{
+                        display: "flex",
+                        justifyContent: "space-around",
+                      }}
+                    >
+                      {Object.entries(y).map(([key, value]) => {
+                        return (
+                          <>
+                            <TimetableButton
+                              value={inTheList(
+                                "d" +
+                                  parseInt(`${key}`) +
+                                  "t" +
+                                  parseInt(`${xi}`)
+                              )}
+                              id={
+                                "d" +
+                                parseInt(`${key}`) +
+                                "t" +
+                                parseInt(`${xi}`)
+                              }
+                              key={
+                                "d" +
+                                parseInt(`${key}`) +
+                                "t" +
+                                parseInt(`${xi}`)
+                              }
+                              Click={checkboxHandler}
+                            />
+                          </>
+                        );
+                      })}
+                    </div>
                   </div>
-                </div>
-              );
-            });
-          })}
+                );
+              });
+            })}
+          </div>
         </div>
-      </div>
 
-      <Button variant="outlined" type="submit">
-        Save
-      </Button>
-    </form>
+        <Button variant="outlined" type="submit">
+          Save
+        </Button>
+      </form>
     </div>
   );
 }
