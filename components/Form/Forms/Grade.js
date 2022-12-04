@@ -58,7 +58,7 @@ function TabPanel(props) {
 
       // JSON.parse(props.info.subgrade) != null && setList(JSON.parse(props.info.subgrade))
       console.log(list)
-      },[props.info.subgrade]);
+      },[props.info]);
 
 
     const handleChange = (event, newValue) => {
@@ -97,6 +97,7 @@ const submitHandler = (e) =>{
     return (
       
       <Box sx={{ width: '100%' }}>
+        <h2>公閞試成績</h2>
         <form  onSubmit={submitHandler}>
         <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
           <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">

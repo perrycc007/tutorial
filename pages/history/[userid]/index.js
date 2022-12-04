@@ -16,7 +16,7 @@ const Cases = (props) => {
 
   return (
     <>
-      <p>CasesList</p>
+      <h2>補習申請歷史</h2>
       {props.cases?<CasesList
         cases={props.cases}
         favourite={[]}

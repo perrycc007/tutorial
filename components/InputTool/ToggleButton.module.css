@@ -1,39 +1,46 @@
-.toggleButton{
+.toggleButton {
   background-color: rgb(255, 255, 255);
-    /* margin-top: 15%; */
-    padding: 1rem;
-    border: none;
-    font-size: 5px;
-    padding: 0.5rem 2rem;
-    color: rgb(0, 0, 0);
-    cursor: pointer;
-    border-radius: 1rem;
-    align-items: center;
-    /* margin-left: auto;
+  /* margin-top: 15%; */
+  padding: 1rem;
+  border: none;
+  font-size: 5px;
+  padding: 0.5rem 2rem;
+  color: rgb(0, 0, 0);
+  cursor: pointer;
+  border-radius: 1rem;
+  align-items: center;
+  transition-duration: 0.1s;
+  transition-timing-function: ease-in;
+  /* margin-left: auto;
     margin-right: auto; */
-    /* display: table; */
-  }
-  
-  .toggleButtonClose{
-    background-color: rgb(16, 134, 202);
-    padding: 0.5rem 2rem;
-    /* margin-top: 15%; */
-    border: none;
-    font-size: 5px;
-    color: white;
-    cursor: pointer;
-    border-radius: 1rem;
-    align-items: center;
-    /* margin-left: auto;
+  /* display: table; */
+}
+
+.toggleButtonClose {
+  background-color: #2196f3;
+  padding: 0.5rem 2rem;
+  /* margin-top: 15%; */
+  border: none;
+  font-size: 5px;
+  color: white;
+  cursor: pointer;
+  border-radius: 1rem;
+  align-items: center;
+  transition-duration: 0.1s;
+  transition-timing-function: ease-in;
+  /* margin-left: auto;
     margin-right: auto; */
-    /* display: table; */
-  }
+  /* display: table; */
+}
 
-  .toggleButton:hover{
-    background-color: rgb(129, 129, 129);
-  }
+.toggleButton:hover {
+  background-color: rgb(129, 129, 129);
+  transition-duration: 0.1s;
+  transition-timing-function: ease-in;
+}
 
-
-  .toggleButtonClose:hover{
-    background-color: rgb(105, 112, 116);
-  }
+.toggleButtonClose:hover {
+  background-color: rgb(105, 112, 116);
+  transition-duration: 0.1s;
+  transition-timing-function: ease-in;
+}

@@ -1,10 +1,9 @@
 import Link from "next/link";
 import classes from "./MainNavigation.module.css";
 import userStore from "../../stores/stores";
-import shallow from "zustand/shallow";
-import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
+import Button from "@mui/material/Button";
 
 const MainNavigation = () => {
   const getUserid = userStore((state) => state.userId);
@@ -25,13 +24,13 @@ const MainNavigation = () => {
   return (
     <header className={classes.header}>
       <Link href="/">
-        <div className={classes.logo}>React Auth</div>
+        <div className={classes.logo}>Tutor Elite</div>
       </Link>
       <nav>
         <ul>
           {!isLoggedin && (
             <li>
-              <Link href="/auth">Login</Link>
+              <Link href="/auth">登入</Link>
             </li>
           )}
           {/* {isLoggedIn && (
@@ -40,28 +39,28 @@ const MainNavigation = () => {
             </li>
           )} */}
           {isLoggedin && (
-            <li>
-              <Link href="/apply">Apply</Link>
-            </li>
+            <Button>
+              <Link href="/apply">申請補習</Link>
+            </Button>
           )}
-          <li>
-            <Link href="/cases">Cases</Link>
-          </li>
-          <li>
-            <Link href="/tutor">Tutorial</Link>
-          </li>
+          <Button>
+            <Link href="/cases">補習個案</Link>
+          </Button>
+          <Button>
+            <Link href="/tutor">精英導師</Link>
+          </Button>
           {isLoggedin && (
-            <li>
-              <Link href={`/profile/${getUserid}`}>Profile</Link>
-            </li>
+            <Button>
+              <Link href={`/profile/${getUserid}`}>個人資料</Link>
+            </Button>
           )}
           {isLoggedin && (
-            <li>
-              <Link href="/favourite">Favourite</Link>
-            </li>
+            <Button>
+              <Link href="/favourite">我的最愛</Link>
+            </Button>
           )}
 
-          <IconButton
+          {/* <IconButton
             className={classes.IconButton}
             size="large"
             edge="start"
@@ -70,17 +69,13 @@ const MainNavigation = () => {
             sx={{ mr: 2 }}
           >
             <MenuIcon />
-          </IconButton>
+          </IconButton> */}
           {isLoggedin && (
             <>
-              <li>
-                <button onClick={logoutHandler}>Logout</button>
-              </li>
-              <li>
-                <button onClick={toggleIstutorHandler}>
-                  {isTutor ? "Tutor" : "Student"}
-                </button>
-              </li>
+              <Button variant="outlined" onClick={toggleIstutorHandler}>
+                {isTutor ? "導師模式" : "學生模式"}
+              </Button>
+              <Button variant="contained" onClick={logoutHandler}>登出</Button>
             </>
           )}
         </ul>

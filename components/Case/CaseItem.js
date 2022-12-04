@@ -126,8 +126,6 @@ function CaseItem(props) {
     fee: fee,
   };
 
-
-
   return (
     <div className={classes.item}>
       <Accordion>
@@ -149,13 +147,13 @@ function CaseItem(props) {
 
           <div className={classes.heading}></div>
         </AccordionSummary>
-        <AccordionDetails>
+        <AccordionDetails className={classes.summary}>
           {Object.entries(items).map(
             ([key, value]) =>
               itemName[key] !== undefined &&
               value !== null &&
               key !== "subgrade" && (
-                <p >
+                <p>
                   {itemName[key]}: {value}
                 </p>
               )
@@ -185,10 +183,10 @@ function CaseItem(props) {
           {props.type == "edit" ||
           props.admin == "admin" ||
           props.admin == "adminTutor" ? (
-            <div>
+            <div className={classes.summary}>
               <p>{timeForDisaply}</p>
               <Button variant="outlined" onClick={StatusHandler}>
-                {status == "open" ? "Open" : "Close"}
+                {status == "open" ? "按此隱藏個案" : "按此公開個案"}
               </Button>
               <BasicPopover userid={props.cases.userid} type={props.type} />
               <div>
@@ -199,12 +197,12 @@ function CaseItem(props) {
             ""
           )}
           {props.admin == "adminTutor" && (
-            <div>
+            <div className={classes.heading}>
               <Button onClick={toggleCheck}>{checkStatus}</Button>
               <Button onClick={toggleNotAvail}>
                 {notAvailStatus ? "Not Available" : "Available"}
               </Button>
-              {props.isFavouriteTutor ? <FavoriteIcon/> : ""}
+              {props.isFavouriteTutor ? <FavoriteIcon /> : ""}
             </div>
           )}
         </AccordionDetails>

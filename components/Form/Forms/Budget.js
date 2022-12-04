@@ -3,8 +3,7 @@ import { useState, useCallback } from "react";
 import MinSlider from "../../InputTool/Slider";
 import Typography from "@mui/material/Typography";
 import Axios from "axios";
-import Button from '@mui/material/Button';
-
+import Button from "@mui/material/Button";
 
 const Budget = (props) => {
   // const [fee,setFee] = useState([])
@@ -58,13 +57,11 @@ const Budget = (props) => {
   return (
     <React.Fragment>
       <form>
-        <Typography
-          component={"span"}
-          variant={"body2"}
-          sx={{ width: "33%", flexShrink: 0 }}
-        >
-          補習學費每小時
-        </Typography>
+        <h2>補習學費每小時</h2>
+        <p>
+          理想時薪: {userData ? userData["highestfee"] : info["highestfee"]}
+        </p>
+        <p>最低時薪: {userData ? userData["lowestfee"] : info["lowestfee"]}</p>
         <MinSlider
           step={20}
           max={1000}
@@ -75,9 +72,11 @@ const Budget = (props) => {
           passValue={updateUserDataHandler}
         />
         <Button variant="outlined" onClick={StatusHandler}>
-          {status == "open" ? "Open" : "Close"}
+          {status == "open" ? "按此隱藏簡歷" : "按此公開簡歷"}
         </Button>
-        <Button variant="outlined" onClick={formHandler}>Save</Button>
+        <Button variant="outlined" onClick={formHandler}>
+          Save
+        </Button>
       </form>
     </React.Fragment>
   );

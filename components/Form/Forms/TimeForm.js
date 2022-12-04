@@ -79,7 +79,10 @@ export default function TimeForm(props) {
     console.log("rerendered");
   }, [checkboxHandler]);
   return (
+    <div>
+      <h2>期待教授時間</h2>
     <form onSubmit={submitHandler}>
+     
       <div style={{ display: "flex", justifyContent: "center" }}>
         <div>
           <p className={classes.time} style={{ color: "white" }}>
@@ -144,5 +147,6 @@ export default function TimeForm(props) {
         Save
       </Button>
     </form>
+    </div>
   );
 }
