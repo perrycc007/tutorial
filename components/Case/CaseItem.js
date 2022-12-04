@@ -121,8 +121,6 @@ function CaseItem(props) {
       })
     : [];
 
-  console.log(JSON.parse(items.subgrade));
-
   let heading = { location, subject, fee };
 
   // console.log(props.cases);
@@ -148,7 +146,13 @@ function CaseItem(props) {
                 </p>
               )
           )}
-          {props.type == "tutor" ? "" : ""}
+          {props.type == "tutor"
+            ? JSON.parse(items.subgrade).map((item) => 
+                <p>
+                  {item.id} : {item.value}
+                </p>
+              )
+            : ""}
 
           {props.type != "edit" &&
             props.admin != "admin" &&
