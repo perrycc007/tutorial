@@ -1,9 +1,7 @@
-import Card from "../Layout/Card";
 import classes from "./CaseItem.module.css";
 import Accordion from "@mui/material/Accordion";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
-import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import EditForm from "../Form/Forms/EditForm";
 import { useState, useEffect } from "react";
@@ -114,6 +112,7 @@ function CaseItem(props) {
     const result = [dayOfWeek, startingTime];
     return result;
   };
+
   const availtimeArray = JSON.parse(availtime);
   const timeForDisaply = availtimeArray
     ? availtimeArray.map((item) => {
@@ -121,9 +120,13 @@ function CaseItem(props) {
       })
     : [];
 
-  let heading = { location, subject, fee };
+  let heading = {
+    location: JSON.parse(location),
+    subject: JSON.parse(subject),
+    fee: fee,
+  };
 
-  // console.log(props.cases);
+
 
   return (
     <div className={classes.item}>
@@ -133,6 +136,17 @@ function CaseItem(props) {
           aria-controls="panel1a-content"
           id="panel1a-header"
         >
+          {Object.entries(heading).map(([key, value]) => (
+            <p>
+              {itemName[key]}:
+              {typeof value == "object"
+                ? value.map((item) => {
+                    return ` ${item}`;
+                  })
+                : `$${value}/小時`}
+            </p>
+          ))}
+
           <div className={classes.heading}></div>
         </AccordionSummary>
         <AccordionDetails>
@@ -141,19 +155,18 @@ function CaseItem(props) {
               itemName[key] !== undefined &&
               value !== null &&
               key !== "subgrade" && (
-                <p>
+                <p >
                   {itemName[key]}: {value}
                 </p>
               )
           )}
           {props.type == "tutor"
-            ? JSON.parse(items.subgrade).map((item) => 
+            ? JSON.parse(items.subgrade).map((item) => (
                 <p>
                   {item.id} : {item.value}
                 </p>
-              )
+              ))
             : ""}
-
           {props.type != "edit" &&
             props.admin != "admin" &&
             props.admin != "adminTutor" && (
@@ -173,9 +186,10 @@ function CaseItem(props) {
           props.admin == "admin" ||
           props.admin == "adminTutor" ? (
             <div>
-              <button onClick={StatusHandler}>
+              <p>{timeForDisaply}</p>
+              <Button variant="outlined" onClick={StatusHandler}>
                 {status == "open" ? "Open" : "Close"}
-              </button>
+              </Button>
               <BasicPopover userid={props.cases.userid} type={props.type} />
               <div>
                 <EditForm cases={props.cases} />
@@ -186,11 +200,11 @@ function CaseItem(props) {
           )}
           {props.admin == "adminTutor" && (
             <div>
-              <button onClick={toggleCheck}>{checkStatus}</button>
-              <button onClick={toggleNotAvail}>
+              <Button onClick={toggleCheck}>{checkStatus}</Button>
+              <Button onClick={toggleNotAvail}>
                 {notAvailStatus ? "Not Available" : "Available"}
-              </button>
-              <p>{props.isFavouriteTutor ? "Is Favourite" : ""}</p>
+              </Button>
+              {props.isFavouriteTutor ? <FavoriteIcon/> : ""}
             </div>
           )}
         </AccordionDetails>

@@ -1,6 +1,7 @@
 import CaseItem from "../Case/CaseItem";
 import CasesList from "../Case/CasesList";
 import Axios from "axios";
+import classes from "./AdminDisplay.module.css";
 
 export default function AdminDisplay(props) {
   let {
@@ -61,14 +62,16 @@ export default function AdminDisplay(props) {
     }
   }
   return (
-    <div>
-      <CaseItem
-        cases={studentInfo}
-        toggleStatus={toggleStatus}
-        adminInfo={adminInfo}
-        admin="admin"
-        type="cases"
-      />
+    <div className={classes.flexContainer}>
+      <div>
+        <CaseItem
+          cases={studentInfo}
+          toggleStatus={toggleStatus}
+          adminInfo={adminInfo}
+          admin="admin"
+          type="cases"
+        />
+      </div>
       <CasesList
         cases={tutor}
         idmatch={idmatch}

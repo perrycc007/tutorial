@@ -21,7 +21,7 @@ export default function EditForm(props) {
   const handleClose = () => setOpen(false);
   return (
     <div>
-      <Button onClick={handleOpen}>edit</Button>
+      <Button variant="contained" onClick={handleOpen}>edit</Button>
       <Modal
         open={open}
         onClose={handleClose}
