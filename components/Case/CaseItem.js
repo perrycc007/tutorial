@@ -11,6 +11,7 @@ import BasicPopover from "../ui/BasicPopover";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import Button from "@mui/material/Button";
+import itemName from "./itemName";
 
 function CaseItem(props) {
   const [status, setStatus] = useState(props.cases.status);
@@ -110,18 +111,21 @@ function CaseItem(props) {
       // code block
     }
 
-    console.log(dayOfWeek, startingTime);
-    return dayOfWeek;
+    const result = [dayOfWeek, startingTime];
+    return result;
   };
   const availtimeArray = JSON.parse(availtime);
-  availtimeArray.map((item) => {
-    readDate(item);
-  });
+  const timeForDisaply = availtimeArray
+    ? availtimeArray.map((item) => {
+        return readDate(item);
+      })
+    : [];
 
-  let summary = {};
-  props.type == "tutor"
-    ? (summary = [items.status, items.university, items.educationallevel])
-    : "";
+  console.log(JSON.parse(items.subgrade));
+
+  let heading = { location, subject, fee };
+
+  // console.log(props.cases);
 
   return (
     <div className={classes.item}>
@@ -131,33 +135,36 @@ function CaseItem(props) {
           aria-controls="panel1a-content"
           id="panel1a-header"
         >
-          <div className={classes.heading}>
-            {/* <p>{heading}</p> */}
-            {/* {heading.map((item) => (
-              <p>{item[1]}</p>
-            ))} */}
-          </div>
+          <div className={classes.heading}></div>
         </AccordionSummary>
         <AccordionDetails>
-          {/* <Typography>
-            {sumamry.map((item) => (
-              <p>{item[1]}</p>
-            ))}
-          </Typography> */}
-          {props.type == "tutor" &&
+          {Object.entries(items).map(
+            ([key, value]) =>
+              itemName[key] !== undefined &&
+              value !== null &&
+              key !== "subgrade" && (
+                <p>
+                  {itemName[key]}: {value}
+                </p>
+              )
+          )}
+          {props.type == "tutor" ? "" : ""}
+
+          {props.type != "edit" &&
             props.admin != "admin" &&
             props.admin != "adminTutor" && (
-              <Button color="error" onClick={toggleFavoriteStatusHandler}>
+              <Button
+                color="error"
+                onClick={
+                  props.type == "tutor"
+                    ? toggleFavoriteStatusHandler
+                    : toggleFavoriteStatusHandler
+                }
+              >
                 {props.isFavourite ? <FavoriteIcon /> : <FavoriteBorderIcon />}
               </Button>
             )}
-          {props.type == "cases" &&
-            props.admin != "admin" &&
-            props.admin != "adminTutor" && (
-              <Button color="error" onClick={toggleFavoriteStatusHandler}>
-                {props.isFavourite ? <FavoriteIcon /> : <FavoriteBorderIcon />}
-              </Button>
-            )}
+
           {props.type == "edit" ||
           props.admin == "admin" ||
           props.admin == "adminTutor" ? (
