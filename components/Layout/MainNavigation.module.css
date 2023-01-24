@@ -1,53 +1,109 @@
-.button {
-  cursor: pointer;
-  font: inherit;
-  padding: 0.5rem 2.5rem;
-  margin: 1%
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: white;
+  padding: 0.9rem 2rem;
+  position: fixed;
+  width: 100%;
 }
-  .header li {
-    margin: 0 1rem;
-  }
-  
-  .header a {
-    text-decoration: none;
-    color: rgb(0, 0, 0);
-    font-weight: bold;
-  }
-  
-  .header button {
-    font: inherit;
-    /* background-color: transparent; */
-    /* color: rgb(0, 0, 0); */
-    font-weight: bold;
-    padding: 0.5rem 1.5rem;
-    border-radius: 6px;
-    cursor: pointer;
-  }  
 
-  .header {
-    width: 100%;
-    height: 5rem;
-    background-color: #ffffff;
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* position: fixed; */
+}
+
+.navbarActive {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* position: fixed; */
+}
+
+.navbarli {
+  list-style: none;
+  padding: 0rem 0.2rem;
+  position: relative;
+  font-size: 1.3rem;
+  text-decoration: none;
+  font-weight: 500;
+  transition: 0.3s ease-in-out;
+}
+
+.navbarliLink {
+  text-decoration: none;
+  font-size: 1.3rem;
+  font-weight: 500;
+  transition: 0.3s ease-in-out;
+}
+
+.navbarliLink :hover {
+  color: #2196f3;
+}
+
+.navbarli :hover {
+  color: #2196f3;
+}
+
+.navbarli :hover:after {
+  content: "";
+  width: 30%;
+  height: 2px;
+  background: #2196f3;
+  position: absolute;
+  bottom: -4px;
+  left: 20px;
+}
+
+.mobile {
+  align-items: center;
+  display: none;
+}
+
+@media screen and (max-width: 769px) {
+  .navbar {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    position: fixed;
+    top: 3.6rem;
+    right: -200px;
+    width: 200px;
+    height: 100vh;
+    background: white;
+    padding: 25px 0 0 10px;
+    transition: 0.2s ease-in-out;
+  }
+  .navbarActive {
+    right: 0px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    position: fixed;
+    top: 3.3rem;
+    width: 200px;
+    height: 100vh;
+    background: white;
+    padding: 25px 0 0 10px;
+    transition: 0.2s ease-in-out;
+  }
+
+  .mobile {
+    display: block;
     align-items: center;
-    padding: 0 10%;
-  }
-  .IconButton{
-    display: none;
-  }
-  .logo {
-    font-family: 'Lato', sans-serif;
-    font-size: 1rem;
-    color: rgb(0, 0, 0);
-    margin: 0;
-  }
-  
-  .header ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
     display: flex;
-    align-items: baseline;
   }
+  .navbarli {
+    margin-bottom: 25px;
+  }
+  .icon {
+    font-size: 24px;
+    cursor: pointer;
+    align-items: center;
+    display: flex;
+  }
+}

@@ -1,9 +1,9 @@
 import Link from "next/link";
 import classes from "./MainNavigation.module.css";
 import userStore from "../../stores/stores";
-import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
-import Button from "@mui/material/Button";
+import CloseIcon from "@mui/icons-material/Close";
+import { useState } from "react";
 
 const MainNavigation = () => {
   const getUserid = userStore((state) => state.userId);
@@ -12,6 +12,7 @@ const MainNavigation = () => {
   const cleanFavourite = userStore((state) => state.cleanFavourite);
   const toggleIstutor = userStore((state) => state.toggleIstutor);
   const isTutor = userStore((state) => state.isTutor);
+  const [menuState, setMenuState] = useState(false);
   const logoutHandler = () => {
     logOutAction();
     cleanFavourite();
@@ -20,69 +21,82 @@ const MainNavigation = () => {
   const toggleIstutorHandler = () => {
     toggleIstutor(!isTutor);
   };
+  const menuHandler = () => {
+    setMenuState((prev) => !prev);
+  };
 
   return (
-    <header className={classes.header}>
-      <Link href="/">
-        <div className={classes.logo}>Tutor Elite</div>
-      </Link>
-      <nav>
-        <ul>
-          {/* {isLoggedIn && (
-            <li>
-              <Link to='/changepassword'>Change Password</Link>
-            </li>
-          )} */}
-          {isLoggedin && (
-            <Button>
-              <Link href="/apply">申請補習</Link>
-            </Button>
-          )}
-          <Button>
-            <Link href="/cases">補習個案</Link>
-          </Button>
-          <Button>
-            <Link href="/tutor">精英導師</Link>
-          </Button>
-          {isLoggedin && (
-            <Button>
-              <Link href={`/profile/${getUserid}`}>個人資料</Link>
-            </Button>
-          )}
-          {isLoggedin && (
-            <Button>
-              <Link href="/favourite">我的最愛</Link>
-            </Button>
-          )}
+    <>
+      <nav className={classes.nav}>
+        <Link href="/">
+          <div className={classes.logo}>Tutor Elite</div>
+        </Link>
 
-          {/* <IconButton
-            className={classes.IconButton}
-            size="large"
-            edge="start"
-            color="inherit"
-            aria-label="menu"
-            sx={{ mr: 2 }}
-          >
-            <MenuIcon />
-          </IconButton> */}
-          {isLoggedin && (
-            <Button variant="outlined" onClick={toggleIstutorHandler}>
-              {isTutor ? "導師模式" : "學生模式"}
-            </Button>
+          <ul className={menuState ? classes.navbar : classes.navbarActive}>
+            {isLoggedin && (
+              <li className={classes.navbarli}>
+                <Link href="/apply">
+                  <div className={classes.navbarliLink}>申請補習</div>
+                </Link>
+              </li>
+            )}
+            <li className={classes.navbarli}>
+              <Link href="/cases">
+                <div className={classes.navbarliLink}>補習個案</div>
+              </Link>
+            </li>
+            <li className={classes.navbarli}>
+              <Link href="/tutor">
+                <div className={classes.navbarliLink}>精英導師</div>
+              </Link>
+            </li>
+            {isLoggedin && (
+              <li className={classes.navbarli}>
+                <Link href={`/profile/${getUserid}`}>
+                  <div className={classes.navbarliLink}>個人資料</div>
+                </Link>
+              </li>
+            )}
+            {isLoggedin && (
+              <li className={classes.navbarli}>
+                <div className={classes.navbarliLink}>
+                  <Link href="/favourite">
+                    <div className={classes.navbarliLink}>我的最愛</div>
+                  </Link>
+                </div>
+              </li>
+            )}
+
+            {isLoggedin && (
+              <li className={classes.navbarli} onClick={toggleIstutorHandler}>
+                <div className={classes.navbarliLink}>
+                  {isTutor ? "導師模式" : "學生模式"}
+                </div>
+              </li>
+            )}
+            {isLoggedin && (
+              <li className={classes.navbarli} onClick={logoutHandler}>
+                <div className={classes.navbarliLink}>登出</div>
+              </li>
+            )}
+            {!isLoggedin && (
+              <li className={classes.navbarli}>
+                <Link href="/auth">
+                  <div className={classes.navbarliLink}>登入</div>
+                </Link>
+              </li>
+            )}
+          </ul>
+
+        <div className={classes.mobile} onClick={menuHandler}>
+          {!menuState ? (
+            <CloseIcon className={classes.icon} />
+          ) : (
+            <MenuIcon className={classes.icon} />
           )}
-          {isLoggedin && (
-            <Button variant="contained" onClick={logoutHandler}>
-              登出
-            </Button>
-          )}
-          {!isLoggedin && (
-            <Button variant="contained" >
-              <Link href="/auth">登入</Link>
-            </Button>
-          )}
-        </ul>
+        </div>
       </nav>
-    </header>
+    </>
   );
 };
 
