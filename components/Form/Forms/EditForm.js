@@ -4,7 +4,7 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import StudentApply from '../../Form/StudentApply'
-
+import classes from "./Form.module.css";
 const style = {
   position: 'absolute',
   top: '50%',

@@ -5,7 +5,7 @@ import formField from "../FormModel/formField";
 import Select from "@mui/material/Select";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
-import classes from "./EducationForm.module.css";
+import classes from "./Form.module.css";
 
 const EducationForm = (props) => {
   const inputfield = formField.inputfield.Education;
@@ -46,9 +46,10 @@ const EducationForm = (props) => {
 
   return (
     <React.Fragment>
-      <form onSubmit={formHandler}>
+      <form onSubmit={formHandler} className={classes.formContent}>
         {Object.entries(inputfield).map(([key, value]) => (
           <TextField
+            className={classes.formInput}
             name={value.name}
             key={value.name}
             label={value.label}
@@ -57,10 +58,10 @@ const EducationForm = (props) => {
             onChange={updateUserDataHandler(value.name)}
           />
         ))}
-        <div className={classes.flexContainer}>
+        <div>
           {Object.entries(selectfield).map(([key, value]) => (
-            <div className="flexContainer">
-              <div className="flexContainer">{value.label}</div>
+            <div>
+              <div>{value.label}</div>
               <Select
                 id={value.name}
                 key={value.name}
@@ -84,13 +85,15 @@ const EducationForm = (props) => {
             </div>
           ))}
         </div>
-        <Button variant="contained">上載大學證明</Button>
-        <Button variant="outlined" type="submit">
-          儲存
-        </Button>
-        <Button variant="outlined" type="submit">
-          儲存並下一步
-        </Button>
+        <div className={classes.buttonContainer}>
+          <Button variant="contained">上載大學證明</Button>
+          <Button variant="outlined" type="submit">
+            儲存
+          </Button>
+          <Button variant="outlined" type="submit">
+            儲存並下一步
+          </Button>
+        </div>
       </form>
     </React.Fragment>
   );

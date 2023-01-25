@@ -7,6 +7,7 @@ import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Button from "@mui/material/Button";
+import classes from "./Form.module.css";
 
 let defaulted = "";
 export default function BasicInfo(props) {
@@ -46,11 +47,12 @@ export default function BasicInfo(props) {
   }, []);
 
   return (
-    <React.Fragment>
+    <div>
       <h1>個人資料</h1>
-      <form onSubmit={formHandler}>
+      <form onSubmit={formHandler} className={classes.formContent}>
         {Object.entries(inputfield).map(([key, value]) => (
           <TextField
+            className={classes.formInput}
             name={value.name}
             key={value.name}
             label={value.label}
@@ -61,7 +63,7 @@ export default function BasicInfo(props) {
         ))}
 
         {Object.entries(selectfield).map(([key, value]) => (
-          <FormControl key={value.name}>
+          <FormControl className={classes.formSelect} key={value.name}>
             <Select
               id={value.name}
               key={value.name}
@@ -91,13 +93,15 @@ export default function BasicInfo(props) {
             label={checkboxfield.label}
           />
         )}
+        <div className={classes.buttonContainer}>
         <Button variant="outlined" type="submit">
           儲存
         </Button>
         <Button variant="outlined" type="submit">
           儲存並下一步
         </Button>
+        </div>
       </form>
-    </React.Fragment>
+    </div>
   );
 }

@@ -1,0 +1,25 @@
+.body {
+  display: flex;
+  justify-content: center;
+  padding-top: 4rem;
+}
+
+.container {
+  max-width: 50rem;
+  width: 100%;
+  background-color: antiquewhite;
+  padding: 3rem 4rem;
+  border-radius: 5px;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 1.5rem;
+}
+
+@media (max-width: 584px) {
+  .container {
+    max-width: 100%;
+  }
+}

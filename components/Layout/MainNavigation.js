@@ -3,14 +3,15 @@ import classes from "./MainNavigation.module.css";
 import userStore from "../../stores/stores";
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const MainNavigation = () => {
   const getUserid = userStore((state) => state.userId);
-  const isLoggedin = userStore((state) => state.isLoggedin);
+  const Loggedin = userStore((state) => state.isLoggedin);
   const logOutAction = userStore((state) => state.logoutUserid);
   const cleanFavourite = userStore((state) => state.cleanFavourite);
   const toggleIstutor = userStore((state) => state.toggleIstutor);
+  const [isLoggedin, setIsLoggedin] = useState(false);
   const isTutor = userStore((state) => state.isTutor);
   const [menuState, setMenuState] = useState(false);
   const logoutHandler = () => {
@@ -25,6 +26,13 @@ const MainNavigation = () => {
     setMenuState((prev) => !prev);
   };
 
+useEffect(()=>{
+  setIsLoggedin(Loggedin)
+},[Loggedin])
+
+if (!isLoggedin) {
+  return null;
+}
   return (
     <>
       <nav className={classes.nav}>
@@ -32,7 +40,7 @@ const MainNavigation = () => {
           <div className={classes.logo}>Tutor Elite</div>
         </Link>
 
-          <ul className={menuState ? classes.navbar : classes.navbarActive}>
+          <ul className={!menuState ? classes.navbar : classes.navbarActive}>
             {isLoggedin && (
               <li className={classes.navbarli}>
                 <Link href="/apply">
@@ -89,7 +97,7 @@ const MainNavigation = () => {
           </ul>
 
         <div className={classes.mobile} onClick={menuHandler}>
-          {!menuState ? (
+          {menuState ? (
             <CloseIcon className={classes.icon} />
           ) : (
             <MenuIcon className={classes.icon} />

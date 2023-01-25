@@ -11,6 +11,7 @@ import Paper from "@mui/material/Paper";
 import Pagination from "@mui/material/Pagination";
 import userStore from "../../stores/stores";
 import Axios from "axios";
+import classes from "./ProfileForm.module.css";
 const ProfileForm = (props) => {
   const [profileData, setProfileData] = useState(props.profile);
   const [tutorData, setTutorData] = useState(props.tutor);
@@ -18,7 +19,9 @@ const ProfileForm = (props) => {
   const getUserid = userStore((state) => state.userId);
   const [page, setPage] = useState(1);
   const isTutor = userStore((state) => state.isTutor);
-  useEffect(()=>{console.log(props.profile)},[props.profile])
+  useEffect(() => {
+    console.log(props.profile);
+  }, [props.profile]);
   const handleChange = (e, p) => {
     setPage(p);
   };
@@ -30,8 +33,8 @@ const ProfileForm = (props) => {
     setProfileData(newInfo);
     setChanges(true);
     const response = await Axios.post(`http://localhost:3001/profile/`, {
-      userid: getUserid ? getUserid: props.profile.userid,
-      tutorid: getUserid ? getUserid:  props.tutor.tutorid,
+      userid: getUserid ? getUserid : props.profile.userid,
+      tutorid: getUserid ? getUserid : props.tutor.tutorid,
       information: newInfo,
     });
     response.data.result;
@@ -51,7 +54,7 @@ const ProfileForm = (props) => {
       userid: getUserid ? getUserid : props.profile.userid,
       information: newInfo,
     });
-    response.data.result
+    response.data.result;
     match.data.result;
   }
   async function tutorHandler(value) {
@@ -60,7 +63,7 @@ const ProfileForm = (props) => {
     setTutorData(newInfo);
     setChanges(true);
     const response = await Axios.patch(`http://localhost:3001/tutor`, {
-      userid: getUserid ? getUserid: props.profile.userid,
+      userid: getUserid ? getUserid : props.profile.userid,
       // tutorid: getUserid,
       information: newInfo,
     });
@@ -69,63 +72,57 @@ const ProfileForm = (props) => {
       // tutorid: getUserid,
       information: newInfo,
     });
-    match.data.result
+    match.data.result;
   }
   return (
-    <div>
-      <Box
-        sx={{
-          display: "flex",
-          flexWrap: "wrap",
-          justifyContent: "center",
-        }}
-      >
-        <Paper sx={{ padding: "3rem" }}>
-          {page == 1  && (
-            <BasicInfo
-              submitHandler={submitHandler}
-              info={changes ? profileData : props.profile}
-            />
-          )}
-          {page == 2 && (
-            <LocationForm
-              submitHandler={listHandler}
-              info={changes ? tutorData : props.tutor}
-              isTutor={isTutor}
-            />
-          )}
-          {page == 3 && (
-            <TimeForm
-              submitHandler={listHandler}
-              info={changes ? tutorData : props.tutor}
-            />
-          )}
-          {page == 4 && (
-            <EducationForm
-              submitHandler={tutorHandler}
-              info={changes ? tutorData : props.tutor}
-            />
-          )}
-          {page == 5 && (
-            <Grade
-              submitHandler={listHandler}
-              info={changes ? tutorData : props.tutor}
-            />
-          )}
-          {page == 6 && (
-            <Subjects
-              submitHandler={listHandler}
-              info={changes ? tutorData : props.tutor}
-            />
-          )}
-          {page == 7 && (
-            <Budget
-              submitHandler={tutorHandler}
-              info={changes ? tutorData : props.tutor}
-            />
-          )}
+    <div className={classes.body}>
+      <div className={classes.container}>
+        {page == 1 && (
+          <BasicInfo
+            submitHandler={submitHandler}
+            info={changes ? profileData : props.profile}
+          />
+        )}
+        {page == 2 && (
+          <LocationForm
+            submitHandler={listHandler}
+            info={changes ? tutorData : props.tutor}
+            isTutor={isTutor}
+          />
+        )}
+        {page == 3 && (
+          <TimeForm
+            submitHandler={listHandler}
+            info={changes ? tutorData : props.tutor}
+          />
+        )}
+        {page == 4 && (
+          <EducationForm
+            submitHandler={tutorHandler}
+            info={changes ? tutorData : props.tutor}
+          />
+        )}
+        {page == 5 && (
+          <Grade
+            submitHandler={listHandler}
+            info={changes ? tutorData : props.tutor}
+          />
+        )}
+        {page == 6 && (
+          <Subjects
+            submitHandler={listHandler}
+            info={changes ? tutorData : props.tutor}
+          />
+        )}
+        {page == 7 && (
+          <Budget
+            submitHandler={tutorHandler}
+            info={changes ? tutorData : props.tutor}
+          />
+        )}
 
-          {isTutor && !props.admin || props.type=='tutor' ? (
+        {(isTutor && !props.admin) || props.type == "tutor" ? (
+          <div className={classes.pagination}>
             <Pagination
               count={7}
               page={page}
@@ -133,11 +130,11 @@ const ProfileForm = (props) => {
               variant="outlined"
               color="primary"
             />
-          ) : (
-            ""
-          )}
-        </Paper>
-      </Box>
+          </div>
+        ) : (
+          ""
+        )}
+      </div>
     </div>
   );
 };

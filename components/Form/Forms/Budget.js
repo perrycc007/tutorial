@@ -4,7 +4,7 @@ import MinSlider from "../../InputTool/Slider";
 import Typography from "@mui/material/Typography";
 import Axios from "axios";
 import Button from "@mui/material/Button";
-
+import classes from "./Form.module.css";
 const Budget = (props) => {
   // const [fee,setFee] = useState([])
   const [status, setStatus] = useState(props.info.status);
@@ -56,13 +56,14 @@ const Budget = (props) => {
 
   return (
     <React.Fragment>
-      <form>
+      <form className={classes.formContent}>
         <h2>補習學費每小時</h2>
         <p>
           理想時薪: {userData ? userData["highestfee"] : info["highestfee"]}
         </p>
         <p>最低時薪: {userData ? userData["lowestfee"] : info["lowestfee"]}</p>
         <MinSlider
+          className={classes.formInput}
           step={20}
           max={1000}
           min={60}
@@ -71,12 +72,14 @@ const Budget = (props) => {
           minD={20}
           passValue={updateUserDataHandler}
         />
-        <Button variant="outlined" onClick={StatusHandler}>
-          {status == "open" ? "按此隱藏簡歷" : "按此公開簡歷"}
-        </Button>
-        <Button variant="outlined" onClick={formHandler}>
-          Save
-        </Button>
+        <div className={classes.buttonContainer}>
+          <Button variant="outlined" onClick={StatusHandler}>
+            {status == "open" ? "按此隱藏簡歷" : "按此公開簡歷"}
+          </Button>
+          <Button variant="outlined" onClick={formHandler}>
+            儲存
+          </Button>
+        </div>
       </form>
     </React.Fragment>
   );
