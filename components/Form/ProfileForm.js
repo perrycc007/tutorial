@@ -6,8 +6,6 @@ import LocationForm from "./Forms/LocationForm";
 import Subjects from "./Forms/Subjects";
 import TimeForm from "./Forms/TimeForm";
 import Budget from "./Forms/Budget";
-import Box from "@mui/material/Box";
-import Paper from "@mui/material/Paper";
 import Pagination from "@mui/material/Pagination";
 import userStore from "../../stores/stores";
 import Axios from "axios";

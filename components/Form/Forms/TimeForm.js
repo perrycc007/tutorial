@@ -88,7 +88,9 @@ export default function TimeForm(props) {
               b
             </p>
             {timeValue.map((item) => (
-              <p key={item} className={classes.time}>{item}</p>
+              <p key={item} className={classes.time}>
+                {item}
+              </p>
             ))}
           </div>
           <div>
@@ -100,28 +102,26 @@ export default function TimeForm(props) {
               }}
             >
               {weekday.map((item) => (
-                <p key={item} className={classes.day}>{item}</p>
+                <p key={item} className={classes.day}>
+                  {item}
+                </p>
               ))}
             </div>
             {times.map((x, xi) => {
               return x.map((y, yi) => {
                 return (
                   <div
+                    key={`${x}+${y}1`}
                     style={{
                       textAlign: "center",
                       margin: "auto",
                       borderBottom: "0.5px solid #818181",
+                      display: "flex",
+                      justifyContent: "space-around",
                     }}
                   >
-                    <div
-                      style={{
-                        display: "flex",
-                        justifyContent: "space-around",
-                      }}
-                    >
                       {Object.entries(y).map(([key, value]) => {
                         return (
-                          <>
                             <TimetableButton
                               value={inTheList(
                                 "d" +
@@ -143,11 +143,9 @@ export default function TimeForm(props) {
                               }
                               Click={checkboxHandler}
                             />
-                          </>
                         );
                       })}
                     </div>
-                  </div>
                 );
               });
             })}
