@@ -48,15 +48,24 @@ const EducationForm = (props) => {
     <React.Fragment>
       <form onSubmit={formHandler} className={classes.formContent}>
         {Object.entries(inputfield).map(([key, value]) => (
-          <input
-            className={classes.formInput}
-            name={value.name}
-            key={value.name}
-            label={value.label}
-            value={userData[value.name]}
-            defaultValue={info ? info[value.name] : ""}
-            onChange={updateUserDataHandler(value.name)}
-          />
+          <div>
+            <label class={classes.omrsInputUnderlined}>
+              <input
+                className={classes.inputfield}
+                name={value.name}
+                key={value.name}
+                value={userData[value.name]}
+                defaultValue={info ? info[value.name] : ""}
+                onChange={updateUserDataHandler(value.name)}
+              />
+              <span
+                className={classes.inputfieldLabel}
+                key={`label${value.label}`}
+              >
+                {value.label}
+              </span>
+            </label>
+          </div>
         ))}
         <div>
           {Object.entries(selectfield).map(([key, value]) => (
@@ -72,10 +81,7 @@ const EducationForm = (props) => {
               >
                 {[value.option].map((options) =>
                   options.map((opt) => (
-                    <option
-                      key={opt.value}
-                      value={opt.value}
-                    >
+                    <option key={opt.value} value={opt.value}>
                       {opt.label}
                     </option>
                   ))
