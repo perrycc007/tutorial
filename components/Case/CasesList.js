@@ -52,7 +52,7 @@ const CasesList = (props) => {
 
   return (
     <>
-      <setion className={classes.wrapper}>
+      <section className={classes.wrapper}>
         {props.cases
           ? _DATA
               .currentData()
@@ -116,7 +116,7 @@ const CasesList = (props) => {
           variant="outlined"
           color="primary"
         />
-      </setion>
+      </section>
     </>
   );
 };

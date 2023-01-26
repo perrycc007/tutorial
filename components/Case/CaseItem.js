@@ -135,7 +135,7 @@ function CaseItem(props) {
           id="panel1a-header"
         >
           {Object.entries(heading).map(([key, value]) => (
-            <p>
+            <p key={itemName[key]}>
               {itemName[key]}:
               {typeof value == "object"
                 ? value.map((item) => {
@@ -153,14 +153,14 @@ function CaseItem(props) {
               itemName[key] !== undefined &&
               value !== null &&
               key !== "subgrade" && (
-                <p>
+                <p key={itemName[key]}>
                   {itemName[key]}: {value}
                 </p>
               )
           )}
           {props.type == "tutor"
             ? JSON.parse(items.subgrade).map((item) => (
-                <p>
+                <p key={item.id}>
                   {item.id} : {item.value}
                 </p>
               ))

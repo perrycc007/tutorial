@@ -88,7 +88,7 @@ export default function TimeForm(props) {
               b
             </p>
             {timeValue.map((item) => (
-              <p className={classes.time}>{item}</p>
+              <p key={item} className={classes.time}>{item}</p>
             ))}
           </div>
           <div>
@@ -100,7 +100,7 @@ export default function TimeForm(props) {
               }}
             >
               {weekday.map((item) => (
-                <p className={classes.day}>{item}</p>
+                <p key={item} className={classes.day}>{item}</p>
               ))}
             </div>
             {times.map((x, xi) => {

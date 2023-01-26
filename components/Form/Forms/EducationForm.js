@@ -48,7 +48,7 @@ const EducationForm = (props) => {
     <React.Fragment>
       <form onSubmit={formHandler} className={classes.formContent}>
         {Object.entries(inputfield).map(([key, value]) => (
-          <TextField
+          <input
             className={classes.formInput}
             name={value.name}
             key={value.name}
@@ -62,7 +62,7 @@ const EducationForm = (props) => {
           {Object.entries(selectfield).map(([key, value]) => (
             <div>
               <div>{value.label}</div>
-              <Select
+              <select
                 id={value.name}
                 key={value.name}
                 name={value.name}
@@ -72,16 +72,15 @@ const EducationForm = (props) => {
               >
                 {[value.option].map((options) =>
                   options.map((opt) => (
-                    <MenuItem
+                    <option
                       key={opt.value}
                       value={opt.value}
-                      // selected={place.value === place ? 'selected' : ''}
                     >
                       {opt.label}
-                    </MenuItem>
+                    </option>
                   ))
                 )}
-              </Select>
+              </select>
             </div>
           ))}
         </div>

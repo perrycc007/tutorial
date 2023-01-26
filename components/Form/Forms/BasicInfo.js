@@ -51,7 +51,7 @@ export default function BasicInfo(props) {
       <h1>個人資料</h1>
       <form onSubmit={formHandler} className={classes.formContent}>
         {Object.entries(inputfield).map(([key, value]) => (
-          <TextField
+          <input
             className={classes.formInput}
             name={value.name}
             key={value.name}
@@ -64,7 +64,7 @@ export default function BasicInfo(props) {
 
         {Object.entries(selectfield).map(([key, value]) => (
           <FormControl className={classes.formSelect} key={value.name}>
-            <Select
+            <select
               id={value.name}
               key={value.name}
               name={value.name}
@@ -74,16 +74,16 @@ export default function BasicInfo(props) {
             >
               {[value.option].map((options) =>
                 options.map((opt) => (
-                  <MenuItem
+                  <option
                     key={opt.value}
                     value={opt.value}
-                    // selected={place.value === place ? 'selected' : ''}
+                    // selected={info?opt.value === info[value.name] ? 'selected' : '':''}
                   >
                     {opt.label}
-                  </MenuItem>
+                  </option>
                 ))
               )}
-            </Select>
+            </select>
           </FormControl>
         ))}
 
