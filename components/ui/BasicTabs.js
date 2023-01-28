@@ -96,9 +96,9 @@ export default function BasicTabs(props) {
       {props.category.map((item) => (
         <TabPanel
           sx={{
-            display: "flex",
+            display: "flex-wrap",
             margin: "auto",
-            justifyContent: "space-evenly",
+            justifyContent: "space-between",
             flexWrap: "wrap",
           }}
           value={value}

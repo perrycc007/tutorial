@@ -56,14 +56,11 @@ const Budget = (props) => {
 
   return (
     <React.Fragment>
-      <form className={classes.formContent}>
-        <h2>補習學費每小時</h2>
-        <p>
-          理想時薪: {userData ? userData["highestfee"] : info["highestfee"]}
-        </p>
-        <p>最低時薪: {userData ? userData["lowestfee"] : info["lowestfee"]}</p>
+      <h2>補習學費每小時</h2>
+      <p className={classes.p}>理想時薪: {userData ? userData["highestfee"] : info["highestfee"]}</p>
+      <p className={classes.p}>最低時薪: {userData ? userData["lowestfee"] : info["lowestfee"]}</p>
+      <form className={classes.sliderForm}>
         <MinSlider
-          className={classes.formInput}
           step={20}
           max={1000}
           min={60}
@@ -72,15 +69,23 @@ const Budget = (props) => {
           minD={20}
           passValue={updateUserDataHandler}
         />
-        <div className={classes.buttonContainer}>
-          <Button variant="outlined" onClick={StatusHandler}>
-            {status == "open" ? "按此隱藏簡歷" : "按此公開簡歷"}
-          </Button>
-          <Button variant="outlined" onClick={formHandler}>
-            儲存
-          </Button>
-        </div>
       </form>
+      <div className={classes.buttonContainer}>
+        <Button
+          className={classes.Button}
+          variant="outlined"
+          onClick={StatusHandler}
+        >
+          {status == "open" ? "按此隱藏簡歷" : "按此公開簡歷"}
+        </Button>
+        <Button
+          className={classes.Button}
+          variant="outlined"
+          onClick={formHandler}
+        >
+          儲存
+        </Button>
+      </div>
     </React.Fragment>
   );
 };

@@ -73,6 +73,7 @@ const ProfileForm = (props) => {
     match.data.result;
   }
   return (
+    <React.Fragment>
     <div className={classes.body}>
       <div className={classes.container}>
         {page == 1 && (
@@ -122,6 +123,7 @@ const ProfileForm = (props) => {
         {(isTutor && !props.admin) || props.type == "tutor" ? (
           <div className={classes.pagination}>
             <Pagination
+            size='small'
               count={7}
               page={page}
               onChange={handleChange}
@@ -134,6 +136,8 @@ const ProfileForm = (props) => {
         )}
       </div>
     </div>
+    
+    </React.Fragment>
   );
 };
 

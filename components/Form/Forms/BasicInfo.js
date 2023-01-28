@@ -7,8 +7,9 @@ import Button from "@mui/material/Button";
 import classes from "./Form.module.css";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
-import TextField from "@mui/material/TextField";
 import Select from "@mui/material/Select";
+import TextField from "@mui/material/TextField";
+
 export default function BasicInfo(props) {
   const inputfield = formField.inputfield.BasicInfo;
   const checkboxfield = formField.checkboxfieldfield.agreewith;
@@ -95,10 +96,10 @@ export default function BasicInfo(props) {
           />
         )}
         <div className={classes.buttonContainer}>
-          <Button variant="outlined" type="submit">
+          <Button className={classes.Button} variant="outlined" type="submit">
             儲存
           </Button>
-          <Button variant="outlined" type="submit">
+          <Button className={classes.Button} variant="outlined" type="submit">
             儲存並下一步
           </Button>
         </div>

@@ -1,12 +1,12 @@
 import React, { useState, useCallback } from "react";
 import MenuItem from "@mui/material/MenuItem";
-import Input from "../../InputTool/Input";
+import InputLabel from "@mui/material/InputLabel";
 import formField from "../FormModel/formField";
 import Select from "@mui/material/Select";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import classes from "./Form.module.css";
-
+import FormControl from "@mui/material/FormControl";
 const EducationForm = (props) => {
   const inputfield = formField.inputfield.Education;
   const selectfield = formField.selectfield.Education;
@@ -46,56 +46,51 @@ const EducationForm = (props) => {
 
   return (
     <React.Fragment>
+      <h1>資歷</h1>
       <form onSubmit={formHandler} className={classes.formContent}>
         {Object.entries(inputfield).map(([key, value]) => (
-          <div>
-            <label class={classes.omrsInputUnderlined}>
-              <input
-                className={classes.inputfield}
-                name={value.name}
-                key={value.name}
-                value={userData[value.name]}
-                defaultValue={info ? info[value.name] : ""}
-                onChange={updateUserDataHandler(value.name)}
-              />
-              <span
-                className={classes.inputfieldLabel}
-                key={`label${value.label}`}
-              >
-                {value.label}
-              </span>
-            </label>
+          <div key={`div${value.label}`} className={classes.inputContainer}>
+            <TextField
+              className={classes.formInput}
+              name={value.name}
+              label={value.label}
+              key={value.name}
+              value={userData[value.name]}
+              defaultValue={info ? info[value.name] : ""}
+              onChange={updateUserDataHandler(value.name)}
+            />
           </div>
         ))}
-        <div>
-          {Object.entries(selectfield).map(([key, value]) => (
-            <div>
-              <div>{value.label}</div>
-              <select
+        {Object.entries(selectfield).map(([key, value]) => (
+          <div key={`div${value.label}`} className={classes.selectContainer}>
+            <FormControl className={classes.formSelect} key={value.name}>
+              <InputLabel id="demo-simple-select-label">
+                {value.label}
+              </InputLabel>
+              <Select
                 id={value.name}
                 key={value.name}
                 name={value.name}
-                label={value.label}
+                label={value.name}
                 onChange={updateUserDataHandler(value.name)}
                 defaultValue={info ? info[value.name] : ""}
               >
                 {[value.option].map((options) =>
                   options.map((opt) => (
-                    <option key={opt.value} value={opt.value}>
+                    <MenuItem key={opt.value} value={opt.value}>
                       {opt.label}
-                    </option>
+                    </MenuItem>
                   ))
                 )}
-              </select>
-            </div>
-          ))}
-        </div>
+              </Select>
+            </FormControl>
+          </div>
+        ))}
         <div className={classes.buttonContainer}>
-          <Button variant="contained">上載大學證明</Button>
-          <Button variant="outlined" type="submit">
+          <Button className={classes.Button} variant="outlined" type="submit">
             儲存
           </Button>
-          <Button variant="outlined" type="submit">
+          <Button className={classes.Button} variant="outlined" type="submit">
             儲存並下一步
           </Button>
         </div>

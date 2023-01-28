@@ -26,16 +26,30 @@
   width: 100%;
 }
 
+.p{
+  margin: 1rem;
+}
+
 .formSelect {
   width: 100%;
+  margin-right: 0.1rem;
+}
+
+.sliderForm{
+  display: flex;
+  justify-content: center;
 }
 
 .buttonContainer {
-  width: calc(100% / 2 - 20px);
+  width: 100%;
   margin-top: 1rem;
   display: flex;
-  /* justify-content: center; */
+  justify-content: center;
   align-items: center;
+}
+
+.Button{
+  margin-right: 1rem;
 }
 
 @media (max-width: 584px) {
@@ -56,7 +70,12 @@
     width: 100%;
     margin-top: 1rem;
     display: flex;
-    /* justify-content: center; */
+    justify-content:flex-start;
     align-items: center;
+  }
+
+  .selectContainer {
+    width: 100%;
+    margin-top: 1rem;
   }
 }

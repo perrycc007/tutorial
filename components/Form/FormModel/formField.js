@@ -279,7 +279,7 @@ const formField = {
         label: "強項",
         option: [
           {
-            value: "undefined",
+            value: 'undefined',
             label: "None",
           },
           {
