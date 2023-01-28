@@ -11,14 +11,23 @@
   justify-content: space-between;
 }
 
-.formInput {
-  width: calc(100% / 2 - 20px);
+.inputContainer {
+  width: calc(100% / 2 -10px);
   margin-top: 1rem;
 }
 
-.formSelect {
-  width: calc(100% / 2 - 20px);
+.selectContainer {
+  width: 100%;
+  max-width: 13rem;
   margin-top: 1rem;
+}
+
+.formInput {
+  width: 100%;
+}
+
+.formSelect {
+  width: 100%;
 }
 
 .buttonContainer {
@@ -29,41 +38,18 @@
   align-items: center;
 }
 
-.inputfield {
-  border: none;
-  border-bottom: 0.125rem solid grey;
-  width: 100%;
-  height: 2rem;
-  font-size: 1.0625rem;
-  padding-left: 0.875rem;
-  line-height: 147.6%;
-  padding-top: 0.825rem;
-  padding-bottom: 0.5rem;
-}
-.inputfield:focus {
-  outline: none;
-}
-
-.omrsInputUnderlined > .inputfieldLabel {
-  position: relative;
-  top: -1.5rem;
-  left: -6rem;
-  color: rgba(19, 19, 21, 0.6);
-  transition: top 0.2s;
-}
-.omrsInputUnderlined > input:hover {
-  background: rgba(73, 133, 224, 0.12);
-  border-color: #121212;
-}
 @media (max-width: 584px) {
-  .formInput {
+  .inputContainer {
     width: 100%;
     margin-top: 1rem;
   }
 
+  .formInput {
+    width: 100%;
+  }
+
   .formSelect {
     width: 100%;
-    margin-top: 1rem;
   }
 
   .buttonContainer {

@@ -5,7 +5,10 @@ import FormControl from "@mui/material/FormControl";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Button from "@mui/material/Button";
 import classes from "./Form.module.css";
-
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
+import TextField from "@mui/material/TextField";
+import Select from "@mui/material/Select";
 export default function BasicInfo(props) {
   const inputfield = formField.inputfield.BasicInfo;
   const checkboxfield = formField.checkboxfieldfield.agreewith;
@@ -26,7 +29,6 @@ export default function BasicInfo(props) {
   };
   const info = props.info;
   const [userData, setUserData] = useState(initialUserData);
-  const [edit, setEdit] = useState(false);
   const updateUserDataHandler = useCallback(
     (type) => (event) => {
       setUserData({ ...userData, [type]: event.target.value });
@@ -49,48 +51,41 @@ export default function BasicInfo(props) {
       <h1>個人資料</h1>
       <form onSubmit={formHandler} className={classes.formContent}>
         {Object.entries(inputfield).map(([key, value]) => (
-          <div key={`div${value.label}`} className={classes.formInput}>
-            <p key={`input${value.label}`}>{value.label}</p>
-            {!edit ? (
-              <p key={`output${value.label}`}>{info ? info[value.name] : ""}</p>
-            ) : (
-              <input
-                className={classes.formInput}
-                name={value.name}
-                key={value.name}
-                value={userData[value.name]}
-                defaultValue={info ? info[value.name] : ""}
-                onChange={updateUserDataHandler(value.name)}
-              />
-            )}
+          <div key={`div${value.label}`} className={classes.inputContainer}>
+            <TextField
+            className={classes.formInput}
+              name={value.name}
+              label={value.label}
+              key={value.name}
+              value={userData[value.name]}
+              defaultValue={info ? info[value.name] : ""}
+              onChange={updateUserDataHandler(value.name)}
+            />
           </div>
         ))}
 
         {Object.entries(selectfield).map(([key, value]) => (
+          <div key={`div${value.label}`} className={classes.selectContainer}>
           <FormControl className={classes.formSelect} key={value.name}>
-              <p key={`input${value.label}`}>{value.label}</p>
-              {!edit ? (
-                <p key={`output${value.label}`}>
-                  {info ? info[value.name] : ""}
-                </p>
-              ) : (
-                <select
-                  id={value.name}
-                  key={value.name}
-                  name={value.name}
-                  onChange={updateUserDataHandler(value.name)}
-                  defaultValue={info ? info[value.name] : ""}
-                >
-                  {[value.option].map((options) =>
-                    options.map((opt) => (
-                      <option key={opt.value} value={opt.value}>
-                        {opt.label}
-                      </option>
-                    ))
-                  )}
-                </select>
+            <InputLabel id="demo-simple-select-label">{value.label}</InputLabel>
+            <Select
+              id={value.name}
+              key={value.name}
+              name={value.name}
+              label={value.name}
+              onChange={updateUserDataHandler(value.name)}
+              defaultValue={info ? info[value.name] : ""}
+            >
+              {[value.option].map((options) =>
+                options.map((opt) => (
+                  <MenuItem key={opt.value} value={opt.value}>
+                    {opt.label}
+                  </MenuItem>
+                ))
               )}
+            </Select>
           </FormControl>
+          </div>
         ))}
 
         {!info && (
@@ -106,7 +101,6 @@ export default function BasicInfo(props) {
           <Button variant="outlined" type="submit">
             儲存並下一步
           </Button>
-          <Button onClick={editHanlder}>Edit</Button>
         </div>
       </form>
     </div>
