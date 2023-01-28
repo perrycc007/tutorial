@@ -10,11 +10,24 @@
     margin:0
 }
 
+.Button{
+    margin-right: 1rem;
+    margin-top: 1rem;
+  }
+
 @media (max-width: 584px) {
     .time{
         font-size: 1px;
         padding: 0.225rem 1rem;
         margin:0
     }
+    .buttonContainer {
+        width: 100%;
+        margin-top: 1rem;
+        display: flex;
+        justify-content:flex-end;
+        align-items: center;
+      }
+    
     
   }

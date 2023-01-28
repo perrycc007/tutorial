@@ -7,7 +7,8 @@
 .container {
   max-width: 50rem;
   width: 100%;
-  background-color: antiquewhite;
+  background-color: white;
+  box-shadow: 1px;
   padding: 3rem 4rem;
   border-radius: 5px;
 }

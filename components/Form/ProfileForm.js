@@ -10,6 +10,8 @@ import Pagination from "@mui/material/Pagination";
 import userStore from "../../stores/stores";
 import Axios from "axios";
 import classes from "./ProfileForm.module.css";
+import Paper from "@mui/material/Paper";
+
 const ProfileForm = (props) => {
   const [profileData, setProfileData] = useState(props.profile);
   const [tutorData, setTutorData] = useState(props.tutor);
@@ -74,69 +76,70 @@ const ProfileForm = (props) => {
   }
   return (
     <React.Fragment>
-    <div className={classes.body}>
-      <div className={classes.container}>
-        {page == 1 && (
-          <BasicInfo
-            submitHandler={submitHandler}
-            info={changes ? profileData : props.profile}
-          />
-        )}
-        {page == 2 && (
-          <LocationForm
-            submitHandler={listHandler}
-            info={changes ? tutorData : props.tutor}
-            isTutor={isTutor}
-          />
-        )}
-        {page == 3 && (
-          <TimeForm
-            submitHandler={listHandler}
-            info={changes ? tutorData : props.tutor}
-          />
-        )}
-        {page == 4 && (
-          <EducationForm
-            submitHandler={tutorHandler}
-            info={changes ? tutorData : props.tutor}
-          />
-        )}
-        {page == 5 && (
-          <Grade
-            submitHandler={listHandler}
-            info={changes ? tutorData : props.tutor}
-          />
-        )}
-        {page == 6 && (
-          <Subjects
-            submitHandler={listHandler}
-            info={changes ? tutorData : props.tutor}
-          />
-        )}
-        {page == 7 && (
-          <Budget
-            submitHandler={tutorHandler}
-            info={changes ? tutorData : props.tutor}
-          />
-        )}
+      <div className={classes.body}>
+        <Paper>
+          <div className={classes.container}>
+            {page == 1 && (
+              <BasicInfo
+                submitHandler={submitHandler}
+                info={changes ? profileData : props.profile}
+              />
+            )}
+            {page == 2 && (
+              <LocationForm
+                submitHandler={listHandler}
+                info={changes ? tutorData : props.tutor}
+                isTutor={isTutor}
+              />
+            )}
+            {page == 3 && (
+              <TimeForm
+                submitHandler={listHandler}
+                info={changes ? tutorData : props.tutor}
+              />
+            )}
+            {page == 4 && (
+              <EducationForm
+                submitHandler={tutorHandler}
+                info={changes ? tutorData : props.tutor}
+              />
+            )}
+            {page == 5 && (
+              <Grade
+                submitHandler={listHandler}
+                info={changes ? tutorData : props.tutor}
+              />
+            )}
+            {page == 6 && (
+              <Subjects
+                submitHandler={listHandler}
+                info={changes ? tutorData : props.tutor}
+              />
+            )}
+            {page == 7 && (
+              <Budget
+                submitHandler={tutorHandler}
+                info={changes ? tutorData : props.tutor}
+              />
+            )}
 
-        {(isTutor && !props.admin) || props.type == "tutor" ? (
-          <div className={classes.pagination}>
-            <Pagination
-            size='small'
-              count={7}
-              page={page}
-              onChange={handleChange}
-              variant="outlined"
-              color="primary"
-            />
+            {(isTutor && !props.admin) || props.type == "tutor" ? (
+              <div className={classes.pagination}>
+                <Pagination
+                  size="small"
+                  count={7}
+                  page={page}
+                  onChange={handleChange}
+                  variant="outlined"
+                  color="primary"
+                />
+              </div>
+            ) : (
+              ""
+            )}
           </div>
-        ) : (
-          ""
-        )}
+        </Paper>
       </div>
-    </div>
-    
     </React.Fragment>
   );
 };

@@ -120,41 +120,33 @@ export default function TimeForm(props) {
                       justifyContent: "space-around",
                     }}
                   >
-                      {Object.entries(y).map(([key, value]) => {
-                        return (
-                            <TimetableButton
-                              value={inTheList(
-                                "d" +
-                                  parseInt(`${key}`) +
-                                  "t" +
-                                  parseInt(`${xi}`)
-                              )}
-                              id={
-                                "d" +
-                                parseInt(`${key}`) +
-                                "t" +
-                                parseInt(`${xi}`)
-                              }
-                              key={
-                                "d" +
-                                parseInt(`${key}`) +
-                                "t" +
-                                parseInt(`${xi}`)
-                              }
-                              Click={checkboxHandler}
-                            />
-                        );
-                      })}
-                    </div>
+                    {Object.entries(y).map(([key, value]) => {
+                      return (
+                        <TimetableButton
+                          value={inTheList(
+                            "d" + parseInt(`${key}`) + "t" + parseInt(`${xi}`)
+                          )}
+                          id={
+                            "d" + parseInt(`${key}`) + "t" + parseInt(`${xi}`)
+                          }
+                          key={
+                            "d" + parseInt(`${key}`) + "t" + parseInt(`${xi}`)
+                          }
+                          Click={checkboxHandler}
+                        />
+                      );
+                    })}
+                  </div>
                 );
               });
             })}
           </div>
         </div>
-
-        <Button variant="outlined" type="submit">
-          Save
-        </Button>
+        <div className={classes.buttonContainer}>
+          <Button className={classes.Button} variant="outlined" type="submit">
+            Save
+          </Button>
+        </div>
       </form>
     </div>
   );
