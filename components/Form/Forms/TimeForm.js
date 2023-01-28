@@ -85,7 +85,7 @@ export default function TimeForm(props) {
         <div style={{ display: "flex", justifyContent: "center" }}>
           <div>
             <p className={classes.time} style={{ color: "white" }}>
-              \
+              時間\
             </p>
             {timeValue.map((item) => (
               <p key={item} className={classes.time}>

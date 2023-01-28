@@ -1,11 +1,11 @@
 .toggleButton {
   background-color: rgb(255, 255, 255);
   border: none;
-  font-size: 20px;
-  min-height: 1vh;
-  padding: 0.42vh 2vw;
-  width: 4rem;
-  height: 25.5px;
+  font-size: 1%;
+  min-height: 1%;
+  padding: 0.7rem 7%;
+  /* width: 2vw;
+  height: 2%; */
   color: rgb(78, 78, 78);
   cursor: pointer;
   align-items: center;
@@ -15,11 +15,8 @@
 
 .toggleButtonClose {
   background-color: #2196f3;
-  padding: 0.42vh 2vw;
-  width: 4rem;
-  min-height: 1vh;
+  padding: 3% 7%;
   border: none;
-  font-size: 20px;
   color: white;
   cursor: pointer;
   align-items: center;
