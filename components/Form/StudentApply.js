@@ -15,6 +15,7 @@ const StudentApply = (props) => {
   const [changes, setChanges] = useState(false);
   const [studentid, setStudentid] = useState(props.studentid | "");
   const [studentData, setStudentData] = useState(props.cases | "");
+  const [isStarted, setIsStarted] = useState(false);
   const [page, setPage] = useState(1);
   const handleChange = (e, p) => {
     setPage(p);
@@ -37,46 +38,55 @@ const StudentApply = (props) => {
     setStudentData(newInfo);
     setChanges(true);
     console.log("newInfo", newInfo, studentData);
+    setIsStarted(true);
   }
 
   async function listHandler(value, type) {
-    const key = type;
-    value = JSON.stringify(value);
-    const info = studentData ? studentData : props.cases;
-    const newInfo = { ...info, [key]: value };
-    setStudentData(newInfo);
-    setChanges(true);
-    console.log("newInfo", newInfo);
-    const response = await Axios.patch(`http://localhost:3001/student`, {
-      studentid: studentid,
-      information: newInfo,
-    });
-    console.log(response.data.result);
-    const match = await Axios.post(`http://localhost:3001/match/student`, {
-      studentid: studentid,
-      information: newInfo,
-    });
-    console.log(match.data.result);
+    if (!isStarted) {
+      return alert("Please Finish Page 1");
+    } else {
+      const key = type;
+      value = JSON.stringify(value);
+      const info = studentData ? studentData : props.cases;
+      const newInfo = { ...info, [key]: value };
+      setStudentData(newInfo);
+      setChanges(true);
+      console.log("newInfo", newInfo);
+      const response = await Axios.patch(`http://localhost:3001/student`, {
+        studentid: studentid,
+        information: newInfo,
+      });
+      console.log(response.data.result);
+      const match = await Axios.post(`http://localhost:3001/match/student`, {
+        studentid: studentid,
+        information: newInfo,
+      });
+      console.log(match.data.result);
+    }
   }
   async function studentHandler(value) {
-    console.log(value);
-    const info = studentData ? studentData : props.cases;
-    const newInfo = { ...info, ...value };
-    setStudentData(newInfo);
-    setChanges(true);
-    console.log("newInfo", newInfo);
-    const response = await Axios.patch(`http://localhost:3001/student/`, {
-      // userid: 1,
-      studentid: studentid,
-      information: newInfo,
-    });
-    console.log(response.data.result);
-    const match = await Axios.post(`http://localhost:3001/match/student`, {
-      studentid: studentid,
-      // tutorid: getUserid,
-      information: newInfo,
-    });
-    console.log(match.data.result);
+    if (!isStarted) {
+      return alert("Please Finish Page 1");
+    } else {
+      console.log(value);
+      const info = studentData ? studentData : props.cases;
+      const newInfo = { ...info, ...value };
+      setStudentData(newInfo);
+      setChanges(true);
+      console.log("newInfo", newInfo);
+      const response = await Axios.patch(`http://localhost:3001/student/`, {
+        // userid: 1,
+        studentid: studentid,
+        information: newInfo,
+      });
+      console.log(response.data.result);
+      const match = await Axios.post(`http://localhost:3001/match/student`, {
+        studentid: studentid,
+        // tutorid: getUserid,
+        information: newInfo,
+      });
+      console.log(match.data.result);
+    }
   }
   return (
     <React.Fragment>
