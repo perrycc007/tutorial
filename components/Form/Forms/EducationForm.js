@@ -55,7 +55,7 @@ const EducationForm = (props) => {
               name={value.name}
               label={value.label}
               key={value.name}
-              // value={userData[value.name]}
+              value={userData[value.name]}
               defaultValue={info ? info[value.name] : ""}
               onChange={updateUserDataHandler(value.name)}
             />
@@ -71,7 +71,7 @@ const EducationForm = (props) => {
                 id={value.name}
                 key={value.name}
                 name={value.name}
-                label={value.name}
+                label={value.label}
                 onChange={updateUserDataHandler(value.name)}
                 defaultValue={info ? info[value.name] : ""}
               >

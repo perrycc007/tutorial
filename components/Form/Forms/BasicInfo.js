@@ -52,7 +52,7 @@ export default function BasicInfo(props) {
         {Object.entries(inputfield).map(([key, value]) => (
           <div key={`div${value.label}`} className={classes.inputContainer}>
             <TextField
-            className={classes.formInput}
+              className={classes.formInput}
               name={value.name}
               label={value.label}
               key={value.name}
@@ -65,25 +65,27 @@ export default function BasicInfo(props) {
 
         {Object.entries(selectfield).map(([key, value]) => (
           <div key={`div${value.label}`} className={classes.selectContainer}>
-          <FormControl className={classes.formSelect} key={value.name}>
-            <InputLabel id="demo-simple-select-label">{value.label}</InputLabel>
-            <Select
-              id={value.name}
-              key={value.name}
-              name={value.name}
-              label={value.name}
-              onChange={updateUserDataHandler(value.name)}
-              defaultValue={info ? info[value.name] : ""}
-            >
-              {[value.option].map((options) =>
-                options.map((opt) => (
-                  <MenuItem key={opt.value} value={opt.value}>
-                    {opt.label}
-                  </MenuItem>
-                ))
-              )}
-            </Select>
-          </FormControl>
+            <FormControl className={classes.formSelect} key={value.name}>
+              <InputLabel id="demo-simple-select-label">
+                {value.label}
+              </InputLabel>
+              <Select
+                id={value.name}
+                key={value.name}
+                name={value.name}
+                label={value.label}
+                onChange={updateUserDataHandler(value.name)}
+                defaultValue={info ? info[value.name] : ""}
+              >
+                {[value.option].map((options) =>
+                  options.map((opt) => (
+                    <MenuItem key={opt.value} value={opt.value}>
+                      {opt.label}
+                    </MenuItem>
+                  ))
+                )}
+              </Select>
+            </FormControl>
           </div>
         ))}
 
