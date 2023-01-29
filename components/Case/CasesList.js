@@ -109,13 +109,15 @@ const CasesList = (props) => {
                 />
               ))
           : []}
-        <Pagination
-          count={count}
-          page={page}
-          onChange={handleChange}
-          variant="outlined"
-          color="primary"
-        />
+        <div className={classes.pagination}>
+          <Pagination
+            count={count}
+            page={page}
+            onChange={handleChange}
+            variant="outlined"
+            color="primary"
+          />
+        </div>
       </section>
     </>
   );

@@ -1,11 +1,6 @@
-/* .wrapper{
-    justify-content: center;
-    flex-direction: column;
-    display: flex;
-    align-items: center;
-    margin: auto
-    
-
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 1.5rem;
+  width: 100%;
 }
-
- */

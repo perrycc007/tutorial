@@ -62,7 +62,7 @@ export default function AdminDisplay(props) {
     }
   }
   return (
-    <div className={classes.flexContainer}>
+    <div className={classes.container}>
       <div>
         <CaseItem
           cases={studentInfo}

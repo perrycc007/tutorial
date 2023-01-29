@@ -3,11 +3,11 @@ import axios from "axios";
 
 const Result = (props) => {
   return (
-    <>
+    <div>
       {props.cases.map((item) => (
         <AdminDisplay match={item ? item : []} />
       ))}
-    </>
+    </div>
   );
 };
 

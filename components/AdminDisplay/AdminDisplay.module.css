@@ -1,5 +1,5 @@
-.flexContainer {
-    display: flex;
+.container {
+    display: block;
     flex-direction: row;
   }
   

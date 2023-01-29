@@ -129,19 +129,19 @@ function CaseItem(props) {
     <div className={classes.item}>
       <Accordion className={classes.accordion}>
         <AccordionSummary
-        className={classes.accordionSummary}
+          className={classes.accordionSummary}
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel1a-content"
           id="panel1a-header"
         >
           {Object.entries(heading).map(([key, value]) => (
-              <p className={classes.title} key={`${itemName[key]}value`}>
-                {typeof value == "object"
-                  ? value.map((item) => {
-                      return ` ${item}`;
-                    })
-                  : `$${value}/小時`}
-              </p>
+            <p className={classes.title} key={`${itemName[key]}value`}>
+              {typeof value == "object"
+                ? value.map((item) => {
+                    return ` ${item}`;
+                  })
+                : `$${value}/小時`}
+            </p>
           ))}
 
           <div className={classes.heading}></div>
@@ -178,43 +178,47 @@ function CaseItem(props) {
                 {props.isFavourite ? <FavoriteIcon /> : <FavoriteBorderIcon />}
               </Button>
             )}
-
-          {props.type == "edit" ||
-          props.admin == "admin" ||
-          props.admin == "adminTutor" ? (
-            <div className={classes.summary}>
-              <p>{timeForDisaply}</p>
-              <Button variant="outlined" onClick={StatusHandler}>
-                {status == "open" ? "按此隱藏個案" : "按此公開個案"}
-              </Button>
-              <div>
-                <EditForm cases={props.cases} />
+          <div className={classes.buttonContainer}>
+            {props.type == "edit" ||
+            props.admin == "admin" ||
+            props.admin == "adminTutor" ? (
+              <div className={classes.summary}>
+                {timeForDisaply.map((time) => (
+                  <p
+                    key={`${props.cases.studentid + time}`}
+                    className={classes.detail}
+                  >
+                    {time}
+                  </p>
+                ))}
+                <Button variant="outlined" onClick={StatusHandler}>
+                  {status == "open" ? "按此隱藏個案" : "按此公開個案"}
+                </Button>
+                <div>
+                  <EditForm cases={props.cases} />
+                </div>
               </div>
-            </div>
-          ) : (
-            ""
-          )}
-          {props.admin == "admin" || props.admin == "adminTutor" ? (
-            <div className={classes.summary}>
-              <p>{timeForDisaply}</p>
-              <BasicPopover userid={props.cases.userid} type={props.type} />
-              <div>
-                <EditForm cases={props.cases} />
+            ) : (
+              ""
+            )}
+            {props.admin == "admin" || props.admin == "adminTutor" ? (
+              <div >
+                <BasicPopover userid={props.cases.userid} type={props.type} />
               </div>
-            </div>
-          ) : (
-            ""
-          )}
+            ) : (
+              ""
+            )}
 
-          {props.admin == "adminTutor" && (
-            <div className={classes.heading}>
-              <Button onClick={toggleCheck}>{checkStatus}</Button>
-              <Button onClick={toggleNotAvail}>
-                {notAvailStatus ? "Not Available" : "Available"}
-              </Button>
-              {props.isFavouriteTutor ? <FavoriteIcon /> : ""}
-            </div>
-          )}
+            {props.admin == "adminTutor" && (
+              <div className={classes.heading}>
+                <Button onClick={toggleCheck}>{checkStatus}</Button>
+                <Button onClick={toggleNotAvail}>
+                  {notAvailStatus ? "Not Available" : "Available"}
+                </Button>
+                {props.isFavouriteTutor ? <FavoriteIcon /> : ""}
+              </div>
+            )}
+          </div>
         </AccordionDetails>
       </Accordion>
     </div>

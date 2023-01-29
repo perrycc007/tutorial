@@ -15,7 +15,7 @@ const Cases = (props) => {
   }
 
   return (
-    <>
+    <div>
       <h2>補習申請歷史</h2>
       {props.cases?<CasesList
         cases={props.cases}
@@ -23,7 +23,7 @@ const Cases = (props) => {
         type="edit"
         toggleStatusHandler={toggleCaseStatusHandler}
       />:''}
-    </>
+    </div>
   );
 };
 
