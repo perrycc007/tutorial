@@ -26,7 +26,7 @@ const ProfileForm = (props) => {
     setPage(p);
   };
   useEffect(() => {
-    if (isTutor) {
+    if (!isTutor) {
       setPage(1);
     }
   }, [isTutor]);
