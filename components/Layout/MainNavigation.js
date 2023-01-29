@@ -26,13 +26,14 @@ const MainNavigation = () => {
     setMenuState((prev) => !prev);
   };
 
-useEffect(()=>{
-  setIsLoggedin(Loggedin)
-},[Loggedin])
+  useEffect(() => {
+    setIsLoggedin(Loggedin);
+  }, [Loggedin]);
 
-if (!isLoggedin) {
-  return null;
-}
+  if (!isLoggedin) {
+    return null;
+  }
+
   return (
     <>
       <nav className={classes.nav}>
@@ -40,61 +41,69 @@ if (!isLoggedin) {
           <div className={classes.logo}>Tutor Elite</div>
         </Link>
 
-          <ul className={!menuState ? classes.navbar : classes.navbarActive}>
-            {isLoggedin && (
-              <li className={classes.navbarli}>
-                <Link href="/apply">
-                  <div className={classes.navbarliLink}>申請補習</div>
-                </Link>
-              </li>
-            )}
+        <ul className={!menuState ? classes.navbar : classes.navbarActive}>
+          {isLoggedin && (
             <li className={classes.navbarli}>
-              <Link href="/cases">
-                <div className={classes.navbarliLink}>補習個案</div>
+              <Link href="/apply">
+                <div className={classes.navbarliLink}>申請補習</div>
               </Link>
             </li>
+          )}
+          <li className={classes.navbarli}>
+            <Link href="/cases">
+              <div className={classes.navbarliLink}>補習個案</div>
+            </Link>
+          </li>
+          <li className={classes.navbarli}>
+            <Link href="/tutor">
+              <div className={classes.navbarliLink}>精英導師</div>
+            </Link>
+          </li>
+          {isLoggedin && (
             <li className={classes.navbarli}>
-              <Link href="/tutor">
-                <div className={classes.navbarliLink}>精英導師</div>
+              <Link href={`/profile/${getUserid}`}>
+                <div className={classes.navbarliLink}>個人資料</div>
               </Link>
             </li>
-            {isLoggedin && (
-              <li className={classes.navbarli}>
-                <Link href={`/profile/${getUserid}`}>
-                  <div className={classes.navbarliLink}>個人資料</div>
+          )}
+          {isLoggedin && (
+            <li className={classes.navbarli}>
+              <div className={classes.navbarliLink}>
+                <Link href="/favourite">
+                  <div className={classes.navbarliLink}>我的最愛</div>
                 </Link>
-              </li>
-            )}
-            {isLoggedin && (
-              <li className={classes.navbarli}>
-                <div className={classes.navbarliLink}>
-                  <Link href="/favourite">
-                    <div className={classes.navbarliLink}>我的最愛</div>
-                  </Link>
-                </div>
-              </li>
-            )}
-
-            {isLoggedin && (
-              <li className={classes.navbarli} onClick={toggleIstutorHandler}>
-                <div className={classes.navbarliLink}>
-                  {isTutor ? "導師模式" : "學生模式"}
-                </div>
-              </li>
-            )}
-            {isLoggedin && (
-              <li className={classes.navbarli} onClick={logoutHandler}>
-                <div className={classes.navbarliLink}>登出</div>
-              </li>
-            )}
-            {!isLoggedin && (
-              <li className={classes.navbarli}>
-                <Link href="/auth">
-                  <div className={classes.navbarliLink}>登入</div>
+              </div>
+            </li>
+          )}
+          {isLoggedin && (
+            <li className={classes.navbarli}>
+              <div className={classes.navbarliLink}>
+                <Link href={`/history/${getUserid}`}>
+                  <div className={classes.navbarliLink}>申請歷史</div>
                 </Link>
-              </li>
-            )}
-          </ul>
+              </div>
+            </li>
+          )}
+          {isLoggedin && (
+            <li className={classes.navbarli} onClick={toggleIstutorHandler}>
+              <div className={classes.navbarliLink}>
+                {isTutor ? "導師模式" : "學生模式"}
+              </div>
+            </li>
+          )}
+          {isLoggedin && (
+            <li className={classes.navbarli} onClick={logoutHandler}>
+              <div className={classes.navbarliLink}>登出</div>
+            </li>
+          )}
+          {!isLoggedin && (
+            <li className={classes.navbarli}>
+              <Link href="/auth">
+                <div className={classes.navbarliLink}>登入</div>
+              </Link>
+            </li>
+          )}
+        </ul>
 
         <div className={classes.mobile} onClick={menuHandler}>
           {menuState ? (

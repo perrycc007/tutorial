@@ -25,7 +25,11 @@ const ProfileForm = (props) => {
   const handleChange = (e, p) => {
     setPage(p);
   };
-
+  useEffect(() => {
+    if (isTutor) {
+      setPage(1);
+    }
+  }, [isTutor]);
   async function submitHandler(value) {
     console.log(value);
     const info = profileData ? profileData : props.profile;
