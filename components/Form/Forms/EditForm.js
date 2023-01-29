@@ -1,16 +1,16 @@
-import React, {useState, useEffect} from 'react';
-import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
-import Modal from '@mui/material/Modal';
-import StudentApply from '../../Form/StudentApply'
+import React, { useState, useEffect } from "react";
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import Typography from "@mui/material/Typography";
+import Modal from "@mui/material/Modal";
+import StudentApply from "../../Form/StudentApply";
 import classes from "./Form.module.css";
 const style = {
-  position: 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
-  bgcolor: 'background.paper',
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  bgcolor: "background.paper",
   borderRadois: 20,
   p: 4,
 };
@@ -21,7 +21,9 @@ export default function EditForm(props) {
   const handleClose = () => setOpen(false);
   return (
     <div>
-      <Button variant="contained" onClick={handleOpen}>edit</Button>
+      <Button variant="contained" onClick={handleOpen}>
+        編輯
+      </Button>
       <Modal
         open={open}
         onClose={handleClose}
@@ -29,7 +31,10 @@ export default function EditForm(props) {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-            <StudentApply cases={props.cases} studentid={props.cases.studentid}></StudentApply>
+          <StudentApply
+            cases={props.cases}
+            studentid={props.cases.studentid}
+          ></StudentApply>
         </Box>
       </Modal>
     </div>

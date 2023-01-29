@@ -188,6 +188,16 @@ function CaseItem(props) {
               <Button variant="outlined" onClick={StatusHandler}>
                 {status == "open" ? "按此隱藏個案" : "按此公開個案"}
               </Button>
+              <div>
+                <EditForm cases={props.cases} />
+              </div>
+            </div>
+          ) : (
+            ""
+          )}
+          {props.admin == "admin" || props.admin == "adminTutor" ? (
+            <div className={classes.summary}>
+              <p>{timeForDisaply}</p>
               <BasicPopover userid={props.cases.userid} type={props.type} />
               <div>
                 <EditForm cases={props.cases} />
@@ -196,6 +206,7 @@ function CaseItem(props) {
           ) : (
             ""
           )}
+
           {props.admin == "adminTutor" && (
             <div className={classes.heading}>
               <Button onClick={toggleCheck}>{checkStatus}</Button>

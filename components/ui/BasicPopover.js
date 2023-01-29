@@ -5,7 +5,6 @@ import ProfileForm from "../Form/ProfileForm";
 
 import Axios from "axios";
 
-
 export default function BasicPopover(props) {
   const [anchorEl, setAnchorEl] = useState(null);
   const [profile, setProfile] = useState(null);
@@ -30,8 +29,7 @@ export default function BasicPopover(props) {
     setTutorProfile(tutor.data.result);
   }
 
-  console.log(profile)
-
+  console.log(profile);
 
   const open = Boolean(anchorEl);
   const id = open ? "simple-popover" : undefined;
@@ -39,7 +37,7 @@ export default function BasicPopover(props) {
   return (
     <div>
       <Button aria-describedby={id} variant="contained" onClick={handleClick}>
-        Profile
+        個人資料
       </Button>
       <Popover
         id={id}
@@ -51,8 +49,12 @@ export default function BasicPopover(props) {
           horizontal: "left",
         }}
       >
-        <ProfileForm profile={profile} tutor={tutorProfile} type={props.type} admin={true}/>
-        
+        <ProfileForm
+          profile={profile}
+          tutor={tutorProfile}
+          type={props.type}
+          admin={true}
+        />
       </Popover>
     </div>
   );

@@ -4,6 +4,7 @@ import userStore from "../../stores/stores";
 import Filter from "./Filter";
 import { useState, useEffect } from "react";
 import Axios from "axios";
+import classes from "./Student.module.css";
 
 const Student = (props) => {
   const getUserid = userStore((state) => state.userId);
@@ -35,7 +36,7 @@ const Student = (props) => {
 
   useEffect(() => {
     fetchFavouriteCase(getUserid);
-  },[]);
+  }, []);
 
   async function casesFilter(preference) {
     const result = await axios.post(`http://localhost:3001/cases`, {
@@ -47,8 +48,10 @@ const Student = (props) => {
   }
 
   return (
-    <>
-      {!props.Favourite&&<Filter FilterHanlder={casesFilter} />}
+    <div className={classes.container}>
+      <div className={classes.filter}>
+        {!props.Favourite && <Filter FilterHanlder={casesFilter} />}
+      </div>
       {!filtered && (
         <CasesList
           cases={props.cases}
@@ -65,9 +68,8 @@ const Student = (props) => {
           toggleFavouriteHandler={toggleFavouriteTopHandler}
         />
       )}
-    </>
+    </div>
   );
 };
-
 
 export default Student;

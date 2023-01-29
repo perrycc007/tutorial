@@ -5,8 +5,9 @@ import MinSlider from "../inputTool/Slider";
 import Typography from "@mui/material/Typography";
 import place from "../Form/Forms/Location";
 import subjects from "../Form/Forms/Subject";
-import Button from '@mui/material/Button';
+import Button from "@mui/material/Button";
 import FormControl from "@mui/material/FormControl";
+import classes from "./Filter.module.css";
 
 const Filter = (props) => {
   const [price, setPrice] = useState([]);
@@ -52,7 +53,7 @@ const Filter = (props) => {
 
   return (
     <React.Fragment>
-      <form>
+      <form className={classes.form}>
         <ModalFilter
           listHandlerHandler={placeHandlerHandler}
           option={place}
@@ -65,23 +66,18 @@ const Filter = (props) => {
           passValue={subjectList}
           buttonName="Subject"
         />
-        <Typography
-          component={"span"}
-          variant={"body2"}
-          sx={{ width: "33%", flexShrink: 0 }}
-        >
-          學費每小時
-        </Typography>
-        <MinSlider
-          step={20}
-          max={1000}
-          min={60}
-          dmax={100}
-          dmin={200}
-          minD={20}
-          passValue={PriceHandler}
-        />
-
+        <div className={classes.sliderContainer}>
+          <p>學費每小時</p>
+          <MinSlider
+            step={20}
+            max={1000}
+            min={60}
+            dmax={200}
+            dmin={100}
+            minD={20}
+            passValue={PriceHandler}
+          />
+        </div>
         <FormControl fullWidth>
           {/* <InputLabel id="demo-simple-select-label">Grade</InputLabel>
                     <Select
@@ -99,7 +95,9 @@ const Filter = (props) => {
                     </Select> */}
         </FormControl>
 
-        <Button variant="contained" onClick={filterHandler}>Filter</Button >
+        <Button variant="contained" onClick={filterHandler}>
+          Filter
+        </Button>
       </form>
     </React.Fragment>
   );
