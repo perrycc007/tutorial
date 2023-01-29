@@ -35,7 +35,7 @@ const MainNavigation = () => {
   }
 
   return (
-    <>
+    <div>
       <nav className={classes.nav}>
         <Link href="/">
           <div className={classes.logo}>Tutor Elite</div>
@@ -113,7 +113,7 @@ const MainNavigation = () => {
           )}
         </div>
       </nav>
-    </>
+    </div>
   );
 };
 

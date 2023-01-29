@@ -25,9 +25,7 @@ export default function BasicInfo(props) {
     emergencyphone: "",
     agreewith: "",
   };
-  const editHanlder = () => {
-    setEdit((prev) => !prev);
-  };
+
   const info = props.info;
   const [userData, setUserData] = useState(initialUserData);
   const updateUserDataHandler = useCallback(

@@ -5,6 +5,7 @@ import Axios from "axios";
 import useStore from "../stores/stores";
 import Link from "next/link";
 import Button from "@mui/material/Button";
+import TextField from "@mui/material/TextField";
 // import AuthContext from '../../store/auth-context';
 // import classes from './AuthForm.module.css';
 
@@ -25,9 +26,9 @@ const AuthForm = () => {
   const submitHandler = (event) => {
     event.preventDefault();
 
-    const enteredEmail = emailInputRef.current.value;
-    const enteredPassword = passwordInputRef.current.value;
-
+    const enteredEmail = emailInputRef.current?.value;
+    const enteredPassword = passwordInputRef.current?.value;
+    console.log(enteredEmail);
     setIsLoading(true);
     let url;
     if (isLogin) {
@@ -87,21 +88,28 @@ const AuthForm = () => {
       <h1>{isLogin ? "登入" : "登記"}</h1>
       <form onSubmit={submitHandler}>
         <div>
-          <label htmlFor="email">Your Email</label>
-          <input type="email" id="email" required ref={emailInputRef} />
+          <TextField
+            label="Email"
+            type="email"
+            id="email"
+            required
+            inputRef={emailInputRef}
+          />
         </div>
         <div>
-          <label htmlFor="password">Your Password</label>
-          <input
+          <TextField
+            label="Password"
             type="password"
             id="password"
             required
-            ref={passwordInputRef}
+            inputRef={passwordInputRef}
           />
         </div>
         <div>
           {!isLoading && (
-            <Button variant="outlined" onClick ={submitHandler}>{isLogin ? "Login" : "Create Account"}</Button>
+            <Button variant="outlined" onClick={submitHandler}>
+              {isLogin ? "Login" : "Create Account"}
+            </Button>
           )}
           {isLoading && <p>Sending request...</p>}
           <Button type="button" onClick={switchAuthModeHandler}>
