@@ -56,7 +56,7 @@ export default function BasicInfo(props) {
               name={value.name}
               label={value.label}
               key={value.name}
-              value={userData[value.name]}
+              // value={userData[value.name]}
               defaultValue={info ? info[value.name] : ""}
               onChange={updateUserDataHandler(value.name)}
             />
