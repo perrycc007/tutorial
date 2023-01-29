@@ -5,7 +5,7 @@ import AccordionSummary from '@mui/material/AccordionSummary';
 import Typography from '@mui/material/Typography';
 import BasicSelect from '../InputTool/BasicSelect'
 import FormControl from '@mui/material/FormControl';
-// import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 export default function ControlledAccordions(props) {
   const [expanded, setExpanded] = React.useState(false);
@@ -20,9 +20,10 @@ export default function ControlledAccordions(props) {
       {Object.entries(props.cat).map(([key, value]) => {
          return <Accordion key={props.childKey+key} expanded={expanded === key } onChange={handleChange(key)}>
         <AccordionSummary
-          // expandIcon={<ExpandMoreIcon />}
+          expandIcon={<ExpandMoreIcon />}
           aria-controls="panel1bh-content"
           id="panel1bh-header"
+          key={`${props.childKey+key}Summary`}
         >
           <Typography component={'span'} variant={'body2'} sx={{ width: '33%', flexShrink: 0 }}>
           {key}
