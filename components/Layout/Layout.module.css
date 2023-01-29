@@ -1,6 +1,9 @@
-.navBar{
-    z-index: 100;
+.navBar {
+  z-index: 100;
 }
-.content{
-    padding-top: 5rem;
+.content {
+  padding-top: 5rem;
+  display: flex;
+  justify-content: center;
+  width: 100%;
 }
