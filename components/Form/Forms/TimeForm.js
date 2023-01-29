@@ -144,7 +144,7 @@ export default function TimeForm(props) {
         </div>
         <div className={classes.buttonContainer}>
           <Button className={classes.Button} variant="outlined" type="submit">
-            Save
+            儲存
           </Button>
         </div>
       </form>

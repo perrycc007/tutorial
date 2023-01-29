@@ -93,7 +93,6 @@ export default function StudentOthers(props) {
           <p>學費每小時</p>
             <MinSlider  step ={20} max={1000} min={60} dmax={info['highestfee']!= null?info['highestfee']:100} dmin={info['lowestfee']!= null?info['lowestfee']:200}  minD={20} passValue={PriceHandler}/>
           <Button variant="outlined" type="submit">儲存</Button>
-          <Button variant="outlined" type="submit">儲存並下一步</Button>
       </form>
     </React.Fragment>
   );

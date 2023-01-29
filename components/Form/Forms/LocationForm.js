@@ -35,7 +35,7 @@ const LocationForm = (props) => {
           passValue={list}
         />
         <Button variant="outlined" type="submit">
-          {props.isTutor ? "儲存並下一步" : "儲存並開始申請"}
+          {props.isTutor ? "儲存" : "儲存並可以開始申請"}
         </Button>
       </form>
     </React.Fragment>

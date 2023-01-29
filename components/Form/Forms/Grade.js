@@ -208,9 +208,7 @@ export default function BasicTabs(props) {
           <Button className={classes.Button} variant="outlined" type="submit">
             儲存
           </Button>
-          <Button className={classes.Button} variant="outlined" type="submit">
-            儲存並下一步
-          </Button>
+
         </div>
       </form>
     </ThemeProvider>
