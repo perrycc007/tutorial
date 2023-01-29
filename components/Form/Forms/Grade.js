@@ -28,12 +28,7 @@ const theme = createTheme({
 });
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
-  const AntTabs = styled(Tabs)({
-    borderBottom: "1px solid #e8e8e8",
-    "& .MuiTabs-indicator": {
-      backgroundColor: "#1890ff",
-    },
-  });
+
 
   return (
     <div

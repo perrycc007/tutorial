@@ -57,11 +57,16 @@ const Budget = (props) => {
   return (
     <React.Fragment>
       <h2>補習學費每小時</h2>
-      <p className={classes.p}>理想時薪: {userData ? userData["highestfee"] : info["highestfee"]}</p>
-      <p className={classes.p}>最低時薪: {userData ? userData["lowestfee"] : info["lowestfee"]}</p>
+      <p className={classes.p}>
+        理想時薪: {userData ? userData["highestfee"] : info["highestfee"]}
+      </p>
+      <p className={classes.p}>
+        最低時薪: {userData ? userData["lowestfee"] : info["lowestfee"]}
+      </p>
       <form className={classes.sliderForm}>
         <MinSlider
-          step={20}
+          
+        step={20}
           max={1000}
           min={60}
           dmax={info ? info["highestfee"] : 100}

@@ -2,6 +2,31 @@
     margin: 1rem 0;
     display: flex;
   }
+.accordion{
+  width: 100%;
+}
+
+.title{
+  margin-left: 1rem;
+  width: 100%
+}
+.summary{
+  display: block;
+  justify-content: left;
+}
+
+.detail{
+  text-align: left
+}
+@media (max-width: 584px) {
+
+  .title{
+    margin-left: 0.3rem;
+    font-size: 1rem;
+
+  }
+}
+
 /*
   .image img {
     width: 100%;
@@ -26,6 +51,4 @@
     align-items: center;
   }
 
-  .summary{
-    display: flex;
-  } */
+ */

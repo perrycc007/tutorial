@@ -10,7 +10,6 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import Button from "@mui/material/Button";
 import itemName from "./itemName";
-
 function CaseItem(props) {
   const [status, setStatus] = useState(props.cases.status);
   const [notAvailStatus, setNotAvailStatus] = useState(false);
@@ -128,21 +127,21 @@ function CaseItem(props) {
 
   return (
     <div className={classes.item}>
-      <Accordion>
+      <Accordion className={classes.accordion}>
         <AccordionSummary
+        className={classes.accordionSummary}
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel1a-content"
           id="panel1a-header"
         >
           {Object.entries(heading).map(([key, value]) => (
-            <p key={itemName[key]}>
-              {itemName[key]}:
-              {typeof value == "object"
-                ? value.map((item) => {
-                    return ` ${item}`;
-                  })
-                : `$${value}/小時`}
-            </p>
+              <p className={classes.title} key={`${itemName[key]}value`}>
+                {typeof value == "object"
+                  ? value.map((item) => {
+                      return ` ${item}`;
+                    })
+                  : `$${value}/小時`}
+              </p>
           ))}
 
           <div className={classes.heading}></div>
@@ -153,7 +152,7 @@ function CaseItem(props) {
               itemName[key] !== undefined &&
               value !== null &&
               key !== "subgrade" && (
-                <p key={itemName[key]}>
+                <p className={classes.detail} key={itemName[key]}>
                   {itemName[key]}: {value}
                 </p>
               )
