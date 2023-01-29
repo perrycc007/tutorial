@@ -6,7 +6,18 @@ import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import ToggleButton from "../InputTool/ToggleButton";
 import { useState, useEffect } from "react";
-
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+const theme = createTheme({
+  breakpoints: {
+    values: {
+      mobile: 0,
+      biggerMobile: 400,
+      tablet: 500,
+      laptop: 700,
+      desktop: 1200,
+    },
+  },
+});
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
 
@@ -80,41 +91,57 @@ export default function BasicTabs(props) {
   });
 
   return (
-    <Box sx={{ width: "100%" }}>
-      <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
-        <Tabs
-          value={value}
-          onChange={handleChange}
-          aria-label="basic tabs example"
-        >
-          {cat.map((item) => (
-            <Tab key={item.cat} label={item.cat} {...a11yProps(item.index)} />
-          ))}
-        </Tabs>
-      </Box>
-      {/* {props.place.map((item)=> (<TabPanel value={value} index={item.index}> {item.items.map((item)=><button id={item} key={item} onclick={buttonHandler(item)}>{item}</button>)} </TabPanel>))} */}
-      {props.category.map((item) => (
-        <TabPanel
+    <ThemeProvider theme={theme}>
+      <Box sx={{ width: "100%" }}>
+        <Box
           sx={{
-            display: "flex-wrap",
-            margin: "auto",
-            justifyContent: "space-between",
-            flexWrap: "wrap",
+            borderBottom: 1,
+            borderColor: "divider",
+            maxWidth: {
+              mobile: 250,
+              biggerMobile: 350,
+              tablet: 500,
+              laptop: 700,
+            },
           }}
-          value={value}
-          key={item.index}
-          index={item.index}
         >
-          {item.items.map((item) => (
-            <ToggleButton
-              id={item}
-              key={item}
-              value={inTheList(item)}
-              Click={buttonHandler}
-            />
-          ))}
-        </TabPanel>
-      ))}
-    </Box>
+          <Tabs
+            value={value}
+            onChange={handleChange}
+            aria-label="basic tabs example"
+            variant="scrollable"
+            scrollButtons
+            allowScrollButtonsMobile
+          >
+            {cat.map((item) => (
+              <Tab key={item.cat} label={item.cat} {...a11yProps(item.index)} />
+            ))}
+          </Tabs>
+        </Box>
+        {/* {props.place.map((item)=> (<TabPanel value={value} index={item.index}> {item.items.map((item)=><button id={item} key={item} onclick={buttonHandler(item)}>{item}</button>)} </TabPanel>))} */}
+        {props.category.map((item) => (
+          <TabPanel
+            sx={{
+              display: "flex-wrap",
+              margin: "auto",
+              justifyContent: "space-between",
+              flexWrap: "wrap",
+            }}
+            value={value}
+            key={item.index}
+            index={item.index}
+          >
+            {item.items.map((item) => (
+              <ToggleButton
+                id={item}
+                key={item}
+                value={inTheList(item)}
+                Click={buttonHandler}
+              />
+            ))}
+          </TabPanel>
+        ))}
+      </Box>
+    </ThemeProvider>
   );
 }
