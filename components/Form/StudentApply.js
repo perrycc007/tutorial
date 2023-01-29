@@ -7,7 +7,7 @@ import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
 import Pagination from "@mui/material/Pagination";
 import userStore from "../../stores/stores";
-
+import classes from "./ProfileForm.module.css";
 import Axios from "axios";
 const StudentApply = (props) => {
   const student = { location: "[]", subject: "[]", availtime: "[]" };
@@ -79,49 +79,48 @@ const StudentApply = (props) => {
     console.log(match.data.result);
   }
   return (
-    <div>
-      <Box
-        sx={{
-          display: "flex",
-          flexWrap: "wrap",
-          justifyContent: "center",
-        }}
-      >
-        <Paper sx={{ padding: "3rem" }}>
-          {page == 1 && (
-            <LocationForm
-              submitHandler={studentid == "" ? firstlistHandler : listHandler}
-              info={changes ? studentData : props.cases}
-            />
-          )}
-          {page == 2 && (
-            <TimeForm
-              submitHandler={listHandler}
-              info={changes ? studentData : props.cases}
-            />
-          )}
-          {page == 3 && (
-            <StudentOthers
-              submitHandler={studentHandler}
-              info={changes ? studentData : props.cases}
-            />
-          )}
-          {page == 4 && (
-            <Subjects
-              submitHandler={listHandler}
-              info={changes ? studentData : props.cases}
-            />
-          )}
-          <Pagination
-            count={4}
-            page={page}
-            onChange={handleChange}
-            variant="outlined"
-            color="primary"
-          />
+    <React.Fragment>
+      <div className={classes.body}>
+        <Paper>
+          <div className={classes.container}>
+            {page == 1 && (
+              <LocationForm
+                submitHandler={studentid == "" ? firstlistHandler : listHandler}
+                info={changes ? studentData : props.cases}
+              />
+            )}
+            {page == 2 && (
+              <TimeForm
+                submitHandler={listHandler}
+                info={changes ? studentData : props.cases}
+              />
+            )}
+            {page == 3 && (
+              <StudentOthers
+                submitHandler={studentHandler}
+                info={changes ? studentData : props.cases}
+              />
+            )}
+            {page == 4 && (
+              <Subjects
+                submitHandler={listHandler}
+                info={changes ? studentData : props.cases}
+              />
+            )}
+            <div className={classes.pagination}>
+              <Pagination
+                size="small"
+                count={4}
+                page={page}
+                onChange={handleChange}
+                variant="outlined"
+                color="primary"
+              />
+            </div>
+          </div>
         </Paper>
-      </Box>
-    </div>
+      </div>
+    </React.Fragment>
   );
 };
 
