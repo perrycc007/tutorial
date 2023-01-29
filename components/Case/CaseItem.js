@@ -73,7 +73,7 @@ function CaseItem(props) {
   // const heading = item.slice(0, 5);
   // const sumamry = item.slice(6, 10);
 
-  let { location, subject, availtime, ...items } = props.cases;
+  let { location, subject, availtime, studentid, ...items } = props.cases;
 
   const fee = (items.highestfee + items.lowestfee) / 2;
 
@@ -147,6 +147,11 @@ function CaseItem(props) {
           <div className={classes.heading}></div>
         </AccordionSummary>
         <AccordionDetails className={classes.summary}>
+          <p className={classes.detail}>
+            ID: {props.type == "tutor"
+              ? props.cases.tutorid
+              : props.cases.studentid}
+          </p>
           {Object.entries(items).map(
             ([key, value]) =>
               itemName[key] !== undefined &&
@@ -202,7 +207,7 @@ function CaseItem(props) {
               ""
             )}
             {props.admin == "admin" || props.admin == "adminTutor" ? (
-              <div >
+              <div>
                 <BasicPopover userid={props.cases.userid} type={props.type} />
               </div>
             ) : (
