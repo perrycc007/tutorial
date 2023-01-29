@@ -5,7 +5,7 @@ import Axios from "axios";
 import ToggleButtons from "./InputTool/ToggleSwitch";
 import Student from "./Case/Student";
 import Tutor from "./Case/Tutor";
-
+import classes from "./Case/Student.module.css";
 // And now we can use these
 const FavouriteList = () => {
   const [type, setType] = useState("Cases");
@@ -37,7 +37,7 @@ const FavouriteList = () => {
   }, []);
 
   return (
-    <>
+    <div className={classes.container}>
       <ToggleButtons typeHandler={typeMode} />
       <h1>Favourite</h1>
       {type == "Cases" ? (
@@ -45,7 +45,7 @@ const FavouriteList = () => {
       ) : (
         <Tutor cases={favouriteTutor} Favourite={true} />
       )}
-    </>
+    </div>
   );
 };
 

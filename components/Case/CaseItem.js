@@ -159,7 +159,7 @@ function CaseItem(props) {
           )}
           {props.type == "tutor"
             ? JSON.parse(items.subgrade).map((item) => (
-                <p key={item.id}>
+                <p className={classes.detail} key={item.id}>
                   {item.id} : {item.value}
                 </p>
               ))
