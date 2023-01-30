@@ -2,9 +2,9 @@ import CaseItem from "../Case/CaseItem";
 import CasesList from "../Case/CasesList";
 import Axios from "axios";
 import classes from "./AdminDisplay.module.css";
-import { useState } from "react";
+import { useState, Fragment } from "react";
 export default function AdminDisplay(props) {
-  console.log(props.match)
+  console.log(props.match);
 
   let {
     tutor,
@@ -64,26 +64,28 @@ export default function AdminDisplay(props) {
     }
   }
   return (
-    <div className={classes.container}>
-      <div>
-        <CaseItem
-          cases={studentInfo}
-          toggleStatus={toggleStatus}
+    <Fragment>
+      <div className={classes.container}>
+        <div>
+          <CaseItem
+            cases={studentInfo}
+            toggleStatus={toggleStatus}
+            adminInfo={adminInfo}
+            admin="admin"
+            type="cases"
+          />
+        </div>
+        <CasesList
+          cases={tutor}
+          idmatch={idmatch}
+          toggleCheckHandler={toggleCheck}
+          toggleAvailHandler={toggleAvail}
           adminInfo={adminInfo}
-          admin="admin"
-          type="cases"
+          toggleStatusHandler={toggleStatus}
+          type="tutor"
+          admin="adminTutor"
         />
       </div>
-      <CasesList
-        cases={tutor}
-        idmatch={idmatch}
-        toggleCheckHandler={toggleCheck}
-        toggleAvailHandler={toggleAvail}
-        adminInfo={adminInfo}
-        toggleStatusHandler={toggleStatus}
-        type="tutor"
-        admin="adminTutor"
-      />
-    </div>
+    </Fragment>
   );
 }

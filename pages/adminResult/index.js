@@ -4,16 +4,21 @@ import NoSSR from "react-no-ssr";
 import Pagination from "@mui/material/Pagination";
 import classes from "../../components/Form/ProfileForm.module.css";
 import LoadingScreen from "../../components/Layout/LoadingScreen";
-import { useEffect, useState } from "react";
+import TextField from "@mui/material/TextField";
+import Button from "@mui/material/Button";
+import { useEffect, useState, useRef } from "react";
 const Result = () => {
   const [loading, setLoading] = useState(true);
   const [page, setPage] = useState(1);
   const [totalNumberofPage, setTotalNumberofPage] = useState(1);
   const [item, setItem] = useState([]);
+  const studentidRef = useRef();
+  // const enteredStudentId = studentidRef.current?.value;
   const handleChange = (e, p) => {
     setPage(p);
   };
   async function getMatchResult(page) {
+    setLoading(true);
     const response = await axios.get(
       `http://localhost:3001/result/${page - 1}`
     );
@@ -26,6 +31,31 @@ const Result = () => {
     return response.data;
   }
 
+  async function getSingleMatchResult() {
+    const enteredStudentId = studentidRef.current?.value;
+    console.log(enteredStudentId);
+    if ((enteredStudentId == undefined) | (enteredStudentId == "")) {
+      return;
+    } else {
+      setLoading(true);
+      const response = await axios.get(
+        `http://localhost:3001/result/studentid/${enteredStudentId}`
+      );
+      console.log(response);
+      if (response.data == "error") {
+        setItem(undefined);
+      } else {
+        setItem(response.data[0]);
+      }
+      if (response.status == 200) {
+        setLoading(false);
+        setTotalNumberofPage(1);
+      }
+
+      return response.data;
+    }
+  }
+
   useEffect(() => {
     getMatchResult(page);
   }, [page]);
@@ -33,7 +63,13 @@ const Result = () => {
     <div>
       <NoSSR>
         {loading && <LoadingScreen />}
-        {!loading && <AdminDisplay match={item} />}
+        {!loading && (
+          <div>
+            <TextField inputRef={studentidRef} />{" "}
+            <Button onClick={getSingleMatchResult}>Search</Button>
+          </div>
+        )}
+        {!loading && item && <AdminDisplay match={item} />}
         {!loading && (
           <div className={classes.pagination}>
             <Pagination
