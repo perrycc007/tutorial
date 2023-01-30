@@ -7,12 +7,15 @@ import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import classes from "./adminResult.module.css";
 import { useEffect, useState, useRef } from "react";
+import CaseItem from "../../components/Case/CaseItem";
 const Result = () => {
   const [loading, setLoading] = useState(true);
   const [page, setPage] = useState(1);
   const [totalNumberofPage, setTotalNumberofPage] = useState(1);
   const [item, setItem] = useState([]);
   const studentidRef = useRef();
+  const tutoridRef = useRef();
+  const [tutor, setTutor] = useState(undefined);
   // const enteredStudentId = studentidRef.current?.value;
   const handleChange = (e, p) => {
     setPage(p);
@@ -56,12 +59,28 @@ const Result = () => {
     }
   }
 
+  async function getTutor() {
+    const enteredTutorId = tutoridRef.current?.value;
+    console.log(enteredTutorId);
+    setLoading(true);
+    const response = await axios.get(
+      `http://localhost:3001/tutor/${enteredTutorId}`
+    );
+    console.log(response.data.result);
+    setTutor(response.data.result);
+    if (response.status == 200) {
+      setLoading(false);
+    }
+    return response.data;
+  }
+
   useEffect(() => {
     getMatchResult(page);
   }, [page]);
   return (
     <div>
       <NoSSR>
+        <h1 className={classes.h1}>補習搜尋</h1>
         {loading && <LoadingScreen />}
         {!loading && (
           <div className={classes.searchbar}>
@@ -81,6 +100,17 @@ const Result = () => {
               color="primary"
             />
           </div>
+        )}
+
+        <h1 className={classes.h1}>導師搜尋</h1>
+        {!loading && (
+          <div className={classes.searchbar}>
+            <TextField inputRef={tutoridRef} />
+            <Button onClick={getTutor}>Search</Button>
+          </div>
+        )}
+        {!loading && tutor && (
+          <CaseItem cases={tutor} type="tutor" admin="admin" />
         )}
       </NoSSR>
     </div>
