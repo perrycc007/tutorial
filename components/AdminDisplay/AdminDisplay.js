@@ -2,8 +2,10 @@ import CaseItem from "../Case/CaseItem";
 import CasesList from "../Case/CasesList";
 import Axios from "axios";
 import classes from "./AdminDisplay.module.css";
-
+import { useState } from "react";
 export default function AdminDisplay(props) {
+  console.log(props.match)
+
   let {
     tutor,
     notavailtutor,
