@@ -2,10 +2,10 @@ import AdminDisplay from "../../components/AdminDisplay/AdminDisplay";
 import axios from "axios";
 import NoSSR from "react-no-ssr";
 import Pagination from "@mui/material/Pagination";
-import classes from "../../components/Form/ProfileForm.module.css";
 import LoadingScreen from "../../components/Layout/LoadingScreen";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
+import classes from "./adminResult.module.css";
 import { useEffect, useState, useRef } from "react";
 const Result = () => {
   const [loading, setLoading] = useState(true);
@@ -64,7 +64,7 @@ const Result = () => {
       <NoSSR>
         {loading && <LoadingScreen />}
         {!loading && (
-          <div>
+          <div className={classes.searchbar}>
             <TextField inputRef={studentidRef} />{" "}
             <Button onClick={getSingleMatchResult}>Search</Button>
           </div>
@@ -73,7 +73,7 @@ const Result = () => {
         {!loading && (
           <div className={classes.pagination}>
             <Pagination
-              size="small"
+              size="large"
               count={totalNumberofPage}
               page={page}
               onChange={handleChange}

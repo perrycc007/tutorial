@@ -1,0 +1,10 @@
+.searchbar{
+display: flex;
+align-items: center;
+}
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 1.5rem;
+    width: 100%;
+  }
