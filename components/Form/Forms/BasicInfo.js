@@ -35,10 +35,14 @@ export default function BasicInfo(props) {
     },
     [userData]
   );
+
+
+
   const formHandler = (event) => {
     event.preventDefault();
     console.log(userData);
-    props.submitHandler(userData);
+
+    // props.submitHandler(userData);
   };
 
   useEffect(() => {

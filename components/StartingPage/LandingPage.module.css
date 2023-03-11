@@ -1,0 +1,238 @@
+.container {
+  width: 100%;
+  margin: 0 auto;
+  position: relative;
+  top: -5rem;
+}
+
+.heroSection {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-image: 
+    url(../image/imghome.jpg);
+  box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, 0.2);
+  background-size: cover;
+  background-position: center;
+}
+
+.heroText {
+  color: white;
+  text-align: center;
+}
+
+.heroText h1 {
+  font-size: 3rem;
+  margin-bottom: 2rem;
+}
+
+.heroButtons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 2rem;
+}
+
+.infoSection {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* height: 400px; */
+  position: relative;
+  z-index: 0;
+  flex-wrap: wrap;
+  /* padding-left: 10rem; */
+  /* padding-right: 10rem; */
+}
+
+.infoSection::before {
+  content: "";
+  position: absolute;
+  top: -5rem;
+  left: 10;
+  min-width: 200%;
+  min-height: 140%;
+  background: linear-gradient(20deg, #f0f0f0, #ddd);
+  transform: rotate(3deg);
+  z-index: -1;
+}
+
+.infoImage {
+  /* flex: 1; */
+  min-width: 15em;
+  max-width: 30rem;
+}
+
+.infoImage img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.infoText {
+  /* flex: 1; */
+  padding: 20px;
+  max-width: 40rem;
+  text-align: center;
+  min-width: 20rem;
+}
+
+.infoText h3 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  
+}
+
+.infoText p {
+  font-size: 1.2rem;
+  line-height: 1.5;
+  color: #444;
+  margin: 0rem 1rem;
+}
+
+.cardSection {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-top: 3rem;
+  margin: 2rem
+}
+
+.card {
+  max-width: 300px;
+  min-height: 400px;
+  z-index: 1;
+}
+
+.card h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.card p {
+  font-size: 1.2rem;
+  line-height: 1.5;
+  color: #444;
+}
+
+.pinContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 400px;
+  position: relative;
+  z-index: 0;
+}
+
+.pinContainer::before {
+  content: "";
+  position: absolute;
+  top: -4rem;
+  padding-right: 10rem;
+  left: -1rem;
+  width: 200%;
+  height: 100%;
+  background: linear-gradient(20deg, #9ABBC1, #9ABBC1);
+  transform: rotate(-3deg);
+  z-index: -1;
+}
+
+
+.leftContainer {
+  display: flex;
+  align-items: center;
+
+  padding: 1rem;
+  justify-content: center;
+  min-width: 10rem;
+  margin-right: 1rem;
+}
+
+.list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.listItem {
+  border-radius: 2rem 0 0 2rem;
+  display: flex;
+  align-items: center;
+  max-width: 25rem;
+  min-width: none;
+  height: 4rem;
+  width: 100%;
+  /* justify-content: center; */
+  background-color: #166171;
+  border-radius: 4rem;
+  color: white;
+  font-size: 1.5rem;
+  /* padding: 0.5rem 1rem; */
+  padding-right: 3rem;
+  margin-bottom: 0.5rem;
+}
+
+.circle {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
+  background-color: white;
+  margin-right: 1rem;
+}
+
+.rightContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-width: 10rem;
+  margin-top: 1rem;
+}
+
+.button {
+  background-color: rgb(255, 255, 255);
+  color: rgb(36, 36, 36);
+  border: none;
+  border-radius: 2rem;
+  font-size: 1.2rem;
+  padding: 1rem 3rem;
+  margin-bottom: 1rem;
+  cursor: pointer;
+  transition-duration: 0.3s;
+}
+.button:hover {
+  background-color: rgb(225, 225, 225);
+}
+
+
+@media (max-width: 768px) {
+  .pinContainer {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .leftContainer {
+    border-radius: 2rem 2rem 0 0;
+    margin-right: 0;
+    margin-bottom: 1rem;
+  }
+  
+  .rightContainer {
+    margin-top: 0;
+  }
+  .pinContainer::before {
+    content: "";
+    position: absolute;
+    top: -4rem;
+    padding-right: 10rem;
+    left: -1rem;
+    width: 200%;
+    height: 130%;
+    background: linear-gradient(20deg, #9ABBC1, #9ABBC1);
+    transform: rotate(-3deg);
+    z-index: -1;
+  }
+}
