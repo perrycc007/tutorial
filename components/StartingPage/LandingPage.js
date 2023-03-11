@@ -16,12 +16,8 @@ export default function Home() {
         <div className={styles.heroText}>
           <h1>快速並免費搜找你的導師</h1>
           <div className={styles.heroButtons}>
-            <Button variant="contained" onClick={() => router.push("/about")}>
-              尋找導師
-            </Button>
-            <Button variant="contained" onClick={() => router.push("/contact")}>
-              成為導師
-            </Button>
+          <button className={styles.button_on_top}>成為導師</button>
+          <button className={styles.button_on_top}>尋找導師</button>
           </div>
         </div>
       </div>
