@@ -52,15 +52,7 @@ const ResetPasswordLink = () => {
                 className={classes.email}
                 ref={emailInputRef}
               />
-              <Button
-                className={classes.button}
-                type="submit"
-                variant="contained"
-                color="primary"
-                fullWidth
-              >
-                發送重置鏈接
-              </Button>
+              <button className={classes.button}>發送重置鏈接</button>
             </form>
           </CardContent>
         </Card>
