@@ -9,11 +9,12 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import Select from "@mui/material/Select";
 import TextField from "@mui/material/TextField";
-
+import userStore from "../../../stores/stores";
 export default function BasicInfo(props) {
   const inputfield = formField.inputfield.BasicInfo;
   const checkboxfield = formField.checkboxfieldfield.agreewith;
   const selectfield = formField.selectfield.BasicInfo;
+  const toggleIstutor = userStore((state) => state.toggleIstutor);
   const initialUserData = {
     name: "",
     phoneno: "",
@@ -27,6 +28,7 @@ export default function BasicInfo(props) {
   };
 
   const info = props.info;
+  const isTutor = userStore((state) => state.isTutor);
   const [userData, setUserData] = useState(initialUserData);
   const updateUserDataHandler = useCallback(
     (type) => (event) => {
@@ -35,7 +37,9 @@ export default function BasicInfo(props) {
     },
     [userData]
   );
-
+  const toggleIstutorHandler = () => {
+    toggleIstutor(!isTutor);
+  };
 
 
   const formHandler = (event) => {
@@ -102,6 +106,9 @@ export default function BasicInfo(props) {
         <div className={classes.buttonContainer}>
           <Button className={classes.Button} variant="outlined" type="submit">
             儲存
+          </Button>
+          <Button className={classes.Button} variant="outlined" onClick={toggleIstutorHandler}>
+            {!isTutor ? "開始填寫你的導師履歷" : "返回學生模式"}
           </Button>
         </div>
       </form>

@@ -56,7 +56,7 @@ const Budget = (props) => {
 
   return (
     <React.Fragment>
-      <h2>補習學費每小時</h2>
+      <h1>補習學費每小時</h1>
       <p className={classes.p}>
         理想時薪: {userData ? userData["highestfee"] : info["highestfee"]}
       </p>

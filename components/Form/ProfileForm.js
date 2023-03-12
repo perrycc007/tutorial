@@ -30,6 +30,7 @@ const ProfileForm = (props) => {
       setPage(1);
     }
   }, [isTutor]);
+
   async function submitHandler(value) {
     console.log(value);
     const info = profileData ? profileData : props.profile;
@@ -81,6 +82,7 @@ const ProfileForm = (props) => {
   return (
     <React.Fragment>
       <div className={classes.body}>
+
         <Paper>
           <div className={classes.container}>
             {page == 1 && (

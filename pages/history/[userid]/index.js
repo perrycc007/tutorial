@@ -1,9 +1,18 @@
 import CasesList from "../../../components/Case/CasesList";
+import { useEffect, useState } from "react";
 import axios from "axios";
+import LoadingScreen from "../../../components/Layout/LoadingScreen";
 const Cases = (props) => {
   console.log(props.cases);
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    if (props.status == 200) {
+      setLoading(false);
+    }
+  }),
+    [props.reponse];
   async function toggleCaseStatusHandler(id, status) {
-    console.log(id,status)
+    console.log(id, status);
     const response = await axios.patch(
       `http://localhost:3001/history/updateCaseStatus`,
       {
@@ -16,13 +25,23 @@ const Cases = (props) => {
 
   return (
     <div>
-      <h2>補習申請歷史</h2>
-      {props.cases?<CasesList
-        cases={props.cases}
-        favourite={[]}
-        type="edit"
-        toggleStatusHandler={toggleCaseStatusHandler}
-      />:''}
+      <h1>補習申請歷史</h1>
+      {loading && <LoadingScreen />}
+
+      {!loading && (
+        <div>
+          {props.cases ? (
+            <CasesList
+              cases={props.cases}
+              favourite={[]}
+              type="edit"
+              toggleStatusHandler={toggleCaseStatusHandler}
+            />
+          ) : (
+            <p>並沒有任何歷史</p>
+          )}
+        </div>
+      )}
     </div>
   );
 };
@@ -43,6 +62,7 @@ export async function getStaticProps(context) {
   return {
     props: {
       cases: response.data.result,
+      status: response.status,
     },
     revalidate: 1,
   };

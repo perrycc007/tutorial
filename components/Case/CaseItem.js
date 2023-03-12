@@ -137,10 +137,10 @@ function CaseItem(props) {
           {Object.entries(heading).map(([key, value]) => (
             <p className={classes.title} key={`${itemName[key]}value`}>
               {typeof value == "object"
-                ? value.map((item) => {
+                ? value? value.map((item) => {
                     return ` ${item}`;
                   })
-                : `$${value}/小時`}
+                : `$${value}/小時` :''}
             </p>
           ))}
 

@@ -27,7 +27,7 @@ const LocationForm = (props) => {
   };
   return (
     <React.Fragment>
-      <h2>教授地點</h2>
+      <h1>教授地點</h1>
       <form onSubmit={submitHandler}>
         <BasicTabs
           category={place}

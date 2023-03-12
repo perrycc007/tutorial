@@ -16,8 +16,8 @@ export default function Home() {
         <div className={styles.heroText}>
           <h1>快速並免費搜找你的導師</h1>
           <div className={styles.heroButtons}>
-          <button className={styles.button_on_top}>成為導師</button>
-          <button className={styles.button_on_top}>尋找導師</button>
+          <button className={styles.button_on_top}><a href="#">成為導師</a></button>
+          <button className={styles.button_on_top}><a href="#">尋找導師</a></button>
           </div>
         </div>
       </div>

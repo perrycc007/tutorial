@@ -38,8 +38,8 @@ const FavouriteList = () => {
 
   return (
     <div className={classes.container}>
+      <h1>我的最愛</h1>
       <ToggleButtons typeHandler={typeMode} />
-      <h1>Favourite</h1>
       {type == "Cases" ? (
         <Student cases={favouriteCase} Favourite={true} />
       ) : (

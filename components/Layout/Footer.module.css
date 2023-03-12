@@ -1,9 +1,12 @@
 .footer {
   display: flex;
+  margin-top: 10rem;
   flex-wrap: wrap;
   justify-content: space-between;
   padding: 20px;
   background-color: #f8f8f8;
+  width: 100%;
+  bottom: 0;
 }
 
 .footer__column {

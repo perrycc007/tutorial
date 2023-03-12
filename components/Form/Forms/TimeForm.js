@@ -80,7 +80,7 @@ export default function TimeForm(props) {
   }, [checkboxHandler]);
   return (
     <div>
-      <h2>期望時間</h2>
+      <h1>期望時間</h1>
       <form onSubmit={submitHandler}>
         <div style={{ display: "flex", justifyContent: "center" }}>
           <div>

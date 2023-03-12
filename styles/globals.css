@@ -20,7 +20,10 @@ a {
   padding: 0;
 }
 
-
+h1{
+  margin-bottom: 1rem;
+  font-size: 3rem;
+}
 
 
 @media (prefers-color-scheme: dark) {

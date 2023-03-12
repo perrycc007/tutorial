@@ -59,7 +59,7 @@ export default function StudentOthers(props) {
   };
   return (
     <React.Fragment>
-      <h2>補習要求</h2>
+      <h1>補習要求</h1>
       <form className={classes.formContent} onSubmit={formHandler}>
         {Object.entries(inputfield).map(([key, value]) => (
           <div key={`div${value.label}`} className={classes.inputContainer}>

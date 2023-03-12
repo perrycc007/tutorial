@@ -10,9 +10,7 @@ const MainNavigation = () => {
   const Loggedin = userStore((state) => state.isLoggedin);
   const logOutAction = userStore((state) => state.logoutUserid);
   const cleanFavourite = userStore((state) => state.cleanFavourite);
-  const toggleIstutor = userStore((state) => state.toggleIstutor);
   const [isLoggedin, setIsLoggedin] = useState(false);
-  const isTutor = userStore((state) => state.isTutor);
   const [menuState, setMenuState] = useState(false);
   const logoutHandler = () => {
     logOutAction();
@@ -84,13 +82,7 @@ const MainNavigation = () => {
               </div>
             </li>
           )}
-          {isLoggedin && (
-            <li className={classes.navbarli} onClick={toggleIstutorHandler}>
-              <div className={classes.navbarliLink}>
-                {isTutor ? "導師模式" : "學生模式"}
-              </div>
-            </li>
-          )}
+
           {isLoggedin && (
             <li className={classes.navbarli} onClick={logoutHandler}>
               <div className={classes.navbarliLink}>登出</div>

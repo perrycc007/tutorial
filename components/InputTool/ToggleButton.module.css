@@ -3,11 +3,11 @@
   /* margin-top: 15%; */
   padding: 1rem;
   border: none;
-  font-size: 5px;
+  font-size: 1.1rem;
   padding: 0.5rem 2rem;
   color: rgb(0, 0, 0);
   cursor: pointer;
-  border-radius: 1rem;
+  border-radius: 1.5rem;
   align-items: center;
   transition-duration: 0.1s;
   transition-timing-function: ease-in;
@@ -20,10 +20,10 @@
   padding: 0.5rem 2rem;
   /* margin-top: 15%; */
   border: none;
-  font-size: 5px;
+  font-size: 1.1rem;
   color: white;
   cursor: pointer;
-  border-radius: 1rem;
+  border-radius: 1.5rem;
   align-items: center;
   transition-duration: 0.1s;
   transition-timing-function: ease-in;

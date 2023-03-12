@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Typography from "@mui/material/Typography";
+import classes from "./BasicTabs.module.css"
 import Box from "@mui/material/Box";
 import ToggleButton from "../InputTool/ToggleButton";
 import { useState, useEffect } from "react";
@@ -114,7 +115,7 @@ export default function BasicTabs(props) {
             allowScrollButtonsMobile
           >
             {cat.map((item) => (
-              <Tab key={item.cat} label={item.cat} {...a11yProps(item.index)} />
+              <Tab className={classes.tabs} key={item.cat} label={item.cat} {...a11yProps(item.index)} />
             ))}
           </Tabs>
         </Box>
