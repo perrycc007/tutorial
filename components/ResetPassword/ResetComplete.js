@@ -10,7 +10,7 @@ const ResetComplete = () => {
             密碼重置完成
           </Typography>
           <Typography variant="body1">
-            您的密碼已成功重置。請使用您的登錄 新密碼。
+            您的密碼已成功重置。請使用您的登錄新密碼。
           </Typography>
         </CardContent>
       </Card>

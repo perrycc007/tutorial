@@ -11,6 +11,7 @@ const ResetPasswordPage = () => {
   const { token } = router.query;
   const { userid } = router.query;
   const [linkValid, setLinkValid] = useState(false);
+  const [loading, setLoading] = useState(true);
   useEffect(() => {
     console.log(userid, token);
     async function Verify(userid, token) {
@@ -24,17 +25,20 @@ const ResetPasswordPage = () => {
       Verify(userid, token)
         .then((res) => {
           console.log(res);
-          
+          setLoading(false)
           if (res.data == "jwt expired") {
             // let errorMessage = "Link has Expired";
             setLinkValid(false);
+            setLoading(false)
             // throw new Error(errorMessage);
           } else if (res.data == "invalid token") {
             // let errorMessage = "Link is invalid";
             setLinkValid(false);
+            setLoading(false)
             // throw new Error(errorMessage);
           } else {
             setLinkValid(true);
+            setLoading(false)
           }
         })
         .catch((err) => {
@@ -45,8 +49,8 @@ const ResetPasswordPage = () => {
 
   return (
     <Fragment>
-      {linkValid && <ResetPassword />}
-      {!linkValid && <InvalidResetLink />}
+      {!loading && linkValid && <ResetPassword />}
+      {!loading && !linkValid && <InvalidResetLink />}
     </Fragment>
   );
 };

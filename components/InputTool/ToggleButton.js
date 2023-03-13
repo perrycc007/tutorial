@@ -15,7 +15,7 @@ useEffect(()=>{
 
 
 return(
-            <button id={props.id} onClick={toggle} className={contentClassname}>{props.id}</button>
+            <button id={props.id} type="button" onClick={toggle} className={contentClassname}>{props.id}</button>
 )
 }
 export default ToggleButton;

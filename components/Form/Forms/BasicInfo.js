@@ -33,7 +33,7 @@ export default function BasicInfo(props) {
   const updateUserDataHandler = useCallback(
     (type) => (event) => {
       setUserData({ ...userData, [type]: event.target.value });
-      console.log(userData);
+      // console.log(userData);
     },
     [userData]
   );
@@ -41,12 +41,23 @@ export default function BasicInfo(props) {
     toggleIstutor(!isTutor);
   };
 
-
   const formHandler = (event) => {
     event.preventDefault();
     console.log(userData);
-
-    // props.submitHandler(userData);
+    // check if it is the first time
+    let formData = {
+      ...info,
+      ...userData,
+    };
+    const { availtime, country, lastOnline, idprofile,...formInfo } = formData;
+    const isEmpty = Object.values(formInfo).some((x) => x == null || x == "");
+    if (!isEmpty) {
+      props.submitHandler(userData);
+      // console.log("send");
+    } else {
+      alert("請填寫所有必填的格子");
+      // console.log(formInfo);
+    }
   };
 
   useEffect(() => {
@@ -107,7 +118,11 @@ export default function BasicInfo(props) {
           <Button className={classes.Button} variant="outlined" type="submit">
             儲存
           </Button>
-          <Button className={classes.Button} variant="outlined" onClick={toggleIstutorHandler}>
+          <Button
+            className={classes.Button}
+            variant="outlined"
+            onClick={toggleIstutorHandler}
+          >
             {!isTutor ? "開始填寫你的導師履歷" : "返回學生模式"}
           </Button>
         </div>

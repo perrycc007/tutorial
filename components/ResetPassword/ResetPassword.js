@@ -25,7 +25,7 @@ const ResetPassword = () => {
 
     const enteredPassword = passwordInputRef.current.value;
     const enteredConfirmPassword = ConfirmPasswordInputRef.current.value;
-
+    console.log(passwordInputRef,ConfirmPasswordInputRef)
     async function ResetPassword() {
       const res = await Axios.post(
         `http://localhost:3001/forgetPassword/${userid}/${token}`,
@@ -36,7 +36,7 @@ const ResetPassword = () => {
       console.log(res.data);
       return res;
     }
-    if (passwordInputRef == enteredConfirmPassword) {
+    if (enteredPassword == enteredConfirmPassword) {
       ResetPassword()
         .then((res) => {
           if (res.status == 200) {
@@ -61,7 +61,7 @@ const ResetPassword = () => {
   };
 
   if (resetComplete) {
-    return <ResetPasswordComplete />;
+    return <ResetComplete />;
   }
 
 
@@ -79,7 +79,6 @@ const ResetPassword = () => {
               margin="normal"
               label="新密碼"
               type="password"
-              // value={newPassword}
               ref={passwordInputRef}
             />
             <TextField
@@ -88,11 +87,10 @@ const ResetPassword = () => {
               margin="normal"
               label="確認新密碼"
               type="password"
-              // value={confirmNewPassword}
               ref={ConfirmPasswordInputRef}
             />
             <div className={classes.buttonContainer}>
-              <button className={classes.button} type="submit">
+              <button className={classes.button}>
                 重設密碼
               </button>
             </div>
