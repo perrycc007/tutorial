@@ -10,21 +10,22 @@ import FormControl from "@mui/material/FormControl";
 const EducationForm = (props) => {
   const inputfield = formField.inputfield.Education;
   const selectfield = formField.selectfield.Education;
+  const intergratedfield = {...inputfield,...selectfield}
   const initialUserData = {
-    Occupation: "",
-    YearOfExperience: "",
-    Experience: "",
-    HighestTeachingLevel: "",
-    Notes: "",
-    EducatoionLevel: "",
-    SecondarySchool: "",
-    PrimarySchool: "",
-    SchoolCat: "",
-    PublicExamGrade: "",
-    University: "",
-    Major: "",
-    OtherCert: "",
-    Year: "",
+    occupation: "",
+    yearofexperience: "",
+    experience: "",
+    highestteachinglevel: "",
+    notes: "",
+    educationallevel: "",
+    secondaryschool: "",
+    primaryschool: "",
+    schoolcat: "",
+    publicexamgrade: "",
+    university: "",
+    major: "",
+    othercert: "",
+    year: "",
     language: "",
     strength: "",
     intro: "",
@@ -40,8 +41,26 @@ const EducationForm = (props) => {
   );
   const formHandler = (event) => {
     event.preventDefault();
-    console.log(userData);
-    props.submitHandler(userData);
+
+    let formData = {
+      ...info,
+      ...userData,
+    };
+    
+    const { availtime, caseid,intro, lastOnline, location,lowestfee,major,matchedbefore,university,year,othercert,subject,status,tutorid,subgrade,publicexamgrade,...formInfo } = formData;
+    const keysWithEmptyValues = Object.keys(formInfo).filter(key => formInfo[key] === '' |formInfo[key] === 'undefined')
+
+    const emptyList = []
+    keysWithEmptyValues.forEach((n,i)=>{
+      emptyList.push(intergratedfield[n].label)
+    })
+    if(emptyList.length == 0){
+     props.submitHandler(userData);
+    }else{
+      alert(`請填寫${emptyList}`)
+    }
+
+
   };
 
   return (
@@ -90,7 +109,6 @@ const EducationForm = (props) => {
           <Button className={classes.Button} variant="outlined" type="submit">
             儲存
           </Button>
-
         </div>
       </form>
     </React.Fragment>
