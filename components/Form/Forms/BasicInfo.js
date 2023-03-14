@@ -38,13 +38,25 @@ export default function BasicInfo(props) {
     [userData]
   );
   const toggleIstutorHandler = () => {
-    toggleIstutor(!isTutor);
+    let formData = {
+      ...info,
+      ...userData,
+    };
+    const { availtime, country, lastOnline, idprofile, ...formInfo } = formData;
+    const isEmpty = Object.values(formInfo).some((x) => x == null || x == "");
+    if (!isEmpty) {
+      toggleIstutor(!isTutor);
+      // console.log("send");
+    } else {
+      // alert("請填寫所有格子");
+      // console.log(formInfo);
+    }
+
   };
 
   const formHandler = (event) => {
     event.preventDefault();
     console.log(userData);
-    // check if it is the first time
     let formData = {
       ...info,
       ...userData,
@@ -55,7 +67,7 @@ export default function BasicInfo(props) {
     if (!isEightDigits) {
       alert("請填寫有效電話");
     }
-
+    console.log(formInfo)
     if (!isEmpty) {
       props.submitHandler(userData);
       // console.log("send");
@@ -127,6 +139,7 @@ export default function BasicInfo(props) {
             className={classes.Button}
             variant="outlined"
             onClick={toggleIstutorHandler}
+            type="submit"
           >
             {!isTutor ? "開始填寫你的導師履歷" : "返回學生模式"}
           </Button>

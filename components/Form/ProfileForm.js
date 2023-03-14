@@ -42,7 +42,16 @@ const ProfileForm = (props) => {
       tutorid: getUserid ? getUserid : props.tutor.tutorid,
       information: newInfo,
     });
-    response.data.result;
+    response
+      .then((value) => {
+      })
+      .catch((e) => {
+        if (e.response.status === 400) {
+          alert(e.response.data);
+        } 
+      });
+
+    // response.data.result;
   }
   async function listHandler(value, type) {
     const key = type;
@@ -82,7 +91,6 @@ const ProfileForm = (props) => {
   return (
     <React.Fragment>
       <div className={classes.body}>
-
         <Paper>
           <div className={classes.container}>
             {page == 1 && (
