@@ -46,12 +46,7 @@ export default function BasicInfo(props) {
     const isEmpty = Object.values(formInfo).some((x) => x == null || x == "");
     if (!isEmpty) {
       toggleIstutor(!isTutor);
-      // console.log("send");
-    } else {
-      // alert("請填寫所有格子");
-      // console.log(formInfo);
     }
-
   };
 
   const formHandler = (event) => {

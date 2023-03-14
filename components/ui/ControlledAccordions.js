@@ -31,7 +31,8 @@ export default function ControlledAccordions(props) {
         </AccordionSummary>
         <AccordionDetails>
           {value.map((item)=>{return( 
-          <FormControl key={item.name}>
+            // console.log(props.childKey+key+item)
+          <FormControl key={props.childKey+key+item+'formControl'}>
           <BasicSelect 
           key ={props.childKey+key+item}  
           id={props.childKey+key+item} 
@@ -39,7 +40,8 @@ export default function ControlledAccordions(props) {
           passValue={props.choiceHandler} 
           select={props.select} 
           prevSelect={props.prevSelect}/>
-          </FormControl>)})}
+          </FormControl>
+          )})}
         </AccordionDetails>
       </Accordion>})}
     </div>
