@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import CaseItem from "./CaseItem";
 import Pagination from "@mui/material/Pagination";
 import usePagination from "../Layout/usePagination";
@@ -15,24 +15,34 @@ const CasesList = (props) => {
     setPage(p);
     _DATA.jump(p);
   };
+  const [checkingList, setCheckinglist] = useState([]);
+  const [checkedList, setCheckedlist] = useState([]);
+  useEffect(() => {
+    setCheckinglist(props.adminInfo.checking);
+    setCheckedlist(props.adminInfo.checked);
+  }, [props.adminInfo.checking, props.adminInfo.checked]);
 
   const UpdateCheckHandler = (idmatch, tutorid, checkStatus) => {
-    const checking = props.adminInfo.checking;
-    const checked = props.adminInfo.checked;
+    let checking = checkingList;
+    let checked = checkedList;
     switch (checkStatus) {
       case "checking":
         checking = checking.filter((item) => item != tutorid);
-        checked.push(tutorid);
+        setCheckinglist(checking);
+        checked = [...checked,tutorid];
+        setCheckedlist(checked);
         console.log("checking", checking, "checked", checked);
         props.toggleCheckHandler(idmatch, checked, checking);
         break;
       case "checked":
         checked = checked.filter((item) => item != tutorid);
+        setCheckedlist(checked);
         console.log("checking", checking, "checked", checked);
         props.toggleCheckHandler(idmatch, checking, checked);
         break;
       case "not yet checked":
-        checking.push(tutorid);
+        checking = [...checking,tutorid]
+        setCheckinglist(checking);
         console.log("checking", checking, "checked", checked);
         props.toggleCheckHandler(idmatch, checked, checking);
         break;
@@ -89,12 +99,16 @@ const CasesList = (props) => {
                   }
                   checkedStatus={
                     props.adminInfo
-                      ? props.adminInfo.checked.includes(oneCase.tutorid)
+                      ? props.adminInfo.checked !=null&&props.adminInfo.checked !=''
+                        ? props.adminInfo.checked.includes(oneCase.tutorid)
+                        : false
                       : false
                   }
                   checkingStatus={
                     props.adminInfo
-                      ? props.adminInfo.checking.includes(oneCase.tutorid)
+                      ? props.adminInfo.checking!=null&&props.adminInfo.checking!=''
+                        ? props.adminInfo.checking.includes(oneCase.tutorid)
+                        : false
                       : false
                   }
                   isFavourite={

@@ -86,6 +86,7 @@ const ProfileForm = (props) => {
       // tutorid: getUserid,
       information: newInfo,
     });
+    response.data
     match.data.result;
   }
   return (
