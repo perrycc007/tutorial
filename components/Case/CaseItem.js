@@ -12,8 +12,10 @@ import Button from "@mui/material/Button";
 import itemName from "./itemName";
 function CaseItem(props) {
   const [status, setStatus] = useState(props.cases.status);
+  const [verify, setVerify] = useState(props.cases.verify);
   const [notAvailStatus, setNotAvailStatus] = useState(false);
   const [checkStatus, setCheckStatus] = useState("not yet checked");
+
   const toggleFavoriteStatusHandler = () => {
     props.toggleFavourite(props.id);
   };
@@ -29,6 +31,16 @@ function CaseItem(props) {
       props.toggleCheck(props.idmatch, props.cases.tutorid, "checked");
     }
   };
+
+  const verifyHandler = () => {
+    if (verify == "已驗證") {
+      setVerify("未驗證");
+      props.toggleVerify(props.cases.tutorid, "未驗證", props.type);
+    } else if (verify == "未驗證") {
+      setVerify("已驗證");
+      props.toggleVerify(props.cases.tutorid, "已驗證", props.type);
+    }
+  };
   const StatusHandler = () => {
     if (status == "open") {
       setStatus("close");
@@ -37,7 +49,14 @@ function CaseItem(props) {
         "close",
         props.type
       );
-    } else {
+    } else if (status == "close") {
+      setStatus("block");
+      props.toggleStatus(
+        props.type == "tutor" ? props.cases.tutorid : props.cases.studentid,
+        "block",
+        props.type
+      );
+    } else if (status == "block") {
       setStatus("open");
       props.toggleStatus(
         props.type == "tutor" ? props.cases.tutorid : props.cases.studentid,
@@ -74,7 +93,7 @@ function CaseItem(props) {
   // const sumamry = item.slice(6, 10);
 
   let { location, subject, availtime, studentid, ...items } = props.cases;
-
+  console.log(items);
   const fee = (items.highestfee + items.lowestfee) / 2;
 
   const readDate = (notFormat) => {
@@ -124,7 +143,10 @@ function CaseItem(props) {
     subject: JSON.parse(subject),
     fee: fee,
   };
-
+  let verifyServer = "否";
+  if (props.type == "tutor") {
+    verifyServer = items.verify;
+  }
   return (
     <div className={classes.item}>
       <Accordion className={classes.accordion}>
@@ -137,18 +159,22 @@ function CaseItem(props) {
           {Object.entries(heading).map(([key, value]) => (
             <p className={classes.title} key={`${itemName[key]}value`}>
               {typeof value == "object"
-                ? value? value.map((item) => {
-                    return ` ${item}`;
-                  })
-                : `$${value}/小時` :''}
+                ? value
+                  ? value.map((item) => {
+                      return ` ${item}`;
+                    })
+                  : `$${value}/小時`
+                : ""}
             </p>
           ))}
 
           <div className={classes.heading}></div>
         </AccordionSummary>
         <AccordionDetails className={classes.summary}>
+          {props.type == "tutor" && <p>履歷驗證狀態:{verifyServer}</p>}
           <p className={classes.detail}>
-            ID: {props.type == "tutor"
+            ID:{" "}
+            {props.type == "tutor"
               ? props.cases.tutorid
               : props.cases.studentid}
           </p>
@@ -197,8 +223,17 @@ function CaseItem(props) {
                   </p>
                 ))}
                 <Button variant="outlined" onClick={StatusHandler}>
-                  {status == "open" ? "按此隱藏個案" : "按此公開個案"}
+                  {status == "open"
+                    ? "個案已公開"
+                    : status == "close"
+                    ? "個案已隱藏"
+                    : "個案已封鎖"}
                 </Button>
+                {props.type == "tutor" && (
+                  <Button variant="outlined" onClick={verifyHandler}>
+                    {verify == "已驗證" ? "教師已驗證" : "教師未驗證"}
+                  </Button>
+                )}
                 <div>
                   <EditForm cases={props.cases} />
                 </div>

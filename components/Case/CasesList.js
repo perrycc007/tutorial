@@ -17,11 +17,13 @@ const CasesList = (props) => {
   };
   const [checkingList, setCheckinglist] = useState([]);
   const [checkedList, setCheckedlist] = useState([]);
+
+  if(props.admin=="adminTutor"){
   useEffect(() => {
     setCheckinglist(props.adminInfo.checking);
     setCheckedlist(props.adminInfo.checked);
-  }, [props.adminInfo.checking, props.adminInfo.checked]);
-
+  }, [props.adminInfo, props.adminInfo]);
+}
   const UpdateCheckHandler = (idmatch, tutorid, checkStatus) => {
     let checking = checkingList;
     let checked = checkedList;
@@ -81,6 +83,9 @@ const CasesList = (props) => {
                   adminInfo={props.adminInfo ? props.adminInfo : {}}
                   toggleStatus={
                     props.toggleStatusHandler ? props.toggleStatusHandler : ""
+                  }
+                  toggleVerify={
+                    props.toggleVerifyHandler ? props.toggleVerifyHandler : ""
                   }
                   toggleFavourite={props.toggleFavouriteHandler}
                   toggleAvail={toggleAvailHandler}

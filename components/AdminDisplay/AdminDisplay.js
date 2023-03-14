@@ -63,6 +63,17 @@ export default function AdminDisplay(props) {
       response.data.result;
     }
   }
+  async function toggleVerify(id, verify, type) {
+    const response = await Axios.patch(
+      `http://localhost:3001/admin/updateTutorVerify`,
+      {
+        tutorid: id,
+        verify: verify,
+      }
+    );
+    response.data.result;
+  }
+
   return (
     <Fragment>
       <div className={classes.container}>
@@ -82,6 +93,7 @@ export default function AdminDisplay(props) {
           toggleAvailHandler={toggleAvail}
           adminInfo={adminInfo}
           toggleStatusHandler={toggleStatus}
+          toggleVerifyHandler={toggleVerify}
           type="tutor"
           admin="adminTutor"
         />

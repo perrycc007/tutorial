@@ -74,13 +74,17 @@ const Budget = (props) => {
         />
       </form>
       <div className={classes.buttonContainer}>
-        <Button
-          className={classes.Button}
-          variant="outlined"
-          onClick={StatusHandler}
-        >
-          {status == "open" ? "按此隱藏簡歷" : "按此公開簡歷"}
-        </Button>
+        {status != "block" ? (
+          <Button
+            className={classes.Button}
+            variant="outlined"
+            onClick={StatusHandler}
+          >
+            {status == "open" ? "按此隱藏簡歷" : "按此公開簡歷"}
+          </Button>
+        ) : (
+          <Button disabled>此用戶暫時被封閉</Button>
+        )}
         <Button
           className={classes.Button}
           variant="outlined"

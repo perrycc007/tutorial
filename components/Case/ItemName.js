@@ -29,7 +29,7 @@ const itemName = {
   subgrade: "公開試成績",
   location: "地址",
   subject: "科目",
-  fee: "價錢"
+  fee: "價錢",
 };
 
 export default itemName;

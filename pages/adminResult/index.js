@@ -74,6 +74,29 @@ const Result = () => {
     return response.data;
   }
 
+  async function toggleStatus(id, status, type) {
+    const response = await axios.patch(
+      `http://localhost:3001/history/updateTutorStatus`,
+      {
+        tutorid: id,
+        status: status,
+      }
+    );
+    response.data.result;
+  }
+
+
+  async function toggleVerify(id, verify, type) {
+    const response = await Axios.patch(
+      `http://localhost:3001/admin/updateTutorVerify`,
+      {
+        tutorid: id,
+        verify: verify,
+      }
+    );
+    response.data.result;
+  }
+
   useEffect(() => {
     getMatchResult(page);
   }, [page]);
@@ -110,7 +133,13 @@ const Result = () => {
           </div>
         )}
         {!loading && tutor && (
-          <CaseItem cases={tutor} type="tutor" admin="admin" />
+          <CaseItem
+            cases={tutor}
+            type="tutor"
+            admin="admin"
+            toggleStatus={toggleStatus}
+            toggleVerify={toggleVerify}
+          />
         )}
       </NoSSR>
     </div>
