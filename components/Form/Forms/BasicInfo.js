@@ -49,13 +49,18 @@ export default function BasicInfo(props) {
       ...info,
       ...userData,
     };
-    const { availtime, country, lastOnline, idprofile,...formInfo } = formData;
+    const { availtime, country, lastOnline, idprofile, ...formInfo } = formData;
     const isEmpty = Object.values(formInfo).some((x) => x == null || x == "");
+    const isEightDigits = /^\d{8}$/.test(formInfo.phoneno);
+    if (!isEightDigits) {
+      alert("請填寫有效電話");
+    }
+
     if (!isEmpty) {
       props.submitHandler(userData);
       // console.log("send");
     } else {
-      alert("請填寫所有必填的格子");
+      alert("請填寫所有格子");
       // console.log(formInfo);
     }
   };

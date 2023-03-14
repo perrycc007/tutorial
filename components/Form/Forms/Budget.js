@@ -50,7 +50,6 @@ const Budget = (props) => {
 
   const formHandler = (event) => {
     event.preventDefault();
-    console.log(userData);
     props.submitHandler(userData);
   };
 
@@ -65,8 +64,7 @@ const Budget = (props) => {
       </p>
       <form className={classes.sliderForm}>
         <MinSlider
-          
-        step={20}
+          step={20}
           max={1000}
           min={60}
           dmax={info ? info["highestfee"] : 100}

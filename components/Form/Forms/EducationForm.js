@@ -47,7 +47,7 @@ const EducationForm = (props) => {
       ...userData,
     };
     
-    const { availtime, caseid,intro, lastOnline, location,lowestfee,major,matchedbefore,university,year,othercert,subject,status,tutorid,subgrade,publicexamgrade,...formInfo } = formData;
+    const { availtime,yearofexperience, caseid,intro, lastOnline, location,lowestfee,major,experience,matchedbefore,university,year,othercert,subject,status,tutorid,subgrade,publicexamgrade,...formInfo } = formData;
     const keysWithEmptyValues = Object.keys(formInfo).filter(key => formInfo[key] === '' |formInfo[key] === 'undefined')
 
     const emptyList = []

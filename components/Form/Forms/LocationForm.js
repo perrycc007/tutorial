@@ -23,17 +23,16 @@ const LocationForm = (props) => {
   const submitHandler = (e) => {
     e.preventDefault();
     console.log(list);
-    let isEmpty = true
-    if(list.length===0){
-      isEmpty = true
-    }else{
-      isEmpty = false
+    let isEmpty = true;
+    if (list.length === 0) {
+      isEmpty = true;
+    } else {
+      isEmpty = false;
     }
     if (!isEmpty) {
       props.submitHandler(list, "location");
-      console.log("send");
     } else {
-      alert("請填寫所有必填的格子");
+      alert("請選至少一個地方");
       // console.log(formInfo);
     }
     // props.submitHandler(list, "location");
