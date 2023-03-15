@@ -42,3 +42,51 @@
   transition-duration: 0.1s;
   transition-timing-function: ease-in;
 }
+
+@media (max-width: 400px) {
+  .toggleButton {
+    background-color: rgb(255, 255, 255);
+    /* margin-top: 15%; */
+    padding: 1rem;
+    border: none;
+    font-size: 12px;
+    padding: 0.3rem 1rem;
+    color: rgb(0, 0, 0);
+    cursor: pointer;
+    border-radius: 1.5rem;
+    align-items: center;
+    transition-duration: 0.1s;
+    transition-timing-function: ease-in;
+    margin: 0.3rem 0.2rem;
+    /* display: table; */
+  }
+  
+  .toggleButtonClose {
+    background-color: #2196f3;
+    padding: 0.3rem 1rem;
+    /* margin-top: 15%; */
+    border: none;
+    font-size: 12px;
+    color: white;
+    cursor: pointer;
+    border-radius: 1.5rem;
+    align-items: center;
+    transition-duration: 0.1s;
+    transition-timing-function: ease-in;
+    margin: 0.3rem 0.2rem;
+    /* display: table; */
+  }
+  
+  .toggleButton:hover {
+    background-color: rgb(129, 129, 129);
+    transition-duration: 0.1s;
+    transition-timing-function: ease-in;
+  }
+  
+  .toggleButtonClose:hover {
+    background-color: rgb(105, 112, 116);
+    transition-duration: 0.1s;
+    transition-timing-function: ease-in;
+  }
+
+}

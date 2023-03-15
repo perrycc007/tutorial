@@ -35,7 +35,8 @@ export default function EditForm(props) {
           <StudentApply
             cases={props.cases}
             studentid={props.cases.studentid}
-            type='history'
+            type="history"
+            closeModalHanlder={handleClose}
           ></StudentApply>
         </Box>
       </Modal>

@@ -2,11 +2,11 @@ html,
 body {
   padding: 0;
   margin: 0;
-  width:100%;
+  width: 100%;
   overflow-x: hidden;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-    text-align: center;
+  text-align: center;
 }
 
 a {
@@ -20,11 +20,10 @@ a {
   padding: 0;
 }
 
-h1{
+h1 {
   margin-bottom: 1rem;
   font-size: 3rem;
 }
-
 
 @media (prefers-color-scheme: dark) {
   html {
@@ -36,6 +35,10 @@ h1{
   }
 }
 
-.MuiModal-root{
+.MuiModal-root {
+  padding: 0px;
+}
+
+.css-12xl79d {
   padding: 0px;
 }

@@ -4,7 +4,7 @@ import userStore from "../../stores/stores";
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
 import { useEffect, useState } from "react";
-
+import Backdrop from "@mui/material/Backdrop";
 const MainNavigation = () => {
   const getUserid = userStore((state) => state.userId);
   const Loggedin = userStore((state) => state.isLoggedin);
@@ -34,6 +34,12 @@ const MainNavigation = () => {
 
   return (
     <div>
+      <Backdrop
+        className="backdrop"
+        sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
+        open={menuState}
+        onClick={menuHandler}
+      />
       <nav className={classes.nav}>
         <Link href="/">
           <div className={classes.logo}>Tutor Elite</div>

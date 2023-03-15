@@ -8,6 +8,8 @@ import Paper from "@mui/material/Paper";
 import Pagination from "@mui/material/Pagination";
 import userStore from "../../stores/stores";
 import classes from "./ProfileForm.module.css";
+import CloseIcon from "@mui/icons-material/Close";
+import Button from "@mui/material/Button";
 import Axios from "axios";
 const StudentApply = (props) => {
   const student = { location: "[]", subject: "[]", availtime: "[]" };
@@ -94,9 +96,16 @@ const StudentApply = (props) => {
   }
   return (
     <React.Fragment>
-      <div className={classes.body}>
+      <div className={classes.modalBody}>
         <Paper>
           <div className={classes.container}>
+            {props.type == 'history' && (
+              <Button
+                variant="text"
+                onClick={props.closeModalHanlder}
+                startIcon={<CloseIcon />}
+              ></Button>
+            )}
             {page == 1 && (
               <LocationForm
                 submitHandler={studentid == "" ? firstlistHandler : listHandler}
