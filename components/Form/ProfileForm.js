@@ -11,7 +11,6 @@ import userStore from "../../stores/stores";
 import Axios from "axios";
 import classes from "./ProfileForm.module.css";
 import Paper from "@mui/material/Paper";
-
 const ProfileForm = (props) => {
   const [profileData, setProfileData] = useState(props.profile);
   const [tutorData, setTutorData] = useState(props.tutor);
@@ -105,6 +104,7 @@ const ProfileForm = (props) => {
               <BasicInfo
                 submitHandler={submitHandler}
                 info={changes ? profileData : props.profile}
+                userid={getUserid}
               />
             )}
             {page == 2 && (

@@ -115,7 +115,7 @@ const StudentApply = (props) => {
               ></Button>
             </div>
           )}
-          <div className={classes.container}>
+          <div className={classes.modalContainer}>
             {page == 1 && (
               <LocationForm
                 submitHandler={studentid == "" ? firstlistHandler : listHandler}

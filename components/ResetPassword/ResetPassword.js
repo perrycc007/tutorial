@@ -25,7 +25,7 @@ const ResetPassword = () => {
 
     const enteredPassword = passwordInputRef.current.value;
     const enteredConfirmPassword = ConfirmPasswordInputRef.current.value;
-    console.log(passwordInputRef,ConfirmPasswordInputRef)
+    console.log(passwordInputRef, ConfirmPasswordInputRef);
     async function ResetPassword() {
       const res = await Axios.post(
         `http://localhost:3001/forgetPassword/${userid}/${token}`,
@@ -33,7 +33,6 @@ const ResetPassword = () => {
           password: enteredPassword,
         }
       );
-      console.log(res.data);
       return res;
     }
     if (enteredPassword == enteredConfirmPassword) {
@@ -44,26 +43,25 @@ const ResetPassword = () => {
             return res.data;
           } else {
             return res.then((data) => {
-              let errorMessage = "Reset failed!";
+              let errorMessage = "重置失敗！";
               throw new Error(errorMessage);
             });
           }
         })
         .then((res) => {
-        //   router.push("/");
+          //   router.push("/");
         })
         .catch((err) => {
           alert(err.message);
         });
     } else {
-      alert("Passwords do not match");
+      alert("密碼不匹配");
     }
   };
 
   if (resetComplete) {
     return <ResetComplete />;
   }
-
 
   return (
     <Container maxWidth="sm" className={classes.container}>
@@ -79,7 +77,7 @@ const ResetPassword = () => {
               margin="normal"
               label="新密碼"
               type="password"
-              ref={passwordInputRef}
+              inputRef={passwordInputRef}
             />
             <TextField
               required
@@ -87,12 +85,10 @@ const ResetPassword = () => {
               margin="normal"
               label="確認新密碼"
               type="password"
-              ref={ConfirmPasswordInputRef}
+              inputRef={ConfirmPasswordInputRef}
             />
             <div className={classes.buttonContainer}>
-              <button className={classes.button}>
-                重設密碼
-              </button>
+              <button className={classes.button}>重設密碼</button>
             </div>
           </form>
         </CardContent>

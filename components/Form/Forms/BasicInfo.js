@@ -10,6 +10,7 @@ import MenuItem from "@mui/material/MenuItem";
 import Select from "@mui/material/Select";
 import TextField from "@mui/material/TextField";
 import userStore from "../../../stores/stores";
+import ResetPasswordForm from "./ResetPasswordForm";
 export default function BasicInfo(props) {
   const inputfield = formField.inputfield.BasicInfo;
   const checkboxfield = formField.checkboxfieldfield.agreewith;
@@ -62,7 +63,7 @@ export default function BasicInfo(props) {
     if (!isEightDigits) {
       alert("請填寫有效電話");
     }
-    console.log(formInfo)
+    console.log(formInfo);
     if (!isEmpty) {
       props.submitHandler(userData);
       // console.log("send");
@@ -126,7 +127,11 @@ export default function BasicInfo(props) {
             label={checkboxfield.label}
           />
         )}
+
         <div className={classes.buttonContainer}>
+          <div className={classes.Button}>
+            <ResetPasswordForm userid={props.userid} />
+          </div>
           <Button className={classes.Button} variant="outlined" type="submit">
             儲存
           </Button>

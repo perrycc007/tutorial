@@ -20,8 +20,16 @@
   width: 100%;
   background-color: white;
   box-shadow: 1px;
-  padding: 0rem 4rem 1.5rem;
+  padding: 1rem 4rem 1.5rem;
+  border-radius: 5px;
+}
 
+.modalContainer {
+  max-width: 50rem;
+  width: 100%;
+  background-color: white;
+  box-shadow: 1px;
+  padding: 0rem 4rem 1.5rem;
   border-radius: 5px;
 }
 
@@ -38,6 +46,12 @@
     width: 100%;
     padding: 1rem 1rem;
   }
+  .modalContainer {
+    max-width: 100%;
+    width: 100%;
+    padding: 0rem 1rem 1rem;
+  }
+
   .body {
     padding-top: 2rem;
   }
@@ -53,6 +67,11 @@
     max-width: 100%;
     width: 100%;
     padding: 1rem 1rem;
+  }
+  .modalContainer {
+    max-width: 100%;
+    width: 100%;
+    padding: 0rem 1rem 1rem;
   }
   .body {
     padding-top: 2rem;
@@ -70,6 +89,11 @@
     max-width: 100%;
     width: 100%;
     padding: 1rem 0.4rem;
+  }
+  .modalContainer {
+    max-width: 100%;
+    width: 100%;
+    padding: 0rem 0.4rem 1rem;
   }
   .body {
     padding-top: 2rem;
