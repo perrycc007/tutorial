@@ -19,8 +19,16 @@ const StudentApply = (props) => {
   const [studentData, setStudentData] = useState(props.cases | "");
   const [isStarted, setIsStarted] = useState(false);
   const [page, setPage] = useState(1);
+  const handleClick = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+
   const handleChange = (e, p) => {
     setPage(p);
+    handleClick()
   };
 
   useEffect(() => {
@@ -99,12 +107,14 @@ const StudentApply = (props) => {
       <div className={classes.modalBody}>
         <Paper>
           <div className={classes.container}>
-            {props.type == 'history' && (
-              <Button
-                variant="text"
-                onClick={props.closeModalHanlder}
-                startIcon={<CloseIcon />}
-              ></Button>
+            {props.type == "history" && (
+              <div className={classes.ModalCloseButtonContainer}>
+                <Button
+                  variant="text"
+                  onClick={props.closeModalHanlder}
+                  startIcon={<CloseIcon />}
+                ></Button>
+              </div>
             )}
             {page == 1 && (
               <LocationForm

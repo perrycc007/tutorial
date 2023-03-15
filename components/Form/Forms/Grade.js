@@ -112,7 +112,7 @@ export default function BasicTabs(props) {
 
   return (
     <ThemeProvider theme={theme}>
-      <h1>公閞試成績</h1>
+      <h1>公開試成績</h1>
       <form className={classes.formContent} onSubmit={submitHandler}>
         <Box
           sx={{

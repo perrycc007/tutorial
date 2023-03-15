@@ -18,12 +18,19 @@ const ProfileForm = (props) => {
   const [changes, setChanges] = useState(false);
   const getUserid = userStore((state) => state.userId);
   const [page, setPage] = useState(1);
+  const handleClick = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
   const isTutor = userStore((state) => state.isTutor);
   useEffect(() => {
     console.log(props.profile);
   }, [props.profile]);
   const handleChange = (e, p) => {
     setPage(p);
+    handleClick();
   };
   useEffect(() => {
     if (!isTutor) {

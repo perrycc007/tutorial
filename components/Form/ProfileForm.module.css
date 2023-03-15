@@ -1,12 +1,17 @@
 .body {
   display: flex;
   justify-content: center;
-  padding-top: 4rem;
+  padding-top: 2rem;
+}
+.ModalCloseButtonContainer{
+  display: flex;
+  justify-content: flex-end;
 }
 
 .modalBody {
   display: flex;
   justify-content: center;
+  /* max-width: 30rem; */
 }
 
 .container {
@@ -14,7 +19,7 @@
   width: 100%;
   background-color: white;
   box-shadow: 1px;
-  padding: 3rem 4rem;
+  padding: 1.5rem 4rem;
   border-radius: 5px;
 
 }
@@ -32,14 +37,15 @@
   .container {
     max-width: 100%;
     width: 100%;
-    padding: 3rem 1rem;
+    padding: 1rem 1rem;
   }
   .body {
-    padding-top: 4rem;
+    padding-top: 2rem;
   }
   .modalBody {
     display: flex;
     justify-content: center;
+    min-width: 80vw;
   }
   
 }
@@ -50,14 +56,15 @@
   .container {
     max-width: 100%;
     width: 100%;
-    padding: 3rem 1rem;
+    padding: 1rem 1rem;
   }
   .body {
-    padding-top: 4rem;
+    padding-top: 2rem;
   }
   .modalBody {
     display: flex;
     justify-content: center;
+    min-width: 90vw;
   }
   
 }
@@ -67,14 +74,15 @@
   .container {
     max-width: 100%;
     width: 100%;
-    padding: 3rem 0.4rem;
+    padding: 1rem 0.4rem;
   }
   .body {
-    padding-top: 4rem;
+    padding-top: 2rem;
   }
   .modalBody {
     display: flex;
     justify-content: center;
+    min-width: 90vw;
   }
   
 }
