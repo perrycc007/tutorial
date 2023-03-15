@@ -3,9 +3,10 @@
   justify-content: center;
   padding-top: 2rem;
 }
-.ModalCloseButtonContainer{
+.ModalCloseButtonContainer {
   display: flex;
   justify-content: flex-end;
+  margin-top: 1rem;
 }
 
 .modalBody {
@@ -19,9 +20,9 @@
   width: 100%;
   background-color: white;
   box-shadow: 1px;
-  padding: 1.5rem 4rem;
-  border-radius: 5px;
+  padding: 0rem 4rem 1.5rem;
 
+  border-radius: 5px;
 }
 
 .pagination {
@@ -31,9 +32,7 @@
   width: 100%;
 }
 
-
 @media (max-width: 769px) {
-
   .container {
     max-width: 100%;
     width: 100%;
@@ -45,14 +44,11 @@
   .modalBody {
     display: flex;
     justify-content: center;
-    min-width: 80vw;
+    width: 33rem;
   }
-  
 }
 
-
 @media (max-width: 584px) {
-
   .container {
     max-width: 100%;
     width: 100%;
@@ -65,12 +61,11 @@
     display: flex;
     justify-content: center;
     min-width: 90vw;
+    max-width: 22rem;
   }
-  
 }
 
 @media (max-width: 400px) {
-
   .container {
     max-width: 100%;
     width: 100%;
@@ -83,6 +78,6 @@
     display: flex;
     justify-content: center;
     min-width: 90vw;
+    max-width: 15rem;
   }
-  
 }

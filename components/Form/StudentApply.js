@@ -28,7 +28,7 @@ const StudentApply = (props) => {
 
   const handleChange = (e, p) => {
     setPage(p);
-    handleClick()
+    handleClick();
   };
 
   useEffect(() => {
@@ -106,16 +106,16 @@ const StudentApply = (props) => {
     <React.Fragment>
       <div className={classes.modalBody}>
         <Paper>
+          {props.type == "history" && (
+            <div className={classes.ModalCloseButtonContainer}>
+              <Button
+                variant="text"
+                onClick={props.closeModalHanlder}
+                startIcon={<CloseIcon />}
+              ></Button>
+            </div>
+          )}
           <div className={classes.container}>
-            {props.type == "history" && (
-              <div className={classes.ModalCloseButtonContainer}>
-                <Button
-                  variant="text"
-                  onClick={props.closeModalHanlder}
-                  startIcon={<CloseIcon />}
-                ></Button>
-              </div>
-            )}
             {page == 1 && (
               <LocationForm
                 submitHandler={studentid == "" ? firstlistHandler : listHandler}
