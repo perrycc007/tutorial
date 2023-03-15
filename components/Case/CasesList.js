@@ -11,19 +11,28 @@ const CasesList = (props) => {
   const count =
     props.cases != undefined ? Math.ceil(props.cases.length / PER_PAGE) : 0;
   const _DATA = usePagination(props.cases, PER_PAGE);
+  const handleClick = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
   const handleChange = (e, p) => {
     setPage(p);
     _DATA.jump(p);
+    if (!props.admin) {
+      handleClick();
+    }
   };
   const [checkingList, setCheckinglist] = useState([]);
   const [checkedList, setCheckedlist] = useState([]);
 
-  if(props.admin=="adminTutor"){
-  useEffect(() => {
-    setCheckinglist(props.adminInfo.checking);
-    setCheckedlist(props.adminInfo.checked);
-  }, [props.adminInfo, props.adminInfo]);
-}
+  if (props.admin == "adminTutor") {
+    useEffect(() => {
+      setCheckinglist(props.adminInfo.checking);
+      setCheckedlist(props.adminInfo.checked);
+    }, [props.adminInfo, props.adminInfo]);
+  }
   const UpdateCheckHandler = (idmatch, tutorid, checkStatus) => {
     let checking = checkingList;
     let checked = checkedList;
@@ -31,7 +40,7 @@ const CasesList = (props) => {
       case "checking":
         checking = checking.filter((item) => item != tutorid);
         setCheckinglist(checking);
-        checked = [...checked,tutorid];
+        checked = [...checked, tutorid];
         setCheckedlist(checked);
         console.log("checking", checking, "checked", checked);
         props.toggleCheckHandler(idmatch, checked, checking);
@@ -43,7 +52,7 @@ const CasesList = (props) => {
         props.toggleCheckHandler(idmatch, checking, checked);
         break;
       case "not yet checked":
-        checking = [...checking,tutorid]
+        checking = [...checking, tutorid];
         setCheckinglist(checking);
         console.log("checking", checking, "checked", checked);
         props.toggleCheckHandler(idmatch, checked, checking);
@@ -104,14 +113,16 @@ const CasesList = (props) => {
                   }
                   checkedStatus={
                     props.adminInfo
-                      ? props.adminInfo.checked !=null&&props.adminInfo.checked !=''
+                      ? props.adminInfo.checked != null &&
+                        props.adminInfo.checked != ""
                         ? props.adminInfo.checked.includes(oneCase.tutorid)
                         : false
                       : false
                   }
                   checkingStatus={
                     props.adminInfo
-                      ? props.adminInfo.checking!=null&&props.adminInfo.checking!=''
+                      ? props.adminInfo.checking != null &&
+                        props.adminInfo.checking != ""
                         ? props.adminInfo.checking.includes(oneCase.tutorid)
                         : false
                       : false
