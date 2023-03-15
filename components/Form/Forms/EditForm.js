@@ -4,7 +4,7 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import StudentApply from "../../Form/StudentApply";
-import classes from "./Form.module.css";
+import classes from "./EditForm.module.css";
 const style = {
   position: "absolute",
   top: "50%",
@@ -29,11 +29,13 @@ export default function EditForm(props) {
         onClose={handleClose}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
+        // className={classes.modalContainer}
       >
-        <Box sx={style}>
+        <Box sx={style} className={classes.modalContent}>
           <StudentApply
             cases={props.cases}
             studentid={props.cases.studentid}
+            type='history'
           ></StudentApply>
         </Box>
       </Modal>

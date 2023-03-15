@@ -1,4 +1,3 @@
-import StudentOthers from "../Forms/StudentOthers";
 
 const formField = {
   selectfield: {
@@ -128,23 +127,23 @@ const formField = {
         requiredErrorMsg: "最高可補年級 is required",
         option: [
           {
-            value: "undefined",
+            value: "沒有",
             label: "None",
           },
           {
-            value: "kin",
+            value: "幼稚園",
             label: "幼稚園",
           },
           {
-            value: "pri",
+            value: "小學",
             label: "小學",
           },
           {
-            value: "sec",
+            value: "中學",
             label: "中學",
           },
           {
-            value: "adult",
+            value: "成人",
             label: "成人",
           },
         ],
@@ -157,6 +156,10 @@ const formField = {
           {
             value: "undefined",
             label: "None",
+          },
+          {
+            value: "小學",
+            label: "小學",
           },
           {
             value: "中學",
@@ -187,15 +190,15 @@ const formField = {
         option: [
           {
             value: "undefined",
-            label: "None",
+            label: "",
           },
           {
-            value: "no",
-            label: "no",
+            value: "有",
+            label: "有",
           },
           {
-            value: "yes",
-            label: "yes",
+            value: "沒有",
+            label: "沒有",
           },
         ],
       },
@@ -209,16 +212,20 @@ const formField = {
             label: "None",
           },
           {
-            value: "中中",
-            label: "中中",
+            value: "中文中學",
+            label: "中文中學",
           },
           {
-            value: "英中",
-            label: "英中",
+            value: "英文中學",
+            label: "英文中學",
           },
           {
-            value: "國際",
-            label: "國際",
+            value: "國際學校",
+            label: "國際學校",
+          },
+          {
+            value: "其他",
+            label: "其他",
           },
         ],
       },
@@ -279,7 +286,7 @@ const formField = {
         label: "強項",
         option: [
           {
-            value: 'undefined',
+            value: "undefined",
             label: "None",
           },
           {

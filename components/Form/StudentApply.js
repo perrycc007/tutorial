@@ -23,7 +23,11 @@ const StudentApply = (props) => {
 
   useEffect(() => {
     props.studentid ? setStudentid(props.studentid) : "";
+    if (props.type == "history") {
+      setIsStarted(true);
+    }
   }, []);
+
   async function firstlistHandler(value, type) {
     const key = type;
     console.log(key);
@@ -43,7 +47,7 @@ const StudentApply = (props) => {
 
   async function listHandler(value, type) {
     if (!isStarted) {
-      return alert("Please Finish Page 1");
+      return alert("請完成第 1 頁");
     } else {
       const key = type;
       value = JSON.stringify(value);
@@ -66,7 +70,7 @@ const StudentApply = (props) => {
   }
   async function studentHandler(value) {
     if (!isStarted) {
-      return alert("Please Finish Page 1");
+      return alert("請完成第 1 頁");
     } else {
       console.log(value);
       const info = studentData ? studentData : props.cases;
