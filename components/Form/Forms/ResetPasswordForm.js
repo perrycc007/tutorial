@@ -23,7 +23,7 @@ const ResetPasswordForm = (props) => {
   };
   const handleClose = () => {
     setOpen(false);
-    setTimeout(() => window.scrollTo({ top: 0, behavior: "smooth" }), 5);
+    // setTimeout(() => window.scrollTo({ top: 0, behavior: "smooth" }), 5);
   };
 
   const ResetPasswordHandler = (event) => {

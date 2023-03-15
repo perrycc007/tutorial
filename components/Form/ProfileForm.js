@@ -43,18 +43,14 @@ const ProfileForm = (props) => {
     const newInfo = { ...info, ...value };
     setProfileData(newInfo);
     setChanges(true);
-    const response = await Axios.post(`http://localhost:3001/profile/`, {
+    Axios.post(`http://localhost:3001/profile/`, {
       userid: getUserid ? getUserid : props.profile.userid,
       tutorid: getUserid ? getUserid : props.tutor.tutorid,
       information: newInfo,
-    });
-    response
-      .then((value) => {
-      })
-      .catch((e) => {
-        if (e.response.status === 400) {
-          alert(e.response.data);
-        } 
+    })
+      .then((value) => {})
+      .catch((error) => {
+        alert(error.response.data.message);
       });
 
     // response.data.result;
@@ -92,7 +88,7 @@ const ProfileForm = (props) => {
       // tutorid: getUserid,
       information: newInfo,
     });
-    response.data
+    response.data;
     match.data.result;
   }
   return (
