@@ -8,9 +8,10 @@ import { useState, useEffect } from "react";
 import BasicPopover from "../ui/BasicPopover";
 import Button from "@mui/material/Button";
 import itemName from "./itemName";
-function CaseItem(props) {
-  const [status, setStatus] = useState(props.cases.status);
-
+function CaseItemAdminStudent(props) {
+  const [status, setStatus] = useState(props.cases.status?props.cases.status:'open');
+  const [notAvailStatus, setNotAvailStatus] = useState(false);
+  const [checkStatus, setCheckStatus] = useState("not yet checked");
   const StatusHandler = () => {
     if (status == "open") {
       setStatus("close");
@@ -170,4 +171,4 @@ function CaseItem(props) {
   );
 }
 
-export default CaseItem;
+export default CaseItemAdminStudent;

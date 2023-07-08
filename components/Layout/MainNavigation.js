@@ -5,6 +5,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
 import { useEffect, useState } from "react";
 import Backdrop from "@mui/material/Backdrop";
+import { useRouter } from "next/router";
 const MainNavigation = () => {
   const getUserid = userStore((state) => state.userId);
   const Loggedin = userStore((state) => state.isLoggedin);
@@ -12,10 +13,11 @@ const MainNavigation = () => {
   const cleanFavourite = userStore((state) => state.cleanFavourite);
   const [isLoggedin, setIsLoggedin] = useState(false);
   const [menuState, setMenuState] = useState(false);
+  const router = useRouter();
   const logoutHandler = () => {
     logOutAction();
     cleanFavourite();
-    // optional: redirect the user
+    router.push("/");
   };
   const toggleIstutorHandler = () => {
     toggleIstutor(!isTutor);
@@ -27,10 +29,6 @@ const MainNavigation = () => {
   useEffect(() => {
     setIsLoggedin(Loggedin);
   }, [Loggedin]);
-
-  if (!isLoggedin) {
-    return null;
-  }
 
   return (
     <div>

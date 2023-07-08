@@ -1,5 +1,5 @@
-import CaseItem from "../Case/CaseItem";
-import CaseList from "../Case/CaseList";
+import CaseItemAdminStudent from "../Case/CaseItemAdminStudent";
+import CaseListAdminTutor from "../Case/CaseListAdminTutor";
 import Axios from "axios";
 import classes from "./AdminDisplay.module.css";
 import { useState, Fragment } from "react";
@@ -78,7 +78,7 @@ export default function AdminDisplay(props) {
     <Fragment>
       <div className={classes.container}>
         <div>
-          <CaseItem
+          <CaseItemAdminStudent
             cases={studentInfo}
             toggleStatus={toggleStatus}
             adminInfo={adminInfo}
@@ -86,7 +86,7 @@ export default function AdminDisplay(props) {
             type="cases"
           />
         </div>
-        <CasesList
+        <CaseListAdminTutor
           cases={tutor}
           idmatch={idmatch}
           toggleCheckHandler={toggleCheck}

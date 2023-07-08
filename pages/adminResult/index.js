@@ -7,7 +7,7 @@ import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import classes from "./adminResult.module.css";
 import { useEffect, useState, useRef } from "react";
-import CaseItem from "../../components/Case/CaseItem";
+import CaseItemAdminTutor from "../../components/Case/CaseItemAdminTutor";
 const Result = () => {
   const [loading, setLoading] = useState(true);
   const [page, setPage] = useState(1);
@@ -133,7 +133,7 @@ const Result = () => {
           </div>
         )}
         {!loading && tutor && (
-          <CaseItem
+          <CaseItemAdminTutor
             cases={tutor}
             type="tutor"
             admin="admin"

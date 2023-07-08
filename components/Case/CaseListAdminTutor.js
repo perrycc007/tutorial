@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
-import CaseItem from "./CaseItem";
+import CaseItemAdminTutor from "./CaseItemAdminTutor";
 import Pagination from "@mui/material/Pagination";
 import usePagination from "../Layout/usePagination";
-import classes from "./CasesList.module.css";
+import classes from "./CaseList.module.css";
 
 // And now we can use these
-const CasesList = (props) => {
+const CaseListAdminTutor = (props) => {
   let [page, setPage] = useState(1);
   const PER_PAGE = 4;
   const count =
@@ -20,9 +20,7 @@ const CasesList = (props) => {
   const handleChange = (e, p) => {
     setPage(p);
     _DATA.jump(p);
-    if (!props.admin) {
-      handleClick();
-    }
+    handleClick();
   };
   const [checkingList, setCheckinglist] = useState([]);
   const [checkedList, setCheckedlist] = useState([]);
@@ -77,13 +75,13 @@ const CasesList = (props) => {
           ? _DATA
               .currentData()
               .map((oneCase) => (
-                <CaseItem
+                <CaseItemAdminTutor
                   key={oneCase.tutorid}
                   id={oneCase.tutorid}
                   cases={oneCase}
                   type={props.type}
                   idmatch={props.idmatch}
-                  admin={props.admin ? props.admin : ""}
+                  admin={props.admin}
                   adminInfo={props.adminInfo ? props.adminInfo : {}}
                   toggleStatus={
                     props.toggleStatusHandler ? props.toggleStatusHandler : ""
@@ -144,4 +142,4 @@ const CasesList = (props) => {
   );
 };
 
-export default CasesList;
+export default CaseListAdminTutor;

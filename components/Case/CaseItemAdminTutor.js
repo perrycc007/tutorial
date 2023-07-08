@@ -45,24 +45,20 @@ function CaseItemAdminTutor(props) {
     if (status == "open") {
       setStatus("close");
       props.toggleStatus(
-        props.type == "tutor" ? props.cases.tutorid : props.cases.studentid,
+        props.type == props.cases.tutorid,
         "close",
         props.type
       );
     } else if (status == "close") {
       setStatus("block");
       props.toggleStatus(
-        props.type == "tutor" ? props.cases.tutorid : props.cases.studentid,
+        props.type == props.cases.tutorid,
         "block",
         props.type
       );
     } else if (status == "block") {
       setStatus("open");
-      props.toggleStatus(
-        props.type == "tutor" ? props.cases.tutorid : props.cases.studentid,
-        "open",
-        props.type
-      );
+      props.toggleStatus(props.type == props.cases.tutorid, "open", props.type);
     }
   };
   const toggleNotAvail = () => {
@@ -131,7 +127,7 @@ function CaseItemAdminTutor(props) {
     return result;
   };
 
-  const availtimeArray = JSON.parse(availtime);
+  const availtimeArray = availtime ? JSON.parse(availtime) : [];
   const timeForDisaply = availtimeArray
     ? availtimeArray.map((item) => {
         return readDate(item);
@@ -139,13 +135,12 @@ function CaseItemAdminTutor(props) {
     : [];
 
   let heading = {
-    location: JSON.parse(location),
-    subject: JSON.parse(subject),
+    location: location ? JSON.parse(location) : [],
+    subject: subject ? JSON.parse(subject) : [],
   };
   let verifyServer = "否";
-  if (props.type == "tutor") {
-    verifyServer = items.verify;
-  }
+  verifyServer = items.verify;
+
   return (
     <div className={classes.item}>
       <Accordion className={classes.accordion}>
@@ -167,13 +162,8 @@ function CaseItemAdminTutor(props) {
           <p className={classes.title}>{`$${fee}/小時`}</p>
         </AccordionSummary>
         <AccordionDetails className={classes.summary}>
-          {props.type == "tutor" && <p>履歷驗證狀態:{verifyServer}</p>}
-          <p className={classes.detail}>
-            ID:{" "}
-            {props.type == "tutor"
-              ? props.cases.tutorid
-              : props.cases.studentid}
-          </p>
+          <p>履歷驗證狀態:{verifyServer}</p>
+          <p className={classes.detail}>ID:{props.cases.tutorid}</p>
           {Object.entries(items).map(
             ([key, value]) =>
               itemName[key] !== undefined &&
@@ -184,13 +174,12 @@ function CaseItemAdminTutor(props) {
                 </p>
               )
           )}
-          {props.type == "tutor"
-            ? JSON.parse(items.subgrade).map((item) => (
-                <p className={classes.detail} key={item.id}>
-                  {item.id} : {item.value}
-                </p>
-              ))
-            : ""}
+          {items.subgrade &&
+            JSON.parse(items.subgrade).map((item) => (
+              <p className={classes.detail} key={item.id}>
+                {item.id} : {item.value}
+              </p>
+            ))}
 
           <div className={classes.buttonContainer}>
             <div className={classes.summary}>
@@ -209,14 +198,9 @@ function CaseItemAdminTutor(props) {
                   ? "個案已隱藏"
                   : "個案已封鎖"}
               </Button>
-              {props.type == "tutor" && (
-                <Button variant="outlined" onClick={verifyHandler}>
-                  {verify == "已驗證" ? "教師已驗證" : "教師未驗證"}
-                </Button>
-              )}
-              <div>
-                <EditForm cases={props.cases} />
-              </div>
+              <Button variant="outlined" onClick={verifyHandler}>
+                {verify == "已驗證" ? "教師已驗證" : "教師未驗證"}
+              </Button>
             </div>
 
             <div>
