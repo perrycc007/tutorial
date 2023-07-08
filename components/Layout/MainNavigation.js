@@ -65,7 +65,7 @@ const MainNavigation = () => {
           </li>
           {isLoggedin && (
             <li className={classes.navbarli}>
-              <Link href={`/profile/${getUserid}`}>
+              <Link href={`/profile`}>
                 <div className={classes.navbarliLink}>個人資料</div>
               </Link>
             </li>
@@ -82,7 +82,7 @@ const MainNavigation = () => {
           {isLoggedin && (
             <li className={classes.navbarli}>
               <div className={classes.navbarliLink}>
-                <Link href={`/history/${getUserid}`}>
+                <Link href={`/history`}>
                   <div className={classes.navbarliLink}>申請歷史</div>
                 </Link>
               </div>

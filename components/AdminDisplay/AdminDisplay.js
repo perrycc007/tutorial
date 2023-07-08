@@ -1,5 +1,5 @@
 import CaseItem from "../Case/CaseItem";
-import CasesList from "../Case/CasesList";
+import CaseList from "../Case/CaseList";
 import Axios from "axios";
 import classes from "./AdminDisplay.module.css";
 import { useState, Fragment } from "react";

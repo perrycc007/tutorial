@@ -7,7 +7,7 @@ import classes from "./CasesList.module.css";
 // And now we can use these
 const CasesList = (props) => {
   let [page, setPage] = useState(1);
-  const PER_PAGE = props.admin ? 4 : 15;
+  const PER_PAGE = 4;
   const count =
     props.cases != undefined ? Math.ceil(props.cases.length / PER_PAGE) : 0;
   const _DATA = usePagination(props.cases, PER_PAGE);
@@ -27,12 +27,11 @@ const CasesList = (props) => {
   const [checkingList, setCheckinglist] = useState([]);
   const [checkedList, setCheckedlist] = useState([]);
 
-  if (props.admin == "adminTutor") {
-    useEffect(() => {
-      setCheckinglist(props.adminInfo.checking);
-      setCheckedlist(props.adminInfo.checked);
-    }, [props.adminInfo, props.adminInfo]);
-  }
+  useEffect(() => {
+    setCheckinglist(props.adminInfo.checking);
+    setCheckedlist(props.adminInfo.checked);
+  }, [props.adminInfo, props.adminInfo]);
+
   const UpdateCheckHandler = (idmatch, tutorid, checkStatus) => {
     let checking = checkingList;
     let checked = checkedList;
@@ -79,12 +78,8 @@ const CasesList = (props) => {
               .currentData()
               .map((oneCase) => (
                 <CaseItem
-                  key={
-                    props.type == "tutor" ? oneCase.tutorid : oneCase.studentid
-                  }
-                  id={
-                    props.type == "tutor" ? oneCase.tutorid : oneCase.studentid
-                  }
+                  key={oneCase.tutorid}
+                  id={oneCase.tutorid}
                   cases={oneCase}
                   type={props.type}
                   idmatch={props.idmatch}
@@ -129,11 +124,7 @@ const CasesList = (props) => {
                   }
                   isFavourite={
                     props.favourite
-                      ? props.favourite.includes(
-                          props.type == "tutor"
-                            ? oneCase.tutorid
-                            : oneCase.studentid
-                        )
+                      ? props.favourite.includes(oneCase.tutorid)
                       : ""
                   }
                 />

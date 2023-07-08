@@ -1,4 +1,4 @@
-import CasesList from "./CasesList";
+import CaseListUser from "./CaseListUser";
 import axios from "axios";
 import userStore from "../../stores/stores";
 import Filter from "./Filter";
@@ -53,7 +53,7 @@ const Student = (props) => {
         {!props.Favourite && <Filter FilterHanlder={casesFilter} />}
       </div>
       {!filtered && (
-        <CasesList
+        <CaseListUser
           cases={props.cases}
           type="cases"
           favourite={FavouriteCases}
@@ -61,7 +61,7 @@ const Student = (props) => {
         />
       )}
       {filtered && (
-        <CasesList
+        <CaseListUser
           cases={filteredList}
           type="cases"
           favourite={FavouriteCases}

@@ -1,13 +1,37 @@
-import CaseList from "./CaseList";
+import CasesList from "./CasesList";
 import axios from "axios";
 import userStore from "../../stores/stores";
 import Filter from "./Filter";
 import { useState, useEffect } from "react";
 import Axios from "axios";
 import classes from "./Student.module.css";
+import Pagination from "@mui/material/Pagination";
+import usePagination from "../Layout/usePagination";
+import classes from "./CasesList.module.css";
 
 const Tutor = (props) => {
   const url = "http://localhost:3001/favourite/tutor";
+  let [page, setPage] = useState(1);
+  const PER_PAGE = 15;
+  const count =
+    props.cases != undefined ? Math.ceil(props.cases.length / PER_PAGE) : 0;
+  const _DATA = usePagination(props.cases, PER_PAGE);
+  const handleClick = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+  const handleChange = (e, p) => {
+    setPage(p);
+    _DATA.jump(p);
+    if (!props.admin) {
+      handleClick();
+    }
+  };
+
+
+
   const [filtered, setFiltered] = useState(false);
   const [filteredList, setFilteredList] = useState([]);
   const getUserid = userStore((state) => state.userId);
@@ -53,16 +77,19 @@ const Tutor = (props) => {
       <div className={classes.filter}>
         {!props.Favourite && <Filter FilterHanlder={tutorFilter} />}
       </div>
-      {!filtered && (
-        <CaseList
+      {!filtered && 
+
+
+
+        <CasesList
           cases={props.cases}
           type="tutor"
           favourite={FavouriteTutor}
           toggleFavouriteHandler={toggleFavouriteTopHandler}
         />
-      )}
+      }
       {filtered && (
-        <CaseList
+        <CasesList
           cases={filteredList}
           type="tutor"
           favourite={FavouriteTutor}
