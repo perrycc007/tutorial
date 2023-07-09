@@ -29,7 +29,7 @@ export default function EditForm(props) {
         onClose={handleClose}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
-        // className={classes.modalContainer}
+        className={classes.modalContainer}
       >
         <Box sx={style} className={classes.modalContent}>
           <StudentApply

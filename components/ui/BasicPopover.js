@@ -5,6 +5,7 @@ import Button from "@mui/material/Button";
 import ProfileForm from "../Form/ProfileForm";
 import LoadingScreen from "../Layout/LoadingScreen";
 import Axios from "axios";
+import classes from "./BasicPopover.module.css";
 const style = {
   position: "absolute",
   top: "50%",
@@ -13,6 +14,9 @@ const style = {
   bgcolor: "transparent",
   borderRadois: 20,
   p: 4,
+  width: "80vw",
+  maxHeight: "99vh",
+  overflow: "auto",
 };
 
 export default function BasicPopover(props) {
@@ -25,8 +29,12 @@ export default function BasicPopover(props) {
     setOpen(true);
     setLoading(true);
     getProfile();
+    document.body.classList.add(classes.noScroll);
   };
-  const handleClose = () => setOpen(false);
+  const handleClose = () => {
+    setOpen(false);
+    document.body.classList.remove(classes.noScroll);
+  };
 
   async function getProfile() {
     const response = await Axios.get(
@@ -51,7 +59,7 @@ export default function BasicPopover(props) {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <Box sx={style}>
+        <Box sx={style} className={classes.scrollContainer}>
           {loading && <LoadingScreen />}
           {!loading && (
             <ProfileForm
