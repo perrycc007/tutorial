@@ -9,6 +9,7 @@ import Budget from "./Forms/Budget";
 import Pagination from "@mui/material/Pagination";
 import userStore from "../../stores/stores";
 import Axios from "axios";
+import Button from "@mui/material/Button";
 import classes from "./ProfileForm.module.css";
 import Paper from "@mui/material/Paper";
 const ProfileForm = (props) => {
@@ -96,6 +97,7 @@ const ProfileForm = (props) => {
       <div className={classes.body}>
         <Paper>
           <div className={classes.container}>
+            {props.admin && <Button onClick={props.closeModal}>close</Button>}
             {page == 1 && (
               <BasicInfo
                 submitHandler={submitHandler}

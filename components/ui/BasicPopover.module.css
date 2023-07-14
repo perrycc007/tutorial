@@ -2,7 +2,6 @@
   overflow: hidden;
 }
 .scrollContainer {
-  width: 100%;
   overflow-y: scroll;
   scrollbar-width: thin; /* For Firefox */
   scrollbar-color: transparent transparent; /* For Firefox */
