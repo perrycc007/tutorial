@@ -8,6 +8,7 @@ import Button from "@mui/material/Button";
 import classes from "./adminResult.module.css";
 import { useEffect, useState, useRef } from "react";
 import CaseItemAdminTutor from "../../components/Case/CaseItemAdminTutor";
+import { isAdmin } from "../../utils/isAdmin";
 const Result = () => {
   const [loading, setLoading] = useState(true);
   const [page, setPage] = useState(1);
@@ -16,6 +17,16 @@ const Result = () => {
   const studentidRef = useRef();
   const tutoridRef = useRef();
   const [tutor, setTutor] = useState(undefined);
+
+
+  const router = useRouter();
+
+  useEffect(() => {
+    if (!isAuthenticated()) {
+      router.push("/unauthorized"); // Redirect to login page or any other unauthorized page
+    }
+  }, []);
+
   // const enteredStudentId = studentidRef.current?.value;
   const handleChange = (e, p) => {
     setPage(p);
