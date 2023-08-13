@@ -94,71 +94,73 @@ const ProfileForm = (props) => {
   }
   return (
     <React.Fragment>
-      <div className={classes.body}>
-        <Paper>
-          <div className={classes.container}>
-            {props.admin && <Button onClick={props.closeModal}>close</Button>}
-            {page == 1 && (
-              <BasicInfo
-                submitHandler={submitHandler}
-                info={changes ? profileData : props.profile}
-                userid={getUserid}
-              />
-            )}
-            {page == 2 && (
-              <LocationForm
-                submitHandler={listHandler}
-                info={changes ? tutorData : props.tutor}
-                isTutor={isTutor}
-              />
-            )}
-            {page == 3 && (
-              <TimeForm
-                submitHandler={listHandler}
-                info={changes ? tutorData : props.tutor}
-              />
-            )}
-            {page == 4 && (
-              <EducationForm
-                submitHandler={tutorHandler}
-                info={changes ? tutorData : props.tutor}
-              />
-            )}
-            {page == 5 && (
-              <Grade
-                submitHandler={listHandler}
-                info={changes ? tutorData : props.tutor}
-              />
-            )}
-            {page == 6 && (
-              <Subjects
-                submitHandler={listHandler}
-                info={changes ? tutorData : props.tutor}
-              />
-            )}
-            {page == 7 && (
-              <Budget
-                submitHandler={tutorHandler}
-                info={changes ? tutorData : props.tutor}
-              />
-            )}
-
-            {(isTutor && !props.admin) || props.type == "tutor" ? (
-              <div className={classes.pagination}>
-                <Pagination
-                  size="small"
-                  count={7}
-                  page={page}
-                  onChange={handleChange}
-                  variant="outlined"
-                  color="primary"
+      <div className={classes.formBackground}>
+        <div className={classes.body}>
+          <Paper>
+            <div className={classes.container}>
+              {props.admin && <Button onClick={props.closeModal}>close</Button>}
+              {page == 1 && (
+                <BasicInfo
+                  submitHandler={submitHandler}
+                  info={changes ? profileData : props.profile}
+                  userid={getUserid}
                 />
-              </div>
-            ) : (
-              ""
-            )}
-          </div>
-        </Paper>
+              )}
+              {page == 2 && (
+                <LocationForm
+                  submitHandler={listHandler}
+                  info={changes ? tutorData : props.tutor}
+                  isTutor={isTutor}
+                />
+              )}
+              {page == 3 && (
+                <TimeForm
+                  submitHandler={listHandler}
+                  info={changes ? tutorData : props.tutor}
+                />
+              )}
+              {page == 4 && (
+                <EducationForm
+                  submitHandler={tutorHandler}
+                  info={changes ? tutorData : props.tutor}
+                />
+              )}
+              {page == 5 && (
+                <Grade
+                  submitHandler={listHandler}
+                  info={changes ? tutorData : props.tutor}
+                />
+              )}
+              {page == 6 && (
+                <Subjects
+                  submitHandler={listHandler}
+                  info={changes ? tutorData : props.tutor}
+                />
+              )}
+              {page == 7 && (
+                <Budget
+                  submitHandler={tutorHandler}
+                  info={changes ? tutorData : props.tutor}
+                />
+              )}
+
+              {(isTutor && !props.admin) || props.type == "tutor" ? (
+                <div className={classes.pagination}>
+                  <Pagination
+                    size="small"
+                    count={7}
+                    page={page}
+                    onChange={handleChange}
+                    variant="outlined"
+                    color="primary"
+                  />
+                </div>
+              ) : (
+                ""
+              )}
+            </div>
+          </Paper>
+        </div>
       </div>
     </React.Fragment>
   );

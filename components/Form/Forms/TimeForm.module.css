@@ -1,11 +1,11 @@
 .time {
-  font-size: 1%;
+  font-size: 12px;
   padding: 5.8% 1rem;
   margin: 0;
 }
 
 .day {
-  font-size: 3%;
+  font-size: 12px;
   padding: 0.2rem 1.5vh;
   margin: 0;
 }
@@ -17,7 +17,7 @@
 
 @media (max-width: 584px) {
   .time {
-    font-size: 1px;
+    font-size: 12px;
     padding: 0.225rem 1rem;
     margin: 0;
   }
@@ -31,13 +31,13 @@
 }
 @media (max-width: 400px) {
   .time {
-    font-size: 1%;
-    padding: 6.8% 0.2rem;
+    font-size: 12px;
+    padding: 0.15rem;
     margin: 0;
   }
 
   .day {
-    font-size: 3%;
+    font-size: 12px;
     padding: 0.2rem 0.4rem;
     margin: 0;
   }

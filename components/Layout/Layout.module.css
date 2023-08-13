@@ -2,7 +2,7 @@
   z-index: 10000;
 }
 .content {
-  padding-top: 5rem;
+  /* padding-top: 5rem; */
   display: flex;
   justify-content: center;
   width: 100%;
