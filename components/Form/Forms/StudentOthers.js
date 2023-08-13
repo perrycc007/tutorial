@@ -64,7 +64,7 @@ export default function StudentOthers(props) {
         {Object.entries(inputfield).map(([key, value]) => (
           <div key={`div${value.label}`} className={classes.inputContainer}>
             <TextField
-              className={classes.formInput}
+              // className={classes.formInput}
               name={value.name}
               label={value.label}
               key={value.name}

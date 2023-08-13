@@ -1,8 +1,8 @@
-import StudentApply from '../../components/Form/StudentApply'
+import NewStudentApply from '../../components/Form/NewStudentApply'
 const ApplyPage = () => {
   return (
     <>
-         <StudentApply />
+         <NewStudentApply />
     </>
   );
 };

@@ -1,0 +1,16 @@
+.container{
+    display: flex;
+}
+
+.formBackground {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 800px;
+    min-height: 100vh;
+    min-width: 100vw;
+    background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
+      url("../../public/imag1.jpg"); /* Replace with your image URL */
+    background-size: cover;
+    background-position: center;
+  }

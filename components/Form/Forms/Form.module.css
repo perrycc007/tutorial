@@ -24,6 +24,7 @@
 
 .formInput {
   width: 100%;
+  padding-top: 1rem;
 }
 
 .p{
@@ -52,6 +53,7 @@
 .Button{
   margin-right: 1rem;
 }
+
 
 
 @media (max-width: 584px) {
