@@ -99,10 +99,10 @@ export default function BasicTabs(props) {
             borderBottom: 1,
             borderColor: "divider",
             maxWidth: {
-              mobile: 250,
-              biggerMobile: 350,
-              tablet: 500,
-              laptop: 700,
+              mobile: props.type == 'AccordFliter'?1:250,
+              biggerMobile: props.type == 'AccordFliter'?1:100,
+              tablet: props.type == 'AccordFliter'?1:500,
+              laptop: props.type == 'AccordFliter'?'350px':700,
             },
           }}
         >

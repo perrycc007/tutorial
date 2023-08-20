@@ -52,25 +52,29 @@ const Tutor = (props) => {
   return (
     <div className={classes.container}>
       <Banner title="G" description="G"></Banner>
-      <div className={classes.filter}>
-        {!props.Favourite && <Filter FilterHanlder={tutorFilter} />}
+      <div className={classes.contentContainer}>
+        <div className={classes.filter}>
+          {!props.Favourite && <Filter FilterHanlder={tutorFilter} />}
+        </div>
+        <div className={classes.caseList}>
+          {!filtered && (
+            <CaseList
+              cases={props.cases}
+              type="tutor"
+              favourite={FavouriteTutor}
+              toggleFavouriteHandler={toggleFavouriteTopHandler}
+            />
+          )}
+          {filtered && (
+            <CaseList
+              cases={filteredList}
+              type="tutor"
+              favourite={FavouriteTutor}
+              toggleFavouriteHandler={toggleFavouriteTopHandler}
+            />
+          )}
+        </div>
       </div>
-      {!filtered && (
-        <CaseList
-          cases={props.cases}
-          type="tutor"
-          favourite={FavouriteTutor}
-          toggleFavouriteHandler={toggleFavouriteTopHandler}
-        />
-      )}
-      {filtered && (
-        <CaseList
-          cases={filteredList}
-          type="tutor"
-          favourite={FavouriteTutor}
-          toggleFavouriteHandler={toggleFavouriteTopHandler}
-        />
-      )}
     </div>
   );
 };

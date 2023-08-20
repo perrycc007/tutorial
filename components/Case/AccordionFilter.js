@@ -68,6 +68,7 @@ export default function AccordionFilter(props) {
             category={props.option}
             listHandler={props.listHandlerHandler}
             passValue={props.passValue}
+            type = "AccordFliter"
           />
         </AccordionDetails>
       </Accordion>

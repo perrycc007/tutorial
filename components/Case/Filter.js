@@ -54,7 +54,7 @@ const Filter = (props) => {
   return (
     <React.Fragment>
       <form className={classes.form}>
-      <div className={classes.sliderContainer}>
+        <div className={classes.sliderContainer}>
           <p>學費每小時</p>
           <MinSlider
             step={20}
@@ -78,8 +78,6 @@ const Filter = (props) => {
           passValue={subjectList}
           buttonName="科目"
         />
-
-
 
         <Button variant="contained" onClick={filterHandler}>
           篩選
