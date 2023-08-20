@@ -1,5 +1,4 @@
 .filter {
-  width: 350px;
   flex-grow: 1;
   max-width: 350px;
 }
@@ -10,22 +9,91 @@
 
 .contentContainer {
   display: flex;
+  padding: 2rem;
 }
 
 .caseList {
   flex-grow: 3;
   width: 100%;
-  padding: 3rem;
+  padding-left: 3rem;
+  padding-right: 1rem;
+}
+.bannerSectionTutor {
+  background-image: url("../image/imag1.jpg"); /* Replace with your image path */
+  background-size: cover;
+  background-position: center;
+  color: #fff; /* Set text color for better visibility */
+  padding: 3rem 0; /* Add padding to control the spacing */
+}
+
+.bannerOverlayTutor {
+  background-color: rgba(
+    0,
+    0,
+    0,
+    0.5
+  ); /* Add a semi-transparent overlay for better text readability */
+  padding: 20px;
+}
+
+.bannerContentTutor {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.bannerContentTutor h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.bannerContentTutor p {
+  font-size: 16px;
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 768px) {
+  .bannerContentTutor h2 {
+    font-size: 20px;
+  }
+
+  .bannerContentTutor p {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 1200px) {
+  .filter {
+    width: 100%;
+    padding: 2rem;
+    max-width: none;
+  }
+  .caseList {
+    width: 100%;
+    padding: 2rem;
+  }
+  .contentContainer {
+    display: block;
+  }
+}
+
+@media (max-width: 540px) {
+  .filter {
+    width: 100%;
+    max-width: none;
+    padding: 3px;
+  }
+  .caseList {
+    width: 100%;
+    padding: 3px;
+  }
+  .contentContainer {
+    display: block;
+    padding: 0.5rem;
+  }
 }
 
 @media (max-width: 900px) {
-  .filter {
-    width: 100%;
-    padding: 1rem;
-    max-width: none;
-  }
-
   .contentContainer {
-    display: block;
+    padding: 1rem;
   }
 }

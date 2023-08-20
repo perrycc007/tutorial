@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Typography from "@mui/material/Typography";
-import classes from "./BasicTabs.module.css"
+import classes from "./BasicTabs.module.css";
 import Box from "@mui/material/Box";
 import ToggleButton from "../InputTool/ToggleButton";
 import { useState, useEffect } from "react";
@@ -99,10 +99,10 @@ export default function BasicTabs(props) {
             borderBottom: 1,
             borderColor: "divider",
             maxWidth: {
-              mobile: props.type == 'AccordFliter'?1:250,
-              biggerMobile: props.type == 'AccordFliter'?1:100,
-              tablet: props.type == 'AccordFliter'?1:500,
-              laptop: props.type == 'AccordFliter'?'350px':700,
+              mobile: props.type == "AccordFliter" ? 1 : 250,
+              biggerMobile: props.type == "AccordFliter" ? 1 : 100,
+              tablet: props.type == "AccordFliter" ? 1 : 500,
+              desktop: props.type == "AccordFliter" ? "350px" : 700,
             },
           }}
         >
@@ -111,11 +111,16 @@ export default function BasicTabs(props) {
             onChange={handleChange}
             aria-label="basic tabs example"
             variant="scrollable"
-            scrollButtons
+            scrollButtons="auto"
             allowScrollButtonsMobile
           >
             {cat.map((item) => (
-              <Tab className={classes.tabs} key={item.cat} label={item.cat} {...a11yProps(item.index)} />
+              <Tab
+                className={classes.tabs}
+                key={item.cat}
+                label={item.cat}
+                {...a11yProps(item.index)}
+              />
             ))}
           </Tabs>
         </Box>

@@ -79,7 +79,7 @@ const Filter = (props) => {
           buttonName="科目"
         />
 
-        <Button variant="contained" onClick={filterHandler}>
+        <Button className={classes.button} variant="contained" onClick={filterHandler}>
           篩選
         </Button>
       </form>
