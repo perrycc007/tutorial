@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import ModalFilter from "./ModalFilter";
+import AccordionFilter from "./AccordionFilter";
 import MinSlider from "../inputTool/Slider";
 import Typography from "@mui/material/Typography";
 import place from "../Form/Forms/Location";
@@ -54,19 +54,7 @@ const Filter = (props) => {
   return (
     <React.Fragment>
       <form className={classes.form}>
-        <ModalFilter
-          listHandlerHandler={placeHandlerHandler}
-          option={place}
-          passValue={placeList}
-          buttonName="Place"
-        />
-        <ModalFilter
-          listHandlerHandler={subjectHandlerHandler}
-          option={subjects}
-          passValue={subjectList}
-          buttonName="Subject"
-        />
-        <div className={classes.sliderContainer}>
+      <div className={classes.sliderContainer}>
           <p>學費每小時</p>
           <MinSlider
             step={20}
@@ -78,25 +66,23 @@ const Filter = (props) => {
             passValue={PriceHandler}
           />
         </div>
-        <FormControl fullWidth>
-          {/* <InputLabel id="demo-simple-select-label">Grade</InputLabel>
-                    <Select
-                        labelId="demo-simple-select-label"
-                        id="demo-simple-select"
-                        value={grade}
-                        label="Grade"
-                        onChange={GradeHandleChange}
+        <AccordionFilter
+          listHandlerHandler={placeHandlerHandler}
+          option={place}
+          passValue={placeList}
+          buttonName="地點"
+        />
+        <AccordionFilter
+          listHandlerHandler={subjectHandlerHandler}
+          option={subjects}
+          passValue={subjectList}
+          buttonName="科目"
+        />
 
-                    >
-                        <MenuItem value={'kin'}>幼稚園</MenuItem>
-                        <MenuItem value={'pri'}>小學</MenuItem>
-                        <MenuItem value={'sec'}>中學</MenuItem>
-                        <MenuItem value={'adult'}>成人</MenuItem>
-                    </Select> */}
-        </FormControl>
+
 
         <Button variant="contained" onClick={filterHandler}>
-          Filter
+          篩選
         </Button>
       </form>
     </React.Fragment>

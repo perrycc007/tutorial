@@ -5,6 +5,7 @@ import Filter from "./Filter";
 import { useState, useEffect } from "react";
 import Axios from "axios";
 import classes from "./Student.module.css";
+import Banner from "../Layout/Banner";
 
 const Tutor = (props) => {
   const url = "http://localhost:3001/favourite/tutor";
@@ -50,6 +51,7 @@ const Tutor = (props) => {
 
   return (
     <div className={classes.container}>
+      <Banner title="G" description="G"></Banner>
       <div className={classes.filter}>
         {!props.Favourite && <Filter FilterHanlder={tutorFilter} />}
       </div>

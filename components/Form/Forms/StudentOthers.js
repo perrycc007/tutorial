@@ -101,9 +101,9 @@ export default function StudentOthers(props) {
           </div>
         ))}
         <div>
-          <p className={classes.formInput}>每堂總時數(分鐘)</p>
+          <p className={classes.item}>每堂總時數(分鐘)</p>
           <MinSlider
-            className={classes.formInput}
+            className={classes.item}
             step={15}
             max={180}
             min={30}
@@ -116,9 +116,9 @@ export default function StudentOthers(props) {
           />
         </div>
         <div>
-          <p className={classes.formInput}>一週堂數</p>
+          <p className={classes.item}>一週堂數</p>
           <MinSlider
-            className={classes.formInput}
+            className={classes.item}
             step={1}
             max={7}
             min={1}
@@ -131,9 +131,9 @@ export default function StudentOthers(props) {
           />
         </div>
         <div>
-          <p className={classes.formInput}>學費每小時</p>
+          <p className={classes.item}>學費每小時</p>
           <MinSlider
-            className={classes.formInput}
+            className={classes.item}
             step={20}
             max={1000}
             min={60}
